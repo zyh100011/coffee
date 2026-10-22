@@ -1,0 +1,188 @@
+{
+  "schema": "delivery-v1",
+  "note": "pending/instructions的path只指说明，不能视为成果文件已齐",
+  "items": [
+    {
+      "id": "code",
+      "path": "coffee_digital_twin/backend",
+      "status": "ready",
+      "outcome": "十-1/7",
+      "note": "业务接口/白名单/适配器/工具与测试；不等于真实服务已接入"
+    },
+    {
+      "id": "mini",
+      "path": "coffee_digital_twin/miniprogram",
+      "status": "ready",
+      "outcome": "十-1/7",
+      "note": "原生页面与Canvas；H8人工截图仍缺"
+    },
+    {
+      "id": "deps",
+      "path": "coffee_digital_twin/backend/requirements.lock.txt",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "固定直接与传递依赖"
+    },
+    {
+      "id": "env",
+      "path": "coffee_digital_twin/backend/.env.example",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "公开配置模板，不包含实际.env或密钥"
+    },
+    {
+      "id": "local-config",
+      "path": "coffee_digital_twin/docs/zyh/源码交付配置.md",
+      "status": "instructions",
+      "outcome": "十-7",
+      "note": "微信本地三配置不打包；此路径为重建配置与第三方说明"
+    },
+    {
+      "id": "startup",
+      "path": "coffee_digital_twin/server/start_backend.ps1",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "当前启动脚本；完整新机启动包属Phase6"
+    },
+    {
+      "id": "data-version",
+      "path": "coffee_digital_twin/docs/zyh/待补交付材料.md",
+      "status": "pending",
+      "outcome": "十-4/5",
+      "note": "指向缺项说明；真实data-v1.0/冻结快照不存在，非现成数据成果"
+    },
+    {
+      "id": "hydrus-cases",
+      "path": "coffee_digital_twin/backend/data/hydrus_cases",
+      "status": "ready",
+      "outcome": "十-3",
+      "note": "4个假设状态案例、对比与历史失败记录；未校准"
+    },
+    {
+      "id": "verifiable",
+      "path": "实验资料/04_三模型工具资料/可核验案例_zyh.json",
+      "status": "partial",
+      "outcome": "十-3/5",
+      "note": "当前partial，仅4个HYDRUS假设案例；20条实测待冻结"
+    },
+    {
+      "id": "hydrus-manual",
+      "path": "coffee_digital_twin/docs/zyh/HYDRUS工具说明.md",
+      "status": "ready",
+      "outcome": "十-3",
+      "note": "固定版本/输入输出/假设/状态/适用边界"
+    },
+    {
+      "id": "hydrus-license",
+      "path": "coffee_digital_twin/docs/zyh/源码交付配置.md",
+      "status": "pending",
+      "outcome": "十-3/7",
+      "note": "此路径仅获取配置说明，许可待H10；包不带EXE"
+    },
+    {
+      "id": "data-tools",
+      "path": "coffee_digital_twin/backend/data_pipeline",
+      "status": "ready",
+      "outcome": "十-4",
+      "note": "31CSV共476215条已入库，质量规则可追溯；正式冻结快照仍待收尾"
+    },
+    {
+      "id": "source-ledger",
+      "path": "实验资料/01_原始知识资料/来源台账.csv",
+      "status": "partial",
+      "outcome": "十-4",
+      "note": "8条来源及8份正文已取得，计划10份还差2份；参数映射和交叉复核待完成"
+    },
+    {
+      "id": "contract",
+      "path": "coffee_digital_twin/docs/zyh/本地服务接口契约.md",
+      "status": "partial",
+      "outcome": "十-1/2",
+      "note": "客户端契约/mock；真实地址字段H5待确认"
+    },
+    {
+      "id": "run-evidence",
+      "path": "coffee_digital_twin/docs/zyh/scenario_phase4_verification.json",
+      "status": "ready",
+      "outcome": "十-1/3",
+      "note": "真实HTTP+Windows引擎工程假设核验，非田间验证"
+    },
+    {
+      "id": "selfcheck",
+      "path": "coffee_digital_twin/docs/zyh/selfcheck_latest.txt",
+      "status": "partial",
+      "outcome": "十-7",
+      "note": "2026-10-22隔离实测查询和历史回放已PASS；整体仍FAIL于冻结/配置/真实循证服务"
+    },
+    {
+      "id": "qa",
+      "path": "coffee_digital_twin/docs/zyh/功能核对表.md",
+      "status": "ready",
+      "outcome": "十-1/7",
+      "note": "研究1–5和成果1–7状态已逐项核对"
+    },
+    {
+      "id": "claims",
+      "path": "coffee_digital_twin/docs/zyh/措辞扫描明细.json",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "逐行文案核对与范围限制"
+    },
+    {
+      "id": "demo",
+      "path": "coffee_digital_twin/docs/zyh/演示流程.md",
+      "status": "ready",
+      "outcome": "十-1/7",
+      "note": "六步脚本；真实真人计时待补"
+    },
+    {
+      "id": "recovery",
+      "path": "coffee_digital_twin/docs/zyh/错误码与降级.md",
+      "status": "ready",
+      "outcome": "十-1/7",
+      "note": "错误/重试/回放/离线恢复"
+    },
+    {
+      "id": "screenshots",
+      "path": "coffee_digital_twin/docs/zyh/screenshots/README.md",
+      "status": "pending",
+      "outcome": "十-1/7",
+      "note": "路径只是截图要求说明；没有H8截图，不代表已验收"
+    },
+    {
+      "id": "video",
+      "path": "coffee_digital_twin/docs/zyh/待补交付材料.md",
+      "status": "pending",
+      "outcome": "十-1/6/7",
+      "note": "真实录屏/网盘链接尚无，路径仅缺项清单"
+    },
+    {
+      "id": "evaluation",
+      "path": "coffee_digital_twin/docs/zyh/待补交付材料.md",
+      "status": "pending",
+      "outcome": "十-2/5/6",
+      "note": "蔡/简的正式效果/专家/试用记录尚未提供，不接触06"
+    },
+    {
+      "id": "contributions",
+      "path": "coffee_digital_twin/docs/zyh/新旧贡献记录.md",
+      "status": "ready",
+      "outcome": "十-6",
+      "note": "基线旧文件归属、本届逐文件任务覆盖与原署名检查；真实试用/知识产权确认仍待负责人"
+    },
+    {
+      "id": "source-package",
+      "path": "coffee_digital_twin/backend/tools/package_source.py",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "从跟踪源码生成本地ZIP，排除EXE/密钥/数据库/三本地配置，不上传"
+    },
+    {
+      "id": "progress",
+      "path": "coffee_digital_twin/docs/zyh/PROGRESS.md",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "逐任务验收与限制"
+    }
+  ]
+}

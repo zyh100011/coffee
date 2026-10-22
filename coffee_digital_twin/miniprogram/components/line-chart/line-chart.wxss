@@ -1,0 +1,1 @@
+.line-chart{background:white;padding:16rpx 0;}.legend{display:flex;gap:24rpx;flex-wrap:wrap;font-size:24rpx;margin:16rpx 0;}.empty{padding:48rpx;text-align:center;color:#5f6b63;}.table-row{display:flex;gap:16rpx;padding:16rpx 0;border-bottom:1rpx solid #dfe7df;font-size:24rpx;}.table-row text{flex:1;word-break:break-all;}

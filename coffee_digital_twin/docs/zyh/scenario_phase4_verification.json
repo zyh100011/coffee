@@ -1,0 +1,578 @@
+{
+  "checked_at": "2026-10-18T07:03:48.929227+00:00",
+  "passed": true,
+  "decision": "live",
+  "deadline_rule": "按10/21规则于10/18提前核验",
+  "label": "隔离构造地块、真实Windows引擎、假设输入、非田间校准",
+  "comparison": {
+    "assumptions": [
+      "土壤水力参数为模板通用值，非地块实测",
+      "初始压力水头剖面为模板值",
+      "下边界自由排水",
+      "模拟窗口 7 天",
+      "结果未经田间校准",
+      "无实测降雨，第 1/2/3/4/5/6/7 天降雨按 0 mm 假设",
+      "窗口内无已记录灌溉；记录缺失不证明实际未灌溉",
+      "第 1 天额外灌溉 0 mm，为假设情景，非灌溉指令",
+      "rsoil_cm_d=0.15 cm/d，模板固定值",
+      "rroot_cm_d=0.22 cm/d，模板固定值",
+      "第 1 天额外灌溉 20 mm，为假设情景，非灌溉指令"
+    ],
+    "baseline": {
+      "assumptions": [
+        "土壤水力参数为模板通用值，非地块实测",
+        "初始压力水头剖面为模板值",
+        "下边界自由排水",
+        "模拟窗口 7 天",
+        "结果未经田间校准",
+        "无实测降雨，第 1/2/3/4/5/6/7 天降雨按 0 mm 假设",
+        "窗口内无已记录灌溉；记录缺失不证明实际未灌溉",
+        "第 1 天额外灌溉 0 mm，为假设情景，非灌溉指令",
+        "rsoil_cm_d=0.15 cm/d，模板固定值",
+        "rroot_cm_d=0.22 cm/d，模板固定值"
+      ],
+      "created_at": "2026-10-18T07:03:48.782252+00:00",
+      "evidence_id": "ev_hydrus_task_8d2503b8aea0429abc2bc63b616c9266_a05984cd5e71458e900411020ee6ae34",
+      "inputs": {
+        "daily_prec_cm": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dates": [
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ],
+        "extra_irrigation_mm": 0.0,
+        "farm_operations": [],
+        "rroot_cm_d": [
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22
+        ],
+        "rsoil_cm_d": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ],
+        "run_directory": "C:\\Users\\zyh\\AppData\\Local\\Temp\\coffee-scenario-ypqhwtfd\\runtime\\hydrus_runs\\task_8d2503b8aea0429abc2bc63b616c9266_d90d6949",
+        "start_date": "2026-09-01"
+      },
+      "missing_fields": [],
+      "mode": "live",
+      "model_version": "HYDRUS-1D H1D_CALC.EXE sha256:63bc242cd414",
+      "outputs": {
+        "classification_basis": "工程默认阈值，未依据本地块田间持水量/凋萎点",
+        "hydrus_explain": {
+          "what": "第7天40cm含水率 0.1342，较初始 -0.0181",
+          "why": "未校准假设情景，不能由此给出实际灌溉处方"
+        },
+        "infiltration_depth_cm": 100.0,
+        "root_uptake_ratio": 0.9174025974025974,
+        "root_uptake_totals": {
+          "actual_cm": 1.4128,
+          "potential_cm": 1.54
+        },
+        "soil_moisture_series": [
+          {
+            "d10": 0.1844,
+            "d100": 0.1437,
+            "d20": 0.2152,
+            "d40": 0.1523,
+            "d60": 0.1584,
+            "date": "2026-09-01",
+            "model_day": 0
+          },
+          {
+            "d10": 0.1732,
+            "d100": 0.1739,
+            "d20": 0.2094,
+            "d40": 0.1497,
+            "d60": 0.1577,
+            "date": "2026-09-02",
+            "model_day": 1
+          },
+          {
+            "d10": 0.1622,
+            "d100": 0.1731,
+            "d20": 0.2028,
+            "d40": 0.147,
+            "d60": 0.157,
+            "date": "2026-09-03",
+            "model_day": 2
+          },
+          {
+            "d10": 0.1527,
+            "d100": 0.1724,
+            "d20": 0.1962,
+            "d40": 0.1444,
+            "d60": 0.1562,
+            "date": "2026-09-04",
+            "model_day": 3
+          },
+          {
+            "d10": 0.1447,
+            "d100": 0.1717,
+            "d20": 0.1898,
+            "d40": 0.1418,
+            "d60": 0.1555,
+            "date": "2026-09-05",
+            "model_day": 4
+          },
+          {
+            "d10": 0.1382,
+            "d100": 0.1711,
+            "d20": 0.1841,
+            "d40": 0.1393,
+            "d60": 0.1549,
+            "date": "2026-09-06",
+            "model_day": 5
+          },
+          {
+            "d10": 0.1328,
+            "d100": 0.1706,
+            "d20": 0.1789,
+            "d40": 0.1367,
+            "d60": 0.1543,
+            "date": "2026-09-07",
+            "model_day": 6
+          },
+          {
+            "d10": 0.1279,
+            "d100": 0.1702,
+            "d20": 0.1739,
+            "d40": 0.1342,
+            "d60": 0.1537,
+            "date": "2026-09-08",
+            "model_day": 7
+          }
+        ],
+        "soil_profile_current": [
+          {
+            "depth_cm": 10,
+            "status": "干旱",
+            "theta": 0.1279
+          },
+          {
+            "depth_cm": 20,
+            "status": "偏低",
+            "theta": 0.1739
+          },
+          {
+            "depth_cm": 40,
+            "status": "干旱",
+            "theta": 0.1342
+          },
+          {
+            "depth_cm": 60,
+            "status": "干旱",
+            "theta": 0.1537
+          },
+          {
+            "depth_cm": 100,
+            "status": "偏低",
+            "theta": 0.1702
+          }
+        ],
+        "water_status": "重度干旱"
+      },
+      "parameter_version": "hydrus-params-3e5da27bd790",
+      "plot_id": "verification_fixture",
+      "source_type": "simulation_uncalibrated",
+      "status": "success",
+      "task_id": "task_8d2503b8aea0429abc2bc63b616c9266",
+      "time_range": {
+        "end": "2026-09-08",
+        "start": "2026-09-01"
+      },
+      "tool": "hydrus",
+      "units": {
+        "depth": "cm",
+        "prec": "cm/d",
+        "root_uptake_ratio": "dimensionless",
+        "theta": "cm3/cm3"
+      },
+      "warnings": [
+        "工程默认阈值，未依据本地块田间持水量/凋萎点"
+      ]
+    },
+    "compare_id": "cmp_af84b8fffdeb4ed3aa9c1e6586ac7e25",
+    "confirmation": {
+      "baseline": "窗口内已记录灌溉与已有实测降雨；未知降雨按0假设，记录缺失不证明未发生",
+      "baseline_daily_prec_cm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "change": "第1天额外灌溉 20 mm",
+      "recorded_irrigation": [],
+      "start_date": "2026-09-01",
+      "window_days": 7
+    },
+    "input_diff": [
+      2.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "mode": "live",
+    "output_diff": {
+      "infiltration_depth_cm": 0.0,
+      "root_uptake_ratio": 0.08233766233766238,
+      "theta_day7_by_depth": {
+        "10": 0.04199999999999998,
+        "100": 0.0,
+        "20": 0.03720000000000001,
+        "40": 0.011499999999999982,
+        "60": 9.999999999998899e-05
+      }
+    },
+    "parameter_verified": true,
+    "plot_id": "verification_fixture",
+    "requested_start_date": "2026-09-01",
+    "rows": [
+      {
+        "baseline": 0.1279,
+        "depth_cm": 10,
+        "difference": 0.04199999999999998,
+        "variant": 0.1699
+      },
+      {
+        "baseline": 0.1739,
+        "depth_cm": 20,
+        "difference": 0.03720000000000001,
+        "variant": 0.2111
+      },
+      {
+        "baseline": 0.1342,
+        "depth_cm": 40,
+        "difference": 0.011499999999999982,
+        "variant": 0.1457
+      },
+      {
+        "baseline": 0.1537,
+        "depth_cm": 60,
+        "difference": 9.999999999998899e-05,
+        "variant": 0.1538
+      },
+      {
+        "baseline": 0.1702,
+        "depth_cm": 100,
+        "difference": 0.0,
+        "variant": 0.1702
+      }
+    ],
+    "series": [
+      {
+        "color": "#5f6b63",
+        "data": [
+          [
+            "2026-09-01",
+            0.1523
+          ],
+          [
+            "2026-09-02",
+            0.1497
+          ],
+          [
+            "2026-09-03",
+            0.147
+          ],
+          [
+            "2026-09-04",
+            0.1444
+          ],
+          [
+            "2026-09-05",
+            0.1418
+          ],
+          [
+            "2026-09-06",
+            0.1393
+          ],
+          [
+            "2026-09-07",
+            0.1367
+          ],
+          [
+            "2026-09-08",
+            0.1342
+          ]
+        ],
+        "name": "基线40cm"
+      },
+      {
+        "color": "#1f5a3a",
+        "data": [
+          [
+            "2026-09-01",
+            0.1523
+          ],
+          [
+            "2026-09-02",
+            0.1497
+          ],
+          [
+            "2026-09-03",
+            0.1485
+          ],
+          [
+            "2026-09-04",
+            0.151
+          ],
+          [
+            "2026-09-05",
+            0.1515
+          ],
+          [
+            "2026-09-06",
+            0.1502
+          ],
+          [
+            "2026-09-07",
+            0.148
+          ],
+          [
+            "2026-09-08",
+            0.1457
+          ]
+        ],
+        "name": "变化组40cm"
+      }
+    ],
+    "status": "success",
+    "time_range": {
+      "end": "2026-09-08",
+      "start": "2026-09-01"
+    },
+    "trace_id": "tr_373e82102ff349f8b2ab744956b23247",
+    "undetermined": [
+      "farm_operations",
+      "observed_weather",
+      "本地块土壤/初始剖面尚未校准",
+      "现场实际灌溉条件需核查"
+    ],
+    "variant": {
+      "assumptions": [
+        "土壤水力参数为模板通用值，非地块实测",
+        "初始压力水头剖面为模板值",
+        "下边界自由排水",
+        "模拟窗口 7 天",
+        "结果未经田间校准",
+        "无实测降雨，第 1/2/3/4/5/6/7 天降雨按 0 mm 假设",
+        "窗口内无已记录灌溉；记录缺失不证明实际未灌溉",
+        "第 1 天额外灌溉 20 mm，为假设情景，非灌溉指令",
+        "rsoil_cm_d=0.15 cm/d，模板固定值",
+        "rroot_cm_d=0.22 cm/d，模板固定值"
+      ],
+      "created_at": "2026-10-18T07:03:48.848224+00:00",
+      "evidence_id": "ev_hydrus_task_dc8f0822c1d343f5888ebf58b05bc653_b41c6b0f123b4ee99213ad1e02123f5f",
+      "inputs": {
+        "daily_prec_cm": [
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dates": [
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ],
+        "extra_irrigation_mm": 20.0,
+        "farm_operations": [],
+        "rroot_cm_d": [
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22
+        ],
+        "rsoil_cm_d": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ],
+        "run_directory": "C:\\Users\\zyh\\AppData\\Local\\Temp\\coffee-scenario-ypqhwtfd\\runtime\\hydrus_runs\\task_dc8f0822c1d343f5888ebf58b05bc653_5a7c9836",
+        "start_date": "2026-09-01"
+      },
+      "missing_fields": [],
+      "mode": "live",
+      "model_version": "HYDRUS-1D H1D_CALC.EXE sha256:63bc242cd414",
+      "outputs": {
+        "classification_basis": "工程默认阈值，未依据本地块田间持水量/凋萎点",
+        "hydrus_explain": {
+          "what": "第7天40cm含水率 0.1457，较初始 -0.0066",
+          "why": "未校准假设情景，不能由此给出实际灌溉处方"
+        },
+        "infiltration_depth_cm": 100.0,
+        "root_uptake_ratio": 0.9997402597402598,
+        "root_uptake_totals": {
+          "actual_cm": 1.5396,
+          "potential_cm": 1.54
+        },
+        "soil_moisture_series": [
+          {
+            "d10": 0.1844,
+            "d100": 0.1437,
+            "d20": 0.2152,
+            "d40": 0.1523,
+            "d60": 0.1584,
+            "date": "2026-09-01",
+            "model_day": 0
+          },
+          {
+            "d10": 0.2571,
+            "d100": 0.1739,
+            "d20": 0.2593,
+            "d40": 0.1497,
+            "d60": 0.1578,
+            "date": "2026-09-02",
+            "model_day": 1
+          },
+          {
+            "d10": 0.2266,
+            "d100": 0.1731,
+            "d20": 0.2557,
+            "d40": 0.1485,
+            "d60": 0.157,
+            "date": "2026-09-03",
+            "model_day": 2
+          },
+          {
+            "d10": 0.2133,
+            "d100": 0.1724,
+            "d20": 0.2456,
+            "d40": 0.151,
+            "d60": 0.1562,
+            "date": "2026-09-04",
+            "model_day": 3
+          },
+          {
+            "d10": 0.202,
+            "d100": 0.1717,
+            "d20": 0.2362,
+            "d40": 0.1515,
+            "d60": 0.1555,
+            "date": "2026-09-05",
+            "model_day": 4
+          },
+          {
+            "d10": 0.191,
+            "d100": 0.1711,
+            "d20": 0.2271,
+            "d40": 0.1502,
+            "d60": 0.1549,
+            "date": "2026-09-06",
+            "model_day": 5
+          },
+          {
+            "d10": 0.1802,
+            "d100": 0.1706,
+            "d20": 0.2187,
+            "d40": 0.148,
+            "d60": 0.1543,
+            "date": "2026-09-07",
+            "model_day": 6
+          },
+          {
+            "d10": 0.1699,
+            "d100": 0.1702,
+            "d20": 0.2111,
+            "d40": 0.1457,
+            "d60": 0.1538,
+            "date": "2026-09-08",
+            "model_day": 7
+          }
+        ],
+        "soil_profile_current": [
+          {
+            "depth_cm": 10,
+            "status": "偏低",
+            "theta": 0.1699
+          },
+          {
+            "depth_cm": 20,
+            "status": "略低",
+            "theta": 0.2111
+          },
+          {
+            "depth_cm": 40,
+            "status": "干旱",
+            "theta": 0.1457
+          },
+          {
+            "depth_cm": 60,
+            "status": "干旱",
+            "theta": 0.1538
+          },
+          {
+            "depth_cm": 100,
+            "status": "偏低",
+            "theta": 0.1702
+          }
+        ],
+        "water_status": "重度干旱"
+      },
+      "parameter_version": "hydrus-params-3e5da27bd790",
+      "plot_id": "verification_fixture",
+      "source_type": "simulation_uncalibrated",
+      "status": "success",
+      "task_id": "task_dc8f0822c1d343f5888ebf58b05bc653",
+      "time_range": {
+        "end": "2026-09-08",
+        "start": "2026-09-01"
+      },
+      "tool": "hydrus",
+      "units": {
+        "depth": "cm",
+        "prec": "cm/d",
+        "root_uptake_ratio": "dimensionless",
+        "theta": "cm3/cm3"
+      },
+      "warnings": [
+        "工程默认阈值，未依据本地块田间持水量/凋萎点"
+      ]
+    },
+    "warnings": []
+  },
+  "reference_match": true,
+  "note": "临时数据库和运行目录在退出后清理；本文件保留实际HTTP响应与证据ID"
+}

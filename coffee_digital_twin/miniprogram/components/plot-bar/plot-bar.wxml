@@ -1,0 +1,1 @@
+<view class="plot-bar" bindtap="change" aria-role="button" aria-label="切换当前地块"><text>当前地块：{{plot.plot_name || "未选择"}}</text><text>切换 ›</text></view>

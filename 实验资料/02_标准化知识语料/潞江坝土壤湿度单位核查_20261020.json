@@ -1,0 +1,52 @@
+{
+  "file_count": 30,
+  "raw_row_count": 348109,
+  "statistics": [
+    {
+      "name": "第1层土壤湿度",
+      "code": "soilH",
+      "original_unit": "%RH",
+      "count": 14377,
+      "invalid": 0,
+      "minimum": 16.7,
+      "median": 20.1,
+      "maximum": 37.7,
+      "outside_percent_range": 0
+    },
+    {
+      "name": "第2层土壤湿度",
+      "code": "soilH2",
+      "original_unit": "%",
+      "count": 14377,
+      "invalid": 0,
+      "minimum": 14.1,
+      "median": 22.0,
+      "maximum": 42.4,
+      "outside_percent_range": 0
+    },
+    {
+      "name": "第3层土壤湿度",
+      "code": "soilH3",
+      "original_unit": "%",
+      "count": 14377,
+      "invalid": 0,
+      "minimum": 18.0,
+      "median": 21.5,
+      "maximum": 36.4,
+      "outside_percent_range": 0
+    }
+  ],
+  "source_type": "observation",
+  "processing_status": "raw_profile_not_ingested",
+  "raw_source": "实验资料/03_地块与监测数据/raw/潞江坝-咖啡基地历史数据",
+  "cultivar": "云南卡蒂姆（用户项目归类）",
+  "location": "潞江坝（保留原始地点）",
+  "aggregation": "三套土壤文件合计；未去重，不能当单台设备时间序列",
+  "missing_fields": [
+    "station_pairing",
+    "actual_probe_depths",
+    "water_content_basis",
+    "layer1_percent_RH_meaning"
+  ],
+  "theta_conversion_applied": false
+}

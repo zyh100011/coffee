@@ -1,0 +1,17 @@
+﻿doc_id,字段,数值,单位,土层,定位,原条件,source_type,用途,自动写入模型
+A3-WEB-001,土壤容重,1.4,g/cm3,0–40cm,PDF第3页,保山Caturra，不是本站卡蒂姆,literature,文献对照,否
+A3-WEB-001,pH,6.7,无量纲,0–40cm,PDF第3页,保山Caturra，不是本站卡蒂姆,literature,文献对照,否
+A3-WEB-001,有机质,20.2,g/kg,0–40cm,PDF第3页,保山Caturra，不是本站卡蒂姆,literature,文献对照,否
+A3-WEB-002,全氮,0.87,g/kg,top soil，精确深度未说明,PDF第2页/期刊100页2.1,昆明温室Catimor P7963幼苗,literature,文献对照,否
+A3-WEB-002,全磷,0.68,g/kg,top soil，精确深度未说明,PDF第2页/期刊100页2.1,昆明温室Catimor P7963幼苗,literature,文献对照,否
+A3-WEB-002,全钾,13.9,g/kg,top soil，精确深度未说明,PDF第2页/期刊100页2.1,昆明温室Catimor P7963幼苗,literature,文献对照,否
+A3-WEB-002,有机质,5.05,g/kg,top soil，精确深度未说明,PDF第2页/期刊100页2.1,昆明温室Catimor P7963幼苗,literature,文献对照,否
+A3-WEB-005,土壤容重,1.57,g/cm3,0–20cm,PDF第2页/期刊73页Table 1/2,巴西Catuaí；非本站；不是体积含水率,literature,文献对照,否
+A3-WEB-005,5kPa质量含水率,16.88,%质量含水率,0–20cm,PDF第2页/期刊73页Table 1/2,巴西Catuaí；非本站；不是体积含水率,literature,文献对照,否
+A3-WEB-005,1540kPa质量含水率,11.16,%质量含水率,0–20cm,PDF第2页/期刊73页Table 1/2,巴西Catuaí；非本站；不是体积含水率,literature,文献对照,否
+A3-WEB-005,土壤容重,1.57,g/cm3,20–40cm,PDF第2页/期刊73页Table 1/2,巴西Catuaí；非本站；不是体积含水率,literature,文献对照,否
+A3-WEB-005,5kPa质量含水率,16.56,%质量含水率,20–40cm,PDF第2页/期刊73页Table 1/2,巴西Catuaí；非本站；不是体积含水率,literature,文献对照,否
+A3-WEB-005,1540kPa质量含水率,11.39,%质量含水率,20–40cm,PDF第2页/期刊73页Table 1/2,巴西Catuaí；非本站；不是体积含水率,literature,文献对照,否
+A3-WEB-005,土壤容重,1.47,g/cm3,40–60cm,PDF第2页/期刊73页Table 1/2,巴西Catuaí；非本站；不是体积含水率,literature,文献对照,否
+A3-WEB-005,5kPa质量含水率,19.27,%质量含水率,40–60cm,PDF第2页/期刊73页Table 1/2,巴西Catuaí；非本站；不是体积含水率,literature,文献对照,否
+A3-WEB-005,1540kPa质量含水率,11.84,%质量含水率,40–60cm,PDF第2页/期刊73页Table 1/2,巴西Catuaí；非本站；不是体积含水率,literature,文献对照,否

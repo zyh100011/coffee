@@ -1,0 +1,601 @@
+{
+  "checked_at": "2026-10-14T12:09:56.366642+00:00",
+  "note": "提前执行10/18规则；仅Windows引擎工程稳定性，假设输入/模板参数，非田间校准",
+  "configured_mode_before": "live",
+  "recommended_mode": "live",
+  "success_count": 10,
+  "total": 10,
+  "max_duration_s": 0.067333,
+  "runs": [
+    {
+      "round": 1,
+      "extra_irrigation_mm": 0,
+      "duration_s": 0.067333,
+      "status": "success",
+      "evidence_id": "ev_hydrus_stability_1_0_f6dd16d9_703cfbf0e1084810a8e9169f2b3bd619",
+      "model_version": "HYDRUS-1D H1D_CALC.EXE sha256:63bc242cd414",
+      "parameter_version": "hydrus-params-3e5da27bd790",
+      "inputs": {
+        "start_date": "2026-09-01",
+        "extra_irrigation_mm": 0.0,
+        "dates": [
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ],
+        "farm_operations": [],
+        "rsoil_cm_d": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ],
+        "rroot_cm_d": [
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22
+        ],
+        "daily_prec_cm": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "run_directory": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_1_0_f6dd16d9_d17c58a0"
+      },
+      "warnings": [
+        "工程默认阈值，未依据本地块田间持水量/凋萎点"
+      ],
+      "contract_ok": true,
+      "input_verified": true,
+      "theta_day7_40cm": 0.1342,
+      "result_file": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_1_0_f6dd16d9_d17c58a0\\hydrus_result.json",
+      "result_sha256": "f35124dea99dfbd923d3c060c6a8d6f92ca086326188a457e79f5bcc4a826f4a"
+    },
+    {
+      "round": 1,
+      "extra_irrigation_mm": 20,
+      "duration_s": 0.060997,
+      "status": "success",
+      "evidence_id": "ev_hydrus_stability_1_20_b923c63a_b06630468a894c34a82a5c04455e3250",
+      "model_version": "HYDRUS-1D H1D_CALC.EXE sha256:63bc242cd414",
+      "parameter_version": "hydrus-params-3e5da27bd790",
+      "inputs": {
+        "start_date": "2026-09-01",
+        "extra_irrigation_mm": 20.0,
+        "dates": [
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ],
+        "farm_operations": [],
+        "rsoil_cm_d": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ],
+        "rroot_cm_d": [
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22
+        ],
+        "daily_prec_cm": [
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "run_directory": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_1_20_b923c63a_e963cf9a"
+      },
+      "warnings": [
+        "工程默认阈值，未依据本地块田间持水量/凋萎点"
+      ],
+      "contract_ok": true,
+      "input_verified": true,
+      "theta_day7_40cm": 0.1457,
+      "result_file": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_1_20_b923c63a_e963cf9a\\hydrus_result.json",
+      "result_sha256": "beb130f39239c0cb729230f5e0c270c0049a11cb89d094d30211b7a5c1ea63a9"
+    },
+    {
+      "round": 2,
+      "extra_irrigation_mm": 0,
+      "duration_s": 0.060909,
+      "status": "success",
+      "evidence_id": "ev_hydrus_stability_2_0_de09ae64_509cb6c048a9457ca4e35b99f2ab4f70",
+      "model_version": "HYDRUS-1D H1D_CALC.EXE sha256:63bc242cd414",
+      "parameter_version": "hydrus-params-3e5da27bd790",
+      "inputs": {
+        "start_date": "2026-09-01",
+        "extra_irrigation_mm": 0.0,
+        "dates": [
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ],
+        "farm_operations": [],
+        "rsoil_cm_d": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ],
+        "rroot_cm_d": [
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22
+        ],
+        "daily_prec_cm": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "run_directory": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_2_0_de09ae64_83cb1750"
+      },
+      "warnings": [
+        "工程默认阈值，未依据本地块田间持水量/凋萎点"
+      ],
+      "contract_ok": true,
+      "input_verified": true,
+      "theta_day7_40cm": 0.1342,
+      "result_file": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_2_0_de09ae64_83cb1750\\hydrus_result.json",
+      "result_sha256": "a01c1881d83bc93eb288b33ae705189095968de7ee74ec8b2e4b1178f732329b"
+    },
+    {
+      "round": 2,
+      "extra_irrigation_mm": 20,
+      "duration_s": 0.060781,
+      "status": "success",
+      "evidence_id": "ev_hydrus_stability_2_20_30280afa_aca58c51efcd4fdc85760aede38ddc49",
+      "model_version": "HYDRUS-1D H1D_CALC.EXE sha256:63bc242cd414",
+      "parameter_version": "hydrus-params-3e5da27bd790",
+      "inputs": {
+        "start_date": "2026-09-01",
+        "extra_irrigation_mm": 20.0,
+        "dates": [
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ],
+        "farm_operations": [],
+        "rsoil_cm_d": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ],
+        "rroot_cm_d": [
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22
+        ],
+        "daily_prec_cm": [
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "run_directory": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_2_20_30280afa_3b6f78c7"
+      },
+      "warnings": [
+        "工程默认阈值，未依据本地块田间持水量/凋萎点"
+      ],
+      "contract_ok": true,
+      "input_verified": true,
+      "theta_day7_40cm": 0.1457,
+      "result_file": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_2_20_30280afa_3b6f78c7\\hydrus_result.json",
+      "result_sha256": "18258a86c0618ed55f71b998b92f4ba1c73472dc0cfcaa65fea51230db005d46"
+    },
+    {
+      "round": 3,
+      "extra_irrigation_mm": 0,
+      "duration_s": 0.061149,
+      "status": "success",
+      "evidence_id": "ev_hydrus_stability_3_0_986d8a17_bb97e86f2380492cbbc0f8c207d9cf32",
+      "model_version": "HYDRUS-1D H1D_CALC.EXE sha256:63bc242cd414",
+      "parameter_version": "hydrus-params-3e5da27bd790",
+      "inputs": {
+        "start_date": "2026-09-01",
+        "extra_irrigation_mm": 0.0,
+        "dates": [
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ],
+        "farm_operations": [],
+        "rsoil_cm_d": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ],
+        "rroot_cm_d": [
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22
+        ],
+        "daily_prec_cm": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "run_directory": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_3_0_986d8a17_1f0e7096"
+      },
+      "warnings": [
+        "工程默认阈值，未依据本地块田间持水量/凋萎点"
+      ],
+      "contract_ok": true,
+      "input_verified": true,
+      "theta_day7_40cm": 0.1342,
+      "result_file": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_3_0_986d8a17_1f0e7096\\hydrus_result.json",
+      "result_sha256": "51f84da8d1deccfe47597ce33ca15c4b8cb782daa922b861733d29a1aef287e9"
+    },
+    {
+      "round": 3,
+      "extra_irrigation_mm": 20,
+      "duration_s": 0.063058,
+      "status": "success",
+      "evidence_id": "ev_hydrus_stability_3_20_8af984ff_27bebf813c3b4ba596f16a9eaac46619",
+      "model_version": "HYDRUS-1D H1D_CALC.EXE sha256:63bc242cd414",
+      "parameter_version": "hydrus-params-3e5da27bd790",
+      "inputs": {
+        "start_date": "2026-09-01",
+        "extra_irrigation_mm": 20.0,
+        "dates": [
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ],
+        "farm_operations": [],
+        "rsoil_cm_d": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ],
+        "rroot_cm_d": [
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22
+        ],
+        "daily_prec_cm": [
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "run_directory": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_3_20_8af984ff_864692b0"
+      },
+      "warnings": [
+        "工程默认阈值，未依据本地块田间持水量/凋萎点"
+      ],
+      "contract_ok": true,
+      "input_verified": true,
+      "theta_day7_40cm": 0.1457,
+      "result_file": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_3_20_8af984ff_864692b0\\hydrus_result.json",
+      "result_sha256": "28122c7052d09b1dd43e2296f2b546daa2b2d907b8cea0b5e55bc2b429725673"
+    },
+    {
+      "round": 4,
+      "extra_irrigation_mm": 0,
+      "duration_s": 0.061737,
+      "status": "success",
+      "evidence_id": "ev_hydrus_stability_4_0_b45191b7_31c7f5dda96f4afa80c59cfe669c9a9c",
+      "model_version": "HYDRUS-1D H1D_CALC.EXE sha256:63bc242cd414",
+      "parameter_version": "hydrus-params-3e5da27bd790",
+      "inputs": {
+        "start_date": "2026-09-01",
+        "extra_irrigation_mm": 0.0,
+        "dates": [
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ],
+        "farm_operations": [],
+        "rsoil_cm_d": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ],
+        "rroot_cm_d": [
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22
+        ],
+        "daily_prec_cm": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "run_directory": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_4_0_b45191b7_e53f735c"
+      },
+      "warnings": [
+        "工程默认阈值，未依据本地块田间持水量/凋萎点"
+      ],
+      "contract_ok": true,
+      "input_verified": true,
+      "theta_day7_40cm": 0.1342,
+      "result_file": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_4_0_b45191b7_e53f735c\\hydrus_result.json",
+      "result_sha256": "e4c885788c180521b1783160d2ae792f522caf5f2cd01ade9a2bf518e4d445f9"
+    },
+    {
+      "round": 4,
+      "extra_irrigation_mm": 20,
+      "duration_s": 0.063149,
+      "status": "success",
+      "evidence_id": "ev_hydrus_stability_4_20_fe85fa3f_7fe59fba0e33443caf7a6a484736c869",
+      "model_version": "HYDRUS-1D H1D_CALC.EXE sha256:63bc242cd414",
+      "parameter_version": "hydrus-params-3e5da27bd790",
+      "inputs": {
+        "start_date": "2026-09-01",
+        "extra_irrigation_mm": 20.0,
+        "dates": [
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ],
+        "farm_operations": [],
+        "rsoil_cm_d": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ],
+        "rroot_cm_d": [
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22
+        ],
+        "daily_prec_cm": [
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "run_directory": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_4_20_fe85fa3f_f9cbafd2"
+      },
+      "warnings": [
+        "工程默认阈值，未依据本地块田间持水量/凋萎点"
+      ],
+      "contract_ok": true,
+      "input_verified": true,
+      "theta_day7_40cm": 0.1457,
+      "result_file": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_4_20_fe85fa3f_f9cbafd2\\hydrus_result.json",
+      "result_sha256": "d30b1dd0b37c4815424e25c88a606e7dac0922d434999b2b0b033dff1d2d1760"
+    },
+    {
+      "round": 5,
+      "extra_irrigation_mm": 0,
+      "duration_s": 0.059951,
+      "status": "success",
+      "evidence_id": "ev_hydrus_stability_5_0_7a3e01fd_e77a7a94213c4af3a196bab570423ca7",
+      "model_version": "HYDRUS-1D H1D_CALC.EXE sha256:63bc242cd414",
+      "parameter_version": "hydrus-params-3e5da27bd790",
+      "inputs": {
+        "start_date": "2026-09-01",
+        "extra_irrigation_mm": 0.0,
+        "dates": [
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ],
+        "farm_operations": [],
+        "rsoil_cm_d": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ],
+        "rroot_cm_d": [
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22
+        ],
+        "daily_prec_cm": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "run_directory": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_5_0_7a3e01fd_4288a06a"
+      },
+      "warnings": [
+        "工程默认阈值，未依据本地块田间持水量/凋萎点"
+      ],
+      "contract_ok": true,
+      "input_verified": true,
+      "theta_day7_40cm": 0.1342,
+      "result_file": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_5_0_7a3e01fd_4288a06a\\hydrus_result.json",
+      "result_sha256": "790b4c9dc6672e05ad6af57859987306ce2e6ba3d10a3d0ebb13a46ff9c0cbb6"
+    },
+    {
+      "round": 5,
+      "extra_irrigation_mm": 20,
+      "duration_s": 0.061042,
+      "status": "success",
+      "evidence_id": "ev_hydrus_stability_5_20_6ae65630_cc70166c45394c109aee3312eaace5ca",
+      "model_version": "HYDRUS-1D H1D_CALC.EXE sha256:63bc242cd414",
+      "parameter_version": "hydrus-params-3e5da27bd790",
+      "inputs": {
+        "start_date": "2026-09-01",
+        "extra_irrigation_mm": 20.0,
+        "dates": [
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ],
+        "farm_operations": [],
+        "rsoil_cm_d": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ],
+        "rroot_cm_d": [
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22,
+          0.22
+        ],
+        "daily_prec_cm": [
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "run_directory": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_5_20_6ae65630_bda967d0"
+      },
+      "warnings": [
+        "工程默认阈值，未依据本地块田间持水量/凋萎点"
+      ],
+      "contract_ok": true,
+      "input_verified": true,
+      "theta_day7_40cm": 0.1457,
+      "result_file": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\phase3_stability\\20261014T120955Z_50a8921e\\stability_5_20_6ae65630_bda967d0\\hydrus_result.json",
+      "result_sha256": "0627c764abaeaedbcf81d83ce15d857cd9c8b1eb3f30ec989d53774f35fa6f7b"
+    }
+  ]
+}

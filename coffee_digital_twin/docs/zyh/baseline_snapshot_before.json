@@ -1,0 +1,551 @@
+{
+  "advice": {
+    "confidence_note": "该建议基于 APSIM/HYDRUS/BEPS 三模型规则判断生成",
+    "how": "建议未来 2 天内补充滴灌，优先保证 40 cm 以下根区水分，施肥暂缓。",
+    "model_basis": {
+      "apsim": "当前处于果实膨大期，水分胁迫升高（0.38），处于产量形成的敏感阶段。氮素状态正常，当前水肥供应基本正常。",
+      "beps": "冠层状态：冠层生态状态总体正常，维持当前管理。GPP 当日 12.11 gC/m²，长势评分良好（97/100），冠层光合生产力正常。",
+      "hydrus": "土壤水分状态：重度干旱。入渗深度仅 0 cm，水分主要停留在表层，未充分到达主根区。根系吸水效率较好（100%），根区水分状态正常。"
+    },
+    "source": "rule_fallback",
+    "what": "当前处于果实膨大期，综合长势 97.23 分，重度干旱。",
+    "why": "APSIM 显示水分胁迫升高（0.38）；HYDRUS 解析根系吸水效率 100%，根区供水不足；BEPS 长势评分 97.23 分，光合生产力受到水分限制。"
+  },
+  "apsim": {
+    "apsim_error": "Models.exe not found: E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\server\\apsim_engine\\Models.exe",
+    "apsim_explain": {
+      "what": "咖啡处于果实膨大期，产量形成进入关键阶段。",
+      "why": "近期水肥管理会直接影响干物质积累和最终产量预测。"
+    },
+    "biomass_kg_ha": 6578,
+    "harvest_days": 48,
+    "lai": 3.16,
+    "model": "APSIM-Coffee",
+    "nitrogen_status": "正常",
+    "plot_id": "plot_001",
+    "source": "fallback_formula",
+    "stage": "果实膨大期",
+    "status": "fallback",
+    "water_stress": 0.38,
+    "yield_change_kg_mu": 92,
+    "yield_curve": [
+      {
+        "date": "2026-10-14",
+        "yield_kg_mu": 1289
+      },
+      {
+        "date": "2026-10-21",
+        "yield_kg_mu": 1375
+      },
+      {
+        "date": "2026-10-28",
+        "yield_kg_mu": 1432
+      }
+    ],
+    "yield_pred_kg_mu": 1432
+  },
+  "beps": {
+    "beps_explain": {
+      "what": "咖啡园冠层综合长势评分 97.23 分，生态风险：低。",
+      "why": "由 BEPS-Lite 基于气象、LAI、NDVI、遮阴和土壤水分因子实时推算。"
+    },
+    "beps_risk": "低",
+    "canopy_status": "冠层生态状态总体正常，维持当前管理",
+    "carbon_sink_kgC_mu": 25.431,
+    "et_series": [
+      {
+        "date": "2026-10-14",
+        "et": 4.036
+      },
+      {
+        "date": "2026-10-15",
+        "et": 3.956
+      },
+      {
+        "date": "2026-10-16",
+        "et": 3.766
+      },
+      {
+        "date": "2026-10-17",
+        "et": 3.872
+      },
+      {
+        "date": "2026-10-18",
+        "et": 3.794
+      },
+      {
+        "date": "2026-10-19",
+        "et": 3.609
+      },
+      {
+        "date": "2026-10-20",
+        "et": 3.709
+      }
+    ],
+    "et_today": 3.82,
+    "gpp_series": [
+      {
+        "date": "2026-10-14",
+        "gpp": 12.913
+      },
+      {
+        "date": "2026-10-15",
+        "gpp": 12.605
+      },
+      {
+        "date": "2026-10-16",
+        "gpp": 11.698
+      },
+      {
+        "date": "2026-10-17",
+        "gpp": 12.39
+      },
+      {
+        "date": "2026-10-18",
+        "gpp": 12.087
+      },
+      {
+        "date": "2026-10-19",
+        "gpp": 11.211
+      },
+      {
+        "date": "2026-10-20",
+        "gpp": 11.866
+      }
+    ],
+    "gpp_today": 12.11,
+    "growth_score": 97.23,
+    "input_summary": {
+      "fpar": 0.824,
+      "lai": 3.16,
+      "ndvi": null,
+      "shade_degree": 0.4,
+      "water_factor": 1.0
+    },
+    "model": "BEPS-Lite",
+    "module": "BEPS-Lite",
+    "npp_series": [
+      {
+        "date": "2026-10-14",
+        "npp": 5.811
+      },
+      {
+        "date": "2026-10-15",
+        "npp": 5.672
+      },
+      {
+        "date": "2026-10-16",
+        "npp": 5.264
+      },
+      {
+        "date": "2026-10-17",
+        "npp": 5.575
+      },
+      {
+        "date": "2026-10-18",
+        "npp": 5.439
+      },
+      {
+        "date": "2026-10-19",
+        "npp": 5.045
+      },
+      {
+        "date": "2026-10-20",
+        "npp": 5.34
+      }
+    ],
+    "npp_today": 5.449,
+    "plot_id": "plot_001",
+    "series": [
+      {
+        "carbon_sink_kg_ha_day": 58.11,
+        "date": "2026-10-14",
+        "et_mm_day": 4.036,
+        "fpar": 0.824,
+        "gpp_gc_m2_day": 12.913,
+        "growth_score": 97.56,
+        "lai": 3.16,
+        "ndvi": null,
+        "npp_gc_m2_day": 5.811,
+        "risk_level": "low",
+        "tmean": 23.65
+      },
+      {
+        "carbon_sink_kg_ha_day": 56.723,
+        "date": "2026-10-15",
+        "et_mm_day": 3.956,
+        "fpar": 0.824,
+        "gpp_gc_m2_day": 12.605,
+        "growth_score": 97.41,
+        "lai": 3.16,
+        "ndvi": null,
+        "npp_gc_m2_day": 5.672,
+        "risk_level": "low",
+        "tmean": 24.45
+      },
+      {
+        "carbon_sink_kg_ha_day": 52.643,
+        "date": "2026-10-16",
+        "et_mm_day": 3.766,
+        "fpar": 0.824,
+        "gpp_gc_m2_day": 11.698,
+        "growth_score": 96.55,
+        "lai": 3.16,
+        "ndvi": null,
+        "npp_gc_m2_day": 5.264,
+        "risk_level": "low",
+        "tmean": 25.25
+      },
+      {
+        "carbon_sink_kg_ha_day": 55.754,
+        "date": "2026-10-17",
+        "et_mm_day": 3.872,
+        "fpar": 0.824,
+        "gpp_gc_m2_day": 12.39,
+        "growth_score": 97.56,
+        "lai": 3.16,
+        "ndvi": null,
+        "npp_gc_m2_day": 5.575,
+        "risk_level": "low",
+        "tmean": 23.65
+      },
+      {
+        "carbon_sink_kg_ha_day": 54.392,
+        "date": "2026-10-18",
+        "et_mm_day": 3.794,
+        "fpar": 0.824,
+        "gpp_gc_m2_day": 12.087,
+        "growth_score": 97.41,
+        "lai": 3.16,
+        "ndvi": null,
+        "npp_gc_m2_day": 5.439,
+        "risk_level": "low",
+        "tmean": 24.45
+      },
+      {
+        "carbon_sink_kg_ha_day": 50.449,
+        "date": "2026-10-19",
+        "et_mm_day": 3.609,
+        "fpar": 0.824,
+        "gpp_gc_m2_day": 11.211,
+        "growth_score": 96.55,
+        "lai": 3.16,
+        "ndvi": null,
+        "npp_gc_m2_day": 5.045,
+        "risk_level": "low",
+        "tmean": 25.25
+      },
+      {
+        "carbon_sink_kg_ha_day": 53.398,
+        "date": "2026-10-20",
+        "et_mm_day": 3.709,
+        "fpar": 0.824,
+        "gpp_gc_m2_day": 11.866,
+        "growth_score": 97.56,
+        "lai": 3.16,
+        "ndvi": null,
+        "npp_gc_m2_day": 5.34,
+        "risk_level": "low",
+        "tmean": 23.65
+      }
+    ],
+    "status": "ok",
+    "summary": {
+      "avg_et_mm_day": 3.82,
+      "avg_gpp_gc_m2_day": 12.11,
+      "avg_npp_gc_m2_day": 5.449,
+      "growth_score": 97.23,
+      "risk_level": "low",
+      "risk_reasons": [
+        "冠层生态状态总体正常，维持当前管理"
+      ],
+      "total_carbon_sink_kg_ha": 381.469
+    }
+  },
+  "dashboard": {
+    "growth_score": 97.23,
+    "harvest_days": 48,
+    "risk_level": "高",
+    "stage": "果实膨大期",
+    "yield_pred_kg_mu": 1432
+  },
+  "fusion": {
+    "how": "建议立即安排补灌，单次灌溉量不低于 30 mm，优先保障深层根区供水",
+    "model_basis": {
+      "apsim": "APSIM-Coffee 预测：当前生育期「果实膨大期」，水分胁迫指数 0.38，氮素状态「正常」。",
+      "beps": "BEPS-Lite 评估：当日 GPP 12.11 gC/m²，冠层长势评分 97/100。",
+      "hydrus": "HYDRUS-1D 解析：土壤水分「重度干旱」，入渗深度约 0 cm，根系吸水效率 100%。"
+    },
+    "risk_level": "高",
+    "risk_reasons": [
+      "【HYDRUS】土壤重度干旱，深层根区严重缺水（水分状态：重度干旱）"
+    ],
+    "suggestions": [
+      "建议立即安排补灌，单次灌溉量不低于 30 mm，优先保障深层根区供水"
+    ],
+    "what": "【HYDRUS】土壤重度干旱，深层根区严重缺水（水分状态：重度干旱）",
+    "why": "APSIM 评估作物层（水分胁迫 0.38，生育期「果实膨大期」），HYDRUS 解析土壤层（根系吸水效率 100%），BEPS 评价冠层生态（长势评分 97/100）——三模型协同判断当前综合风险等级为「高」。"
+  },
+  "hydrus": {
+    "hydrus_explain": {
+      "what": "0-60cm 土层整体极度干燥，发生严重水分胁迫！",
+      "why": "土壤含水率持续偏低，强烈建议立即进行补充灌溉。"
+    },
+    "infiltration_depth_cm": 0,
+    "irrigation_effect": "深层严重缺水，存在生产风险",
+    "model": "HYDRUS-1D",
+    "plot_id": "plot_001",
+    "root_uptake_ratio": 1.0,
+    "soil_moisture_series": [
+      {
+        "d10": 0.182,
+        "d20": 0.221,
+        "d40": 0.154,
+        "d60": 0.154,
+        "date": "today"
+      }
+    ],
+    "soil_profile_current": [
+      {
+        "depth_cm": 10,
+        "status": "偏低",
+        "theta": 0.182
+      },
+      {
+        "depth_cm": 20,
+        "status": "略低",
+        "theta": 0.221
+      },
+      {
+        "depth_cm": 40,
+        "status": "干旱",
+        "theta": 0.154
+      },
+      {
+        "depth_cm": 60,
+        "status": "干旱",
+        "theta": 0.154
+      },
+      {
+        "depth_cm": 100,
+        "status": "偏低",
+        "theta": 0.17
+      }
+    ],
+    "status": "success",
+    "task_id": "phase0_legacy_baseline",
+    "water_status": "重度干旱"
+  },
+  "mechanism_explanation": {
+    "apsim_evidence": {
+      "interpretation": "APSIM-Coffee 模拟了咖啡从播种到采收的全生育期动态。当前生育期为「果实膨大期」，预计亩产 1432 kg，水分胁迫指数 0.38（0=无胁迫，1=严重胁迫），氮素状态：正常，叶面积指数（LAI）：3.16。",
+      "key_metrics": {
+        "lai": 3.16,
+        "nitrogen_status": "正常",
+        "stage": "果实膨大期",
+        "water_stress": 0.38,
+        "yield_pred_kg_mu": 1432
+      },
+      "predicts": [
+        "生育期",
+        "产量趋势",
+        "水分胁迫",
+        "氮素状态",
+        "LAI"
+      ],
+      "summary": "当前处于果实膨大期，水分胁迫升高（0.38），处于产量形成的敏感阶段。氮素状态正常，当前水肥供应基本正常。",
+      "title": "APSIM-Coffee 作物层机理证据"
+    },
+    "beps_evidence": {
+      "interpretation": "BEPS-Lite 从冠层生态视角评估咖啡的光合生产力和生态健康。当日总初级生产力（GPP）12.11 gC/m²，净初级生产力（NPP）5.449 gC/m²，蒸散发（ET）3.82 mm，生态碳汇 25.431 kgC/亩，冠层长势评分 97/100。GPP/NPP 下降通常是水分或光照不足的早期预警信号。",
+      "key_metrics": {
+        "carbon_sink_kgC_mu": 25.431,
+        "et_today": 3.82,
+        "gpp_today": 12.11,
+        "growth_score": 97.2,
+        "npp_today": 5.449
+      },
+      "predicts": [
+        "GPP",
+        "NPP",
+        "ET",
+        "碳汇",
+        "长势评分"
+      ],
+      "summary": "冠层状态：冠层生态状态总体正常，维持当前管理。GPP 当日 12.11 gC/m²，长势评分良好（97/100），冠层光合生产力正常。",
+      "title": "BEPS-Lite 冠层生态机理证据"
+    },
+    "hydrus_evidence": {
+      "interpretation": "HYDRUS-1D 模拟了土壤中水分的运动过程和根系吸水。当前土壤水分状态为「重度干旱」，灌溉水入渗深度约 0 cm，根系吸水效率 100%（越接近100%说明根区供水越充足）。这一模型解释了水是否真正到达了咖啡根系，而非仅停留在土壤表层。",
+      "key_metrics": {
+        "infiltration_depth_cm": 0,
+        "root_uptake_ratio": 1.0,
+        "water_status": "重度干旱"
+      },
+      "predicts": [
+        "土壤剖面水分",
+        "入渗深度",
+        "根系吸水效率"
+      ],
+      "summary": "土壤水分状态：重度干旱。入渗深度仅 0 cm，水分主要停留在表层，未充分到达主根区。根系吸水效率较好（100%），根区水分状态正常。",
+      "title": "HYDRUS-1D 土壤水分机理证据"
+    },
+    "integrated_reason": "APSIM 评估作物层（水分胁迫 0.38，生育期「果实膨大期」），HYDRUS 解析土壤层（根系吸水效率 100%），BEPS 评价冠层生态（长势评分 97/100）——三模型协同判断当前综合风险等级为「高」。"
+  },
+  "model_input": {
+    "crop": "coffee",
+    "farm_operations": [
+      {
+        "amount": 25,
+        "date": "2026-10-14",
+        "op_type": "irrigation",
+        "unit": "mm"
+      },
+      {
+        "amount": 10,
+        "date": "2026-10-14",
+        "fertilizer_type": "尿素",
+        "op_type": "fertilization",
+        "unit": "kg/mu"
+      }
+    ],
+    "plot_id": "plot_001",
+    "plot_info": {
+      "area_mu": 12.5,
+      "coffee_variety": "云南小粒咖啡",
+      "crop": "coffee",
+      "elevation_m": 850,
+      "latitude": 24.93,
+      "longitude": 98.88,
+      "plot_id": "plot_001",
+      "plot_name": "潞江坝咖啡示范园",
+      "shade_level": "中等遮阴",
+      "soil_type": "赤红壤",
+      "tree_age": 4
+    },
+    "scenario": {
+      "extra_fertilizer_kg_mu": 0,
+      "extra_irrigation_mm": 0,
+      "scenario_name": "当前管理方案"
+    },
+    "task_id": "phase0_legacy_baseline",
+    "weather_series": [
+      {
+        "date": "2026-10-14",
+        "latitude": 24.93,
+        "longitude": 98.88,
+        "radiation_mj": 18.5,
+        "rain_mm": 0,
+        "source": "demo",
+        "tavg": 23.7,
+        "tmax": 29.5,
+        "tmin": 17.8,
+        "vpd_kpa": 1.2,
+        "wind_m_s": 1.5
+      },
+      {
+        "date": "2026-10-15",
+        "latitude": 24.93,
+        "longitude": 98.88,
+        "radiation_mj": 18.25,
+        "rain_mm": 0,
+        "source": "demo",
+        "tavg": 24.5,
+        "tmax": 30.3,
+        "tmin": 18.6,
+        "vpd_kpa": 1.24,
+        "wind_m_s": 1.5
+      },
+      {
+        "date": "2026-10-16",
+        "latitude": 24.93,
+        "longitude": 98.88,
+        "radiation_mj": 18.0,
+        "rain_mm": 10,
+        "source": "demo",
+        "tavg": 25.3,
+        "tmax": 31.1,
+        "tmin": 19.4,
+        "vpd_kpa": 1.28,
+        "wind_m_s": 1.5
+      },
+      {
+        "date": "2026-10-17",
+        "latitude": 24.93,
+        "longitude": 98.88,
+        "radiation_mj": 17.75,
+        "rain_mm": 0,
+        "source": "demo",
+        "tavg": 23.7,
+        "tmax": 29.5,
+        "tmin": 17.8,
+        "vpd_kpa": 1.32,
+        "wind_m_s": 1.5
+      },
+      {
+        "date": "2026-10-18",
+        "latitude": 24.93,
+        "longitude": 98.88,
+        "radiation_mj": 17.5,
+        "rain_mm": 0,
+        "source": "demo",
+        "tavg": 24.5,
+        "tmax": 30.3,
+        "tmin": 18.6,
+        "vpd_kpa": 1.36,
+        "wind_m_s": 1.5
+      },
+      {
+        "date": "2026-10-19",
+        "latitude": 24.93,
+        "longitude": 98.88,
+        "radiation_mj": 17.25,
+        "rain_mm": 13,
+        "source": "demo",
+        "tavg": 25.3,
+        "tmax": 31.1,
+        "tmin": 19.4,
+        "vpd_kpa": 1.4,
+        "wind_m_s": 1.5
+      },
+      {
+        "date": "2026-10-20",
+        "latitude": 24.93,
+        "longitude": 98.88,
+        "radiation_mj": 17.0,
+        "rain_mm": 0,
+        "source": "demo",
+        "tavg": 23.7,
+        "tmax": 29.5,
+        "tmin": 17.8,
+        "vpd_kpa": 1.44,
+        "wind_m_s": 1.5
+      }
+    ]
+  },
+  "plot_id": "plot_001",
+  "status": "success",
+  "task_id": "phase0_legacy_baseline",
+  "_baseline_metadata": {
+    "label": "旧工程改造前基线：使用旧 demo 气象、自动补地块和农事；不是实测或科学验证",
+    "baseline_commit": "221a26b",
+    "captured_at": "2026-10-14T08:07:38.256911+00:00",
+    "http_status": 200,
+    "per_tool_status": {
+      "apsim": "fallback",
+      "hydrus": "success",
+      "beps": "ok"
+    },
+    "isolated_storage": true,
+    "engines": {
+      "apsim_exists": false,
+      "hydrus_exists": true,
+      "hydrus_sha256": "63bc242cd4140c34acad088816aa43180d12616111ce42d64a825061a1634674"
+    },
+    "limitations": [
+      "HTTP 200 和融合 success 不代表三个引擎都运行成功",
+      "BEPS 为简化计算，并可能使用 APSIM fallback 或旧 HYDRUS 输出",
+      "HYDRUS 的时间、根系吸水比和建议文字保留旧实现，仅作工程对照"
+    ]
+  }
+}

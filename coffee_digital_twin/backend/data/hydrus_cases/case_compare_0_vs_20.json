@@ -1,0 +1,33 @@
+{
+  "input_label": "假设输入",
+  "mode": "live",
+  "status": "success",
+  "note": "同一参数版本、同一窗口；不是地块校准或田间节水验证",
+  "baseline_evidence_id": "ev_hydrus_case_46288ab7cb6c4314b9611ed4def12f7b_cbb80bf38434400baed0a98db581f052",
+  "variant_evidence_id": "ev_hydrus_case_eed6387eeae3429ebe1adb1433547850_2580ea427a8146839d5bbd2571d56964",
+  "parameter_version": "hydrus-params-3e5da27bd790",
+  "time_range": {
+    "start": "2026-09-01",
+    "end": "2026-09-08"
+  },
+  "input_diff": [
+    2.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "output_diff": {
+    "theta_day7_by_depth": {
+      "10": 0.04199999999999998,
+      "20": 0.03720000000000001,
+      "40": 0.011499999999999982,
+      "60": 9.999999999998899e-05,
+      "100": 0.0
+    },
+    "infiltration_depth_cm": 0.0,
+    "root_uptake_ratio": 0.08233766233766238
+  }
+}

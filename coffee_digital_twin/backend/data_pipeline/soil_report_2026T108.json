@@ -1,0 +1,39 @@
+{
+  "plot_id": "plot_catimor_project",
+  "source_path": "03_地块与监测数据/raw/咖啡种植基地表层土壤监测报告.pdf",
+  "data_version": "soil-report-2026T108-20261020",
+  "source_page": 5,
+  "report_no": "2026T108",
+  "location": "普洱南岛河咖啡种植基地",
+  "received_date": "2026-03-26",
+  "analysis_start": "2026-03-31",
+  "analysis_end": "2026-04-16",
+  "report_date": "2026-04-22",
+  "sample_date": null,
+  "depth_top_cm": null,
+  "depth_bottom_cm": null,
+  "missing_fields": ["sample_date", "depth_top_cm", "depth_bottom_cm", "sample_to_station_mapping"],
+  "verification": "报告PDF第3–5页人工图像逐项核对；仅检测结果，不将收样日或报告日替代采样日",
+  "items": [
+    {"key":"ph","label":"pH","unit":"无量纲","method":"NY/T 1377-2007"},
+    {"key":"organic_matter","label":"有机质","unit":"g/kg","method":"NY/T 1121.6-2006"},
+    {"key":"available_p","label":"有效磷","unit":"mg/kg","method":"NY/T 1121.7-2014"},
+    {"key":"available_k","label":"速效钾","unit":"mg/kg","method":"NY/T 889-2004"},
+    {"key":"total_n","label":"全氮","unit":"g/kg","method":"NY/T 1121.24-2012"},
+    {"key":"total_p","label":"全磷","unit":"g/kg","method":"NY/T 88-1988"},
+    {"key":"nitrate_n","label":"硝态氮","unit":"mg/kg","method":"LY/T 1228-2015 5.1"},
+    {"key":"ammonium_n","label":"铵态氮","unit":"mg/kg","method":"LY/T 1228-2015 6.1"},
+    {"key":"delta_c","label":"ΔC（保留报告项目名）","unit":"%","method":"DZ/T 0279.25-2016；报告第4页注明分包"}
+  ],
+  "samples": [
+    {"sample_label":"16","lab_sample_id":"2026T108001","values":[4.8,21.7,4.8,124,1.16,0.59,2.05,0.99,1.08]},
+    {"sample_label":"339","lab_sample_id":"2026T108002","values":[4.9,22.6,3.6,198,1.26,0.55,1.52,0.30,1.02]},
+    {"sample_label":"瑰","lab_sample_id":"2026T108003","values":[4.6,26.2,48.0,142,1.36,0.82,5.07,0.16,1.17]},
+    {"sample_label":"普咖1","lab_sample_id":"2026T108004","values":[5.3,22.9,23.1,150,1.34,0.65,4.23,0.36,1.10]},
+    {"sample_label":"普咖2","lab_sample_id":"2026T108005","values":[5.2,15.0,13.2,99,1.16,0.60,3.46,0.29,0.65]},
+    {"sample_label":"C3","lab_sample_id":"2026T108006","values":[4.9,25.2,1.4,335,1.32,0.52,22.47,1.02,1.31]},
+    {"sample_label":"C05","lab_sample_id":"2026T108007","values":[5.0,16.8,22.6,95,1.14,0.65,2.04,0.54,0.82]},
+    {"sample_label":"C06","lab_sample_id":"2026T108008","values":[5.0,20.4,23.8,129,1.33,0.65,3.18,0.60,0.96]},
+    {"sample_label":"C132","lab_sample_id":"2026T108009","values":[5.3,48.3,102.8,1320,2.60,0.89,95.94,38.01,1.94]}
+  ]
+}

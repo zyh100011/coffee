@@ -1,0 +1,589 @@
+{
+  "scope": "miniprogram/*.js/wxml + docs textual files; generated audit files excluded",
+  "hits": [
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/data/data.wxml",
+      "line": 34,
+      "terms": [
+        "success"
+      ],
+      "text": "    <evidence-tag source-type=\"observation\" status=\"success\"/>",
+      "disposition": "协议状态/微信回调名称；仅表示代码或工具可用，不是科学验证"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/plots/plots.js",
+      "line": 3,
+      "terms": [
+        "success"
+      ],
+      "text": "Page({data:{...ui.defaults,items:[],current:''},onShow(){this.reload();},async reload(){this.setData({state:'loading',error:null});try{await ui.context(this);const response=await request({url:'/api/plot/list'});this.setData({items:response.items.map(p=>({...p,areaText:numberText(p.area_mu),elevationText:numberText(p.elevation_m),missingText:ui.missingLabels(p.completeness.missing)})),current:getPlotId(),state:response.items.length?'ready':'empty'});}catch(e){ui.fail(this,e);}},select(e){savePlotId(e.currentTarget.dataset.id);this.setData({current:e.currentTarget.dataset.id});wx.showToast({title:'已设为当前',icon:'success'});},edit(e){wx.navigateTo({url:'/pages/plotInit/plotInit?plot_id='+encodeURIComponent(e.currentTarget.dataset.id)});},farm(e){wx.navigateTo({url:'/pages/farmLog/farmLog?plot_id='+encodeURIComponent(e.currentTarget.dataset.id)});},create(){wx.navigateTo({url:'/pages/plotInit/plotInit'});}});",
+      "disposition": "协议状态/微信回调名称；仅表示代码或工具可用，不是科学验证"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/report/report.js",
+      "line": 2,
+      "terms": [
+        "success"
+      ],
+      "text": "Page({data:{...ui.defaults,report:null,items:[],sections:[]},onLoad(o){this.reportId=o.report_id||'';},onShow(){this.reload();},async reload(){this.setData({state:'loading',error:null});try{await ui.context(this);if(!this.reportId){if(!this.data.plot){this.setData({state:'empty',items:[]});return;}const r=await request({url:'/api/report/list',data:{plot_id:this.data.plot.plot_id}});this.setData({items:r.items,state:r.items.length?'ready':'empty'});return;}const report=await request({url:'/api/report/'+encodeURIComponent(this.reportId)});const map={};(report.evidence||[]).forEach(e=>map[e.evidence_id]=e);this.setData({report,sections:report.sections.map(s=>({...s,evidence:s.evidence_ids.map(id=>map[id]||{evidence_id:id}),blocks:s.items.filter(i=>i.type==='fact'||i.type==='chart')})),state:'ready'});}catch(e){ui.fail(this,e);}},open(e){wx.navigateTo({url:'/pages/report/report?report_id='+encodeURIComponent(e.currentTarget.dataset.id)});},evidence(e){ui.openEvidence(e.currentTarget.dataset.id||e.detail.evidence_id);},copy(){wx.setClipboardData({data:BASE_URL+'/api/report/'+encodeURIComponent(this.reportId)+'.html',success(){wx.showToast({title:'在电脑浏览器打开后可打印PDF',icon:'none'});}});}});",
+      "disposition": "协议状态/微信回调名称；仅表示代码或工具可用，不是科学验证"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/result/result.js",
+      "line": 3,
+      "terms": [
+        "success"
+      ],
+      "text": "Page({data:{...ui.defaults,result:null,tools:[],validationCases:[],info:[{name:'APSIM',text:'OilPalm代理映射，无咖啡产量验证'},{name:'HYDRUS',text:'未校准假设情景，模板通用参数，仅解释水分响应'},{name:'BEPS',text:'简化计算，可能依赖APSIM LAI与HYDRUS水分因子'}],advice:null,generating:false},onLoad(o){this.taskId=o.task_id||'';},onShow(){this.reload();},async reload(){this.setData({state:'loading',error:null,result:null,tools:[],validationCases:[]});try{const plot=await ui.context(this);if(!plot){this.setData({state:'empty'});return;}const result=await request({url:this.taskId?'/api/model/result/'+encodeURIComponent(this.taskId):'/api/model/result',data:{plot_id:plot.plot_id}});const tools=['apsim','hydrus','beps'].map(name=>{const r=result[name]||{status:'missing_input',warnings:['没有本工具结果']};const available=['success','replay'].includes(r.status)&&r.source_type!=='demo';const out=available?r.outputs||{}:{};const metrics=Object.keys(out).filter(k=>typeof out[k]==='number'||typeof out[k]==='string').map(key=>({key,value:out[key]}));return {name,...r,available,metrics,soil:chartItems((out.soil_profile_current||[]).map(p=>({label:p.depth_cm+'cm',value:p.theta})),'label','value',0.6),series:name==='hydrus'?[10,40,60].map(d=>({name:d+'cm',data:(out.soil_moisture_series||[]).map(p=>[p.date,p['d'+d]])})):[]};});this.taskId=result.task_id;this.setData({result,tools,state:'ready'});this._loadValidationCases();}catch(e){if(e.code==='E_DATA_EMPTY'){this.setData({state:'empty'});return;}ui.fail(this,e);}},async _loadValidationCases(){try{const r=await request({url:'/api/model/validation_cases'});this.setData({validationCases:Array.isArray(r)?r.map(c=>({case_id:c.case_id,case_name:c.case_name,scenario:c.scenario,note:c.note,verification_status:c.verification_status})):[]});}catch(e){this.setData({validationCases:[]});}},openEvidence(e){ui.openEvidence(e.currentTarget.dataset.id);},goAdvice(){session.setPendingQuestion('解释模型结果 '+this.taskId);wx.switchTab({url:'/pages/advice/advice'});},async generate(){if(this.data.generating)return;this.setData({generating:true});try{const r=await request({url:'/api/advice/generate',method:'POST',data:{task_id:this.taskId}});this.setData({advice:r.advice});}catch(e){ui.fail(this,e);}finally{this.setData({generating:false});}}});",
+      "disposition": "协议状态/微信回调名称；仅表示代码或工具可用，不是科学验证"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/utils/labels.js",
+      "line": 9,
+      "terms": [
+        "success"
+      ],
+      "text": "const STATUSES = { success: '可用', replay: '历史回放', partial: '部分可用', failed: '失败', timeout: '超时', missing_input: '缺少条件', fallback: '演示回退' };",
+      "disposition": "协议状态/微信回调名称；仅表示代码或工具可用，不是科学验证"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/utils/request.js",
+      "line": 24,
+      "terms": [
+        "success"
+      ],
+      "text": "      success(res) {",
+      "disposition": "协议状态/微信回调名称；仅表示代码或工具可用，不是科学验证"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/baseline_snapshot_before.json",
+      "line": 335,
+      "terms": [
+        "success"
+      ],
+      "text": "    \"status\": \"success\",",
+      "disposition": "旧接口基线存档，含旧演示/预填评价；不得用作现行科学结论"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/baseline_snapshot_before.json",
+      "line": 527,
+      "terms": [
+        "success"
+      ],
+      "text": "  \"status\": \"success\",",
+      "disposition": "旧接口基线存档，含旧演示/预填评价；不得用作现行科学结论"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/baseline_snapshot_before.json",
+      "line": 536,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"hydrus\": \"success\",",
+      "disposition": "旧接口基线存档，含旧演示/预填评价；不得用作现行科学结论"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/baseline_snapshot_before.json",
+      "line": 546,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"HTTP 200 和融合 success 不代表三个引擎都运行成功\",",
+      "disposition": "旧接口基线存档，含旧演示/预填评价；不得用作现行科学结论"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 46,
+      "terms": [
+        "success"
+      ],
+      "text": "| D4 | `models/hydrus_adapter.py` | 失败时返回 demo，状态写成 `success_with_fallback` | 不把 fallback 当 success | T2.1 |",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 52,
+      "terms": [
+        "success"
+      ],
+      "text": "| D10 | `models/fusion_engine.py` | 不检查状态，固定合并三模型；`status` 恒为 success | 先查状态再解释，按可用证据构建报告 | T2.5 |",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 56,
+      "terms": [
+        "专家通过"
+      ],
+      "text": "| D14 | `demo_data/validation_cases.json` | 预填“专家通过”无原始证明 | 不能算真实专家验证 | T2.5 |",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 118,
+      "terms": [
+        "success"
+      ],
+      "text": "status 枚举：`success`、`missing_input`、`timeout`、`failed`、`fallback`、`replay`。只有 `success` 和 `replay` 可以进入解释；`fallback` 只能在演示中标成“工程演示数据”。",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 157,
+      "terms": [
+        "success"
+      ],
+      "text": "{\"status\":\"success\",\"session_id\":\"s1\",\"turn_id\":\"t_xxx\",\"trace_id\":\"tr_xxx\",",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 432,
+      "terms": [
+        "success"
+      ],
+      "text": "- status 不是 success/replay 的模型，卡片只显示“不可用：<warnings[0]>”，不画图、不显示数值。",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 505,
+      "terms": [
+        "success"
+      ],
+      "text": "- 输出的 status 是 `success_with_fallback` 时，就是没跑通：把报错写进 `待人工确认.md`，然后继续后面的任务。",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 519,
+      "terms": [
+        "专家通过"
+      ],
+      "text": "| pages/result | 改造 | 状态徽章、证据标签、删除“专家通过”兜底（P7） |",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 587,
+      "terms": [
+        "success"
+      ],
+      "text": "- 验收：pytest 全绿；Windows 上手动运行一次，status=success，series 有 8 个时间点。",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 598,
+      "terms": [
+        "success"
+      ],
+      "text": "- 验收：两组 success 案例的 parameter_version 相同；20mm 组第 1 天 prec 比基线多 2.0cm；compare 文件里 40cm theta 差值不为 0。",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 604,
+      "terms": [
+        "节水"
+      ],
+      "text": "  3. 输出字段表：单位、时间/空间尺度、计算方法、可支持哪些解释、不能支持哪些解释（例如不能给出产量或田间节水结论）；",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 624,
+      "terms": [
+        "success"
+      ],
+      "text": "  - APSIM：raw.status=success → `success`，source_type=`proxy_model`，assumptions 写“OilPalm 代理映射咖啡指标，无咖啡产量验证”；raw.status=fallback → `fallback`，source_type=`demo`。",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 625,
+      "terms": [
+        "success"
+      ],
+      "text": "  - BEPS：raw.status=ok → `success`，source_type=`simplified_model`；raw.status=fallback → `fallback`，source_type=`demo`。",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 628,
+      "terms": [
+        "success"
+      ],
+      "text": "  - 只有 status ∈ {success, replay} 的工具才进入 `available_evidence`；`model_basis` 只为这些工具生成，没有的就不写，不再凑够三个模型。",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 629,
+      "terms": [
+        "success"
+      ],
+      "text": "  - 顶层 `status`：全部可用为 `success`，部分可用为 `partial`，全部不可用为 `failed`。",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 692,
+      "terms": [
+        "success"
+      ],
+      "text": "  - 组装 blocks：数值型 outputs 生成 `fact` 块；有 series 时生成 `chart` 块；每个工具结果和每条 citation 生成 `evidence` 项；status≠success/replay 时生成 `warning` 块；answer 里 claims 引用的 evidence_id 不存在时，这条主张加前缀“[未核验]”，并在 errors 中记 `unsupported_claim`；",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 746,
+      "terms": [
+        "success"
+      ],
+      "text": "- `tools/export_verifiable_cases.py`：从冻结后的 data-v1.0 中，选出 20 个数据查询案例（覆盖不同地块、深度、时间段、带缺测的时段），以及 HYDRUS 的 2 个 success 案例和 2 个失败案例。",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 753,
+      "terms": [
+        "success"
+      ],
+      "text": "- 5 次全部 success 且单次耗时不超过 30 秒：保持 `HYDRUS_MODE=live`；否则改成 `HYDRUS_MODE=replay`，并在 PROGRESS 中写明“按方案 10/18 规则改为历史结果解释模式”。",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 811,
+      "terms": [
+        "增产",
+        "节水"
+      ],
+      "text": "- 每步都要说清楚画面上是实测、文献、模拟还是回放，不说“增产/节水”这类没有实验依据的话。",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "line": 824,
+      "terms": [
+        "增产",
+        "节水",
+        "精准",
+        "专家通过",
+        "已验证",
+        "success"
+      ],
+      "text": "- 一致性扫描：在小程序 wxml/js 和 docs 里搜索“增产”“节水”“精准”“专家通过”“已验证”“success”等字样。每一处都要核对是否有实验依据，没有的就改成如实的表述，并列出修改清单。",
+      "disposition": "执行规范/待验收要求，非已取得成果"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/hydrus_phase0_verification.json",
+      "line": 4,
+      "terms": [
+        "success"
+      ],
+      "text": "    \"adapter_success\": true,",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/hydrus_phase0_verification.json",
+      "line": 97,
+      "terms": [
+        "success"
+      ],
+      "text": "  \"legacy_adapter_status\": \"success\",",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/hydrus_phase3_stability.json",
+      "line": 6,
+      "terms": [
+        "success"
+      ],
+      "text": "  \"success_count\": 10,",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/hydrus_phase3_stability.json",
+      "line": 14,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"status\": \"success\",",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/hydrus_phase3_stability.json",
+      "line": 73,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"status\": \"success\",",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/hydrus_phase3_stability.json",
+      "line": 132,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"status\": \"success\",",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/hydrus_phase3_stability.json",
+      "line": 191,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"status\": \"success\",",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/hydrus_phase3_stability.json",
+      "line": 250,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"status\": \"success\",",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/hydrus_phase3_stability.json",
+      "line": 309,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"status\": \"success\",",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/hydrus_phase3_stability.json",
+      "line": 368,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"status\": \"success\",",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/hydrus_phase3_stability.json",
+      "line": 427,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"status\": \"success\",",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/hydrus_phase3_stability.json",
+      "line": 486,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"status\": \"success\",",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/hydrus_phase3_stability.json",
+      "line": 545,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"status\": \"success\",",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/HYDRUS工具说明.md",
+      "line": 34,
+      "terms": [
+        "节水"
+      ],
+      "text": "仅支持同参数、同窗口的假设水分响应比较。不能支持产量、田间节水、已校准准确性或实际最优灌溉量结论。source_type始终simulation_uncalibrated（显式fallback除外）。T3.2 已移除顶层兼容字段，前端仅从 outputs 读取。",
+      "disposition": "范围限制/缺项/历史诊断，保留警示语义"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/HYDRUS工具说明.md",
+      "line": 40,
+      "terms": [
+        "success"
+      ],
+      "text": "| success | 引擎退出正常，无Error.msg，必要输出及8剖面齐全 | 未校准模拟标签；可解释假设 |",
+      "disposition": "范围限制/缺项/历史诊断，保留警示语义"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/HYDRUS工具说明.md",
+      "line": 45,
+      "terms": [
+        "success"
+      ],
+      "text": "| replay | 找到相同额外灌溉的历史success案例 | 历史回放标签；保留原日期、参数、地块，不能改称当前地块新结果 |",
+      "disposition": "范围限制/缺项/历史诊断，保留警示语义"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/HYDRUS工具说明.md",
+      "line": 47,
+      "terms": [
+        "success"
+      ],
+      "text": "仅success/replay可进入解释。统一结果包含证据ID、task/plot、时间、输入、假设、版本、单位、缺项、警告、created_at及mode。",
+      "disposition": "工程状态/可用性定义，须结合原文的来源与适用限制"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/HYDRUS工具说明.md",
+      "line": 63,
+      "terms": [
+        "success"
+      ],
+      "text": "2026-10-14 按计划 10/18 的规则提前核验，五轮 baseline 0mm / extra 20mm，共 10 次真实 Windows 引擎调用。10/10 success，最长 0.067333 秒，均低于 30 秒；统一结果契约和逐日输入反读全部通过，参数版本一致。决定保持 `HYDRUS_MODE=live`。核验使用假设输入和模板土壤参数，只证明本机工程稳定性，不是田间校准或准确率验证。",
+      "disposition": "工程状态/可用性定义，须结合原文的来源与适用限制"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/Phase3使用说明.md",
+      "line": 29,
+      "terms": [
+        "success"
+      ],
+      "text": "- HYDRUS五轮双案例：10/10 success，最长0.067333秒，输入反读和参数版本一致，保持live。结果为未校准假设模拟。",
+      "disposition": "范围限制/缺项/历史诊断，保留警示语义"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/PROGRESS.md",
+      "line": 9,
+      "terms": [
+        "success"
+      ],
+      "text": "| 2026-10-14 | T0.3 | tests/conftest.py、test_smoke.py、capture_phase0_baseline.py、baseline_snapshot_before.json | pytest 8 passed；四个旧接口冒烟通过；实际 /api/model/run 一次：APSIM=fallback、HYDRUS=success、BEPS=ok；HTTP 200 | 基线包含旧 demo 和自动补值，只用于工程回归；T0.1 的 pytest 启动依赖已补验 |",
+      "disposition": "工程状态/可用性定义，须结合原文的来源与适用限制"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/PROGRESS.md",
+      "line": 10,
+      "terms": [
+        "success"
+      ],
+      "text": "| 2026-10-14 | T0.4 | verify_hydrus_baseline.py、test_hydrus_inspection.py、hydrus_phase0_verification.json、根目录开始说明 | HYDRUS 实时可运行：是；adapter=success；T_Level.out/Nod_Inf.out 存在；Error.msg 不存在；Time=0/7；运行约 0.062 秒；pytest 13 passed | 使用假设输入和模板参数，非地块校准；吸水比解析等旧实现问题按 T2.1 修正 |",
+      "disposition": "范围限制/缺项/历史诊断，保留警示语义"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/PROGRESS.md",
+      "line": 49,
+      "terms": [
+        "success"
+      ],
+      "text": "- HYDRUS 在这次旧工程基线中为 success；T0.4 再独立检查输出文件、模拟时间和错误文件。",
+      "disposition": "工程状态/可用性定义，须结合原文的来源与适用限制"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/PROGRESS.md",
+      "line": 58,
+      "terms": [
+        "success"
+      ],
+      "text": "| 2026-10-14 | T2.2 | generate_hydrus_cases.py、两份 HYDRUS 案例包、回放测试 | pytest 30 passed；两组实际引擎 success、相同参数版本、首日 prec 差 2.0cm、40cm theta 差 0.0115；历史不收敛记录已复制 | 全部输入为假设，不属于实测/校准；回放保留历史日期和地块 |",
+      "disposition": "工程状态/可用性定义，须结合原文的来源与适用限制"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/PROGRESS.md",
+      "line": 77,
+      "terms": [
+        "success"
+      ],
+      "text": "| 2026-10-14 | T3.6 | verify_hydrus_stability.py、test_hydrus_stability.py、hydrus_phase3_stability.json、两份HYDRUS工具说明 | pytest 61 passed；5轮双案例10/10 success；最长0.067333s；输入与版本一致 | 提前执行10/18规则，保持live；仅本机假设模拟工程核验，非校准 |",
+      "disposition": "范围限制/缺项/历史诊断，保留警示语义"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/PROGRESS.md",
+      "line": 115,
+      "terms": [
+        "success"
+      ],
+      "text": "| 2026-10-22 | T5.3 更新交付状态 | delivery_manifest、交付目录、功能核对表、待补交付材料、selfcheck_latest、贡献/措辞记录 | pytest 85 passed（50.72s）；26项声明路径检查通过；措辞62处零待处理；修正文献/真实监测未到的过时描述，归档最新实际自检 | 两批真实监测已在临时副本各导出20条success，40条均值与独立SQL误差0，导出器逐条复跑通过；源库冻结记录仍0，正式冻结/转交、真实服务、Phase6及人工验收仍待完成 |",
+      "disposition": "范围限制/缺项/历史诊断，保留警示语义"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/scenario_phase4_verification.json",
+      "line": 199,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"status\": \"success\",",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/scenario_phase4_verification.json",
+      "line": 367,
+      "terms": [
+        "success"
+      ],
+      "text": "    \"status\": \"success\",",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/scenario_phase4_verification.json",
+      "line": 557,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"status\": \"success\",",
+      "disposition": "已运行工程/假设案例记录；success仅表示程序状态，不表示农业预测有效"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/功能核对表.md",
+      "line": 13,
+      "terms": [
+        "已验证"
+      ],
+      "text": "| 研究5：数据缺项、失败、代理、文献冲突时追问/核查 | /api/assistant/chat、/api/scenario/compare | advice/scenario/banner | test_assistant、test_errors_phase4、test_fusion_status | evidence_health/http_assistant | 单次追问、失败无差值和unsupported_claim测试；联调记录F/M | 工程状态/追问通过；真实文献冲突门控由蔡负责，未冒称已验证 |",
+      "disposition": "范围限制/缺项/历史诊断，保留警示语义"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/本地服务接口契约.md",
+      "line": 13,
+      "terms": [
+        "success"
+      ],
+      "text": "只允许success/replay且非demo工具进入解释；claims必须绑定本轮可用工具证据或有效citation，否则未核验并记录unsupported_claim。服务离线只开放明确数据查询和事实/图表/来源，不生成智能解释。MOCK引用统一演示标签。旧GLM代码保留，只有显式LEGACY_GLM=1才能调用，默认关闭。",
+      "disposition": "范围限制/缺项/历史诊断，保留警示语义"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/演示流程.md",
+      "line": 31,
+      "terms": [
+        "增产",
+        "节水"
+      ],
+      "text": "预算合计240秒。讲解只陈述数据、来源、假设和限制，不推导田间增产、节水或最优灌溉处方。20mm是单一变化的假设输入，不是推荐量。",
+      "disposition": "范围限制/缺项/历史诊断，保留警示语义"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/联调记录.md",
+      "line": 51,
+      "terms": [
+        "success"
+      ],
+      "text": "总核验发现旧导出器漏传device_id/unit，可能产生20条missing_input却标ready。现按参数、深度、设备和原单位选取有效窗口，保留真实缺测天数；正式20条均须success、observation、非空且重复执行一致。复现SQL带同样来源和单位筛选；value_transform记录百分数显示换算，SQL原值不可未经换算直接与显示均值比较。空窗口不计入20条；HYDRUS两条成功/两条失败案例仍分别保留。构造测试只验证机制，正式包仍要求冻结实测版本。",
+      "disposition": "范围限制/缺项/历史诊断，保留警示语义"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/降雨与土样口径复核_20261022.md",
+      "line": 20,
+      "terms": [
+        "精准"
+      ],
+      "text": "- environment3在2026-06-11从0逐步累加到25.8mm，16:57以后反复保留25.8至23:56。141次读数直接相加得到2598.2mm，不能解释为当天实际降雨。原CSV为`咖啡基地历史数据/2026年6月8日-2026年6月15日历史数据/2026年6月8日-2026年6月15日大数据学院咖啡精准种植应用示范基地环境监测3历史数据.csv`，第5369行可回查16:57、25.8、mm。",
+      "disposition": "范围限制/缺项/历史诊断，保留警示语义"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/页面接口复用清单.md",
+      "line": 14,
+      "terms": [
+        "专家通过"
+      ],
+      "text": "| pages/result | task_id 结果、横条图、机理说明、三条专家通过兜底案例 | GET /api/model/result/<task_id>；GET /api/model/validation_cases | 改造 | 按工具状态显示可用结果；来源标签；HYDRUS outputs；逐日 Canvas 图；移除伪验证 | T3.2 |",
+      "disposition": "范围限制/缺项/历史诊断，保留警示语义"
+    }
+  ],
+  "unresolved": 0
+}

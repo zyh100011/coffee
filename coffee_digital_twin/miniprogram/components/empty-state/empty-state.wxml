@@ -1,0 +1,1 @@
+<view class="panel empty-state"><view class="section-title">{{title}}</view><view class="muted">{{desc}}</view><button wx:if="{{actionText}}" class="primary-btn" bindtap="act" aria-label="{{actionText}}">{{actionText}}</button></view>

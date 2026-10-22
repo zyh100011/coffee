@@ -1,0 +1,1 @@
+<view class="page"><view wx:for="{{examples}}" wx:key="title" class="panel section"><view class="section-title">{{item.title}}</view><line-chart series="{{item.series}}" unit="cm3/cm3"/></view></view>

@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "styleIsolation": "apply-shared",
+  "usingComponents": {
+    "evidence-tag": "../evidence-tag/evidence-tag",
+    "line-chart": "../line-chart/line-chart"
+  }
+}

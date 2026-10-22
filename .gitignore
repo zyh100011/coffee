@@ -1,0 +1,14 @@
+# Local environment, secrets and generated files
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+*.py[cod]
+coffee_digital_twin/backend/.env
+coffee_digital_twin/backend/*.pid
+coffee_digital_twin/backend/*.log
+
+# Human-provided materials; never commit raw data or formal test material
+实验资料/01_原始知识资料/**/*.pdf
+实验资料/01_原始知识资料/A3_土壤根区/公开原文_20261020/
+实验资料/03_地块与监测数据/raw/
+实验资料/06_正式测试资料/

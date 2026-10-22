@@ -1,0 +1,82 @@
+{
+  "tool": "hydrus",
+  "task_id": "hydrus_192410b541b4426f9b1a687472af3ef0",
+  "plot_id": null,
+  "time_range": {
+    "start": "2026-09-01",
+    "end": "2026-09-08"
+  },
+  "status": "failed",
+  "source_type": "simulation_uncalibrated",
+  "model_version": "HYDRUS-1D H1D_CALC.EXE sha256:unavailable",
+  "parameter_version": "hydrus-params-3e5da27bd790",
+  "inputs": {
+    "start_date": "2026-09-01",
+    "extra_irrigation_mm": 0.0,
+    "dates": [
+      "2026-09-01",
+      "2026-09-02",
+      "2026-09-03",
+      "2026-09-04",
+      "2026-09-05",
+      "2026-09-06",
+      "2026-09-07"
+    ],
+    "farm_operations": [],
+    "rsoil_cm_d": [
+      0.15,
+      0.15,
+      0.15,
+      0.15,
+      0.15,
+      0.15,
+      0.15
+    ],
+    "rroot_cm_d": [
+      0.22,
+      0.22,
+      0.22,
+      0.22,
+      0.22,
+      0.22,
+      0.22
+    ],
+    "daily_prec_cm": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "run_directory": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\hydrus_runs\\hydrus_192410b541b4426f9b1a687472af3ef0_a2eb9329"
+  },
+  "assumptions": [
+    "土壤水力参数为模板通用值，非地块实测",
+    "初始压力水头剖面为模板值",
+    "下边界自由排水",
+    "模拟窗口 7 天",
+    "结果未经田间校准",
+    "无实测降雨，第 1/2/3/4/5/6/7 天降雨按 0 mm 假设",
+    "窗口内无已记录灌溉；记录缺失不证明实际未灌溉",
+    "第 1 天额外灌溉 0 mm，为假设情景，非灌溉指令",
+    "rsoil_cm_d=0.15 cm/d，模板固定值",
+    "rroot_cm_d=0.22 cm/d，模板固定值"
+  ],
+  "outputs": {},
+  "units": {
+    "theta": "cm3/cm3",
+    "depth": "cm",
+    "prec": "cm/d",
+    "root_uptake_ratio": "dimensionless"
+  },
+  "missing_fields": [],
+  "warnings": [
+    "HYDRUS 引擎不存在"
+  ],
+  "evidence_id": "ev_hydrus_hydrus_192410b541b4426f9b1a687472af3ef0_963f1d94a0394b0cb5cd0be6d352da65",
+  "created_at": "2026-10-14T09:16:50.619021+00:00",
+  "mode": "live",
+  "input_label": "假设输入"
+}

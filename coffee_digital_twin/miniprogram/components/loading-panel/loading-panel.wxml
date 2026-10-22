@@ -1,0 +1,1 @@
+<view class="loading-panel" aria-live="polite"><view class="dot"></view><view>{{text}}<view wx:for="{{steps}}" wx:key="name" class="step">{{item.name || item.step}} · {{item.status || "等待"}}</view></view></view>

@@ -1,0 +1,1 @@
+<view class="status-card"><view class="label">{{label}} <evidence-tag wx:if="{{sourceType || status}}" source-type="{{sourceType}}" status="{{status}}" size="sm"/></view><view class="value">{{unavailable || value === null || value === undefined ? "—" : valueText}} <text class="unit">{{unit}}</text></view><view wx:if="{{sub}}" class="sub">{{sub}}</view></view>

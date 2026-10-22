@@ -1,0 +1,3490 @@
+{
+  "baseline": "221a26b",
+  "scope": "baseline..HEAD plus current task working changes; excludes 3 user local configs",
+  "old_files": [
+    {
+      "file": "coffee_digital_twin/.gitignore",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：.gitignore"
+    },
+    {
+      "file": "coffee_digital_twin/README.md",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：README.md"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/__init__.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：__init__.py"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/advice_api.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [
+        "# AI辅助生成-DeepSeek-V3 - 2026年5月2日 16:50:22 - 调度LLM生成结构化农技建议"
+      ],
+      "purpose": "旧工程配置/辅助业务：advice_api.py"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/farmop_api.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：farmop_api.py"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/model_api.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧模型业务调度"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/model_info_api.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：model_info_api.py"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/plot_api.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：plot_api.py"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/result_api.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [
+        "# AI辅助生成-DeepSeek-V3 - 2026年4月30日 11:15:00 - 返回数字孪生控制台的综合聚合数据"
+      ],
+      "purpose": "旧工程配置/辅助业务：result_api.py"
+    },
+    {
+      "file": "coffee_digital_twin/backend/app.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [
+        "# AI辅助生成-DeepSeek-V3 - 2026年4月25日 10:30:15 - 初始化Flask应用与CORS配置"
+      ],
+      "purpose": "旧Flask入口"
+    },
+    {
+      "file": "coffee_digital_twin/backend/backend_pyweb.log",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：backend_pyweb.log"
+    },
+    {
+      "file": "coffee_digital_twin/backend/backend_pyweb.pid",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：backend_pyweb.pid"
+    },
+    {
+      "file": "coffee_digital_twin/backend/config.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：config.py"
+    },
+    {
+      "file": "coffee_digital_twin/backend/database/__init__.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：__init__.py"
+    },
+    {
+      "file": "coffee_digital_twin/backend/database/init_db.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：init_db.py"
+    },
+    {
+      "file": "coffee_digital_twin/backend/demo_data/apsim_result_demo.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧演示/预填数据，非本届实测或专家验证"
+    },
+    {
+      "file": "coffee_digital_twin/backend/demo_data/beps_demo_weather.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧演示/预填数据，非本届实测或专家验证"
+    },
+    {
+      "file": "coffee_digital_twin/backend/demo_data/beps_result_demo.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧演示/预填数据，非本届实测或专家验证"
+    },
+    {
+      "file": "coffee_digital_twin/backend/demo_data/hydrus_result_demo.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧演示/预填数据，非本届实测或专家验证"
+    },
+    {
+      "file": "coffee_digital_twin/backend/demo_data/model_input_demo.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧演示/预填数据，非本届实测或专家验证"
+    },
+    {
+      "file": "coffee_digital_twin/backend/demo_data/validation_cases.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧演示/预填数据，非本届实测或专家验证"
+    },
+    {
+      "file": "coffee_digital_twin/backend/models/__init__.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：__init__.py"
+    },
+    {
+      "file": "coffee_digital_twin/backend/models/apsim_adapter.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [
+        "# AI辅助生成-DeepSeek-V3 - 2026年4月26日 14:15:33 - APSIM核心调度引擎，解析并执行.apsimx"
+      ],
+      "purpose": "APSIM OilPalm代理适配，蔡负责原模型"
+    },
+    {
+      "file": "coffee_digital_twin/backend/models/beps_adapter.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [
+        "原始实现：江桂源（JGY）—— BepsLiteAdapter 计算核心",
+        "集成适配：蔡济远",
+        "# AI辅助生成-DeepSeek-V3 - 2026年4月27日 15:10:45 - 耦合APSIM与HYDRUS因子，计算冠层生态GPP/NPP"
+      ],
+      "purpose": "BEPS简化计算，简负责原模型"
+    },
+    {
+      "file": "coffee_digital_twin/backend/models/fusion_engine.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧多模型融合业务逻辑"
+    },
+    {
+      "file": "coffee_digital_twin/backend/models/hydrus_adapter.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [
+        "原始实现：张源皓（zyh）",
+        "集成适配：蔡济远",
+        "# AI辅助生成-DeepSeek-V3 - 2026年4月26日 09:22:15 - HYDRUS-1D模型调用与土壤水分状态解析"
+      ],
+      "purpose": "张源皓原HYDRUS调用与输出解析、蔡集成；本届仅适配"
+    },
+    {
+      "file": "coffee_digital_twin/backend/requirements.txt",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：requirements.txt"
+    },
+    {
+      "file": "coffee_digital_twin/backend/runtime/apsim_runs/.gitkeep",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧运行目录占位/存档"
+    },
+    {
+      "file": "coffee_digital_twin/backend/runtime/beps_runs/.gitkeep",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧运行目录占位/存档"
+    },
+    {
+      "file": "coffee_digital_twin/backend/runtime/hydrus_runs/.gitkeep",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧运行目录占位/存档"
+    },
+    {
+      "file": "coffee_digital_twin/backend/runtime/result_json/.gitkeep",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧运行目录占位/存档"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/__init__.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：__init__.py"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/llm_service.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [
+        "# AI辅助生成-DeepSeek-V3 - 2026年5月1日 14:05:30 - 构建系统提示词并请求大语言模型接口"
+      ],
+      "purpose": "旧GLM调用与建议业务逻辑"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/mechanism_explainer.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [
+        "# AI辅助生成-DeepSeek-V3 - 2026年4月28日 09:42:10 - 多机理模型融合解释核心逻辑"
+      ],
+      "purpose": "旧工程配置/辅助业务：mechanism_explainer.py"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/risk_service.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：risk_service.py"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/unit_convert.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：unit_convert.py"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/weather_service.py",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：weather_service.py"
+    },
+    {
+      "file": "coffee_digital_twin/backend/start_server.bat",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：start_server.bat"
+    },
+    {
+      "file": "coffee_digital_twin/backend/start_server.ps1",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：start_server.ps1"
+    },
+    {
+      "file": "coffee_digital_twin/backend/templates/apsim/apsim_coffee_template.apsimx",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧模型输入模板，许可与参数来源需独立确认"
+    },
+    {
+      "file": "coffee_digital_twin/backend/templates/apsim/apsim_weather_template.met",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧模型输入模板，许可与参数来源需独立确认"
+    },
+    {
+      "file": "coffee_digital_twin/backend/templates/beps/beps_config_template.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧模型输入模板，许可与参数来源需独立确认"
+    },
+    {
+      "file": "coffee_digital_twin/backend/templates/beps/beps_weather_template.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧模型输入模板，许可与参数来源需独立确认"
+    },
+    {
+      "file": "coffee_digital_twin/backend/templates/hydrus/ATMOSPH.IN",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧模型输入模板，许可与参数来源需独立确认"
+    },
+    {
+      "file": "coffee_digital_twin/backend/templates/hydrus/PROFILE.DAT",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧模型输入模板，许可与参数来源需独立确认"
+    },
+    {
+      "file": "coffee_digital_twin/backend/templates/hydrus/SELECTOR.IN",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧模型输入模板，许可与参数来源需独立确认"
+    },
+    {
+      "file": "coffee_digital_twin/backend/templates/hydrus/hydrus_ATMOSPH_template.IN",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧模型输入模板，许可与参数来源需独立确认"
+    },
+    {
+      "file": "coffee_digital_twin/backend/templates/hydrus/hydrus_PROFILE_template.DAT",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧模型输入模板，许可与参数来源需独立确认"
+    },
+    {
+      "file": "coffee_digital_twin/backend/templates/hydrus/hydrus_SELECTOR_template.IN",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧模型输入模板，许可与参数来源需独立确认"
+    },
+    {
+      "file": "coffee_digital_twin/docs/APSIM模型说明.md",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧设计/接口/模型说明"
+    },
+    {
+      "file": "coffee_digital_twin/docs/BEPS模型说明.md",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧设计/接口/模型说明"
+    },
+    {
+      "file": "coffee_digital_twin/docs/HYDRUS模型说明.md",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧设计/接口/模型说明"
+    },
+    {
+      "file": "coffee_digital_twin/docs/model_dataset_specs.md",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧设计/接口/模型说明"
+    },
+    {
+      "file": "coffee_digital_twin/docs/开发文档.md",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧设计/接口/模型说明"
+    },
+    {
+      "file": "coffee_digital_twin/docs/接口字段说明.md",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧设计/接口/模型说明"
+    },
+    {
+      "file": "coffee_digital_twin/docs/演示流程脚本.md",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧设计/接口/模型说明"
+    },
+    {
+      "file": "coffee_digital_twin/docs/答辩问题准备.md",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧设计/接口/模型说明"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/app.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：app.js"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/app.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：app.json"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/app.wxss",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧小程序配色与公共样式"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/chart-card/chart-card.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：chart-card"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/chart-card/chart-card.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：chart-card"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/chart-card/chart-card.wxml",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：chart-card"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/chart-card/chart-card.wxss",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：chart-card"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/loading-panel/loading-panel.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：loading-panel"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/loading-panel/loading-panel.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：loading-panel"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/loading-panel/loading-panel.wxml",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：loading-panel"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/loading-panel/loading-panel.wxss",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：loading-panel"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/risk-badge/risk-badge.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：risk-badge"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/risk-badge/risk-badge.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：risk-badge"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/risk-badge/risk-badge.wxml",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：risk-badge"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/risk-badge/risk-badge.wxss",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：risk-badge"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/status-card/status-card.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：status-card"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/status-card/status-card.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：status-card"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/status-card/status-card.wxml",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：status-card"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/status-card/status-card.wxss",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序组件：status-card"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/ec-canvas/README.md",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：README.md"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/ec-canvas/ec-canvas.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：ec-canvas.js"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/ec-canvas/ec-canvas.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：ec-canvas.json"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/ec-canvas/ec-canvas.wxml",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：ec-canvas.wxml"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/ec-canvas/ec-canvas.wxss",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：ec-canvas.wxss"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/advice/advice.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [
+        "// AI辅助生成-DeepSeek-V3 - 2026年5月3日 11:20:05 - 小程序端接入AI决策流展示"
+      ],
+      "purpose": "旧原生小程序页面：advice"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/advice/advice.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：advice"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/advice/advice.wxml",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：advice"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/advice/advice.wxss",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：advice"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/farmLog/farmLog.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：farmLog"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/farmLog/farmLog.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：farmLog"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/farmLog/farmLog.wxml",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：farmLog"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/farmLog/farmLog.wxss",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：farmLog"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/index/index.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：index"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/index/index.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：index"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/index/index.wxml",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：index"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/index/index.wxss",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：index"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/plotInit/plotInit.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：plotInit"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/plotInit/plotInit.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：plotInit"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/plotInit/plotInit.wxml",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：plotInit"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/plotInit/plotInit.wxss",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：plotInit"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/result/result.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [
+        "// AI辅助生成-DeepSeek-V3 - 2026年5月2日 18:30:10 - 小程序结果页数据装载与图表格式化"
+      ],
+      "purpose": "旧原生小程序页面：result"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/result/result.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：result"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/result/result.wxml",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：result"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/result/result.wxss",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：result"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/scenario/scenario.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：scenario"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/scenario/scenario.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：scenario"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/scenario/scenario.wxml",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：scenario"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/scenario/scenario.wxss",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧原生小程序页面：scenario"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/project.config.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：project.config.json"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/project.private.config.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：project.private.config.json"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/sitemap.json",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：sitemap.json"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/utils/config.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：config.js"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/utils/formatter.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：formatter.js"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/utils/request.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [
+        "// AI辅助生成-DeepSeek-V3 - 2026年4月25日 08:45:20 - 封装微信请求，实现Promise化与通用异常拦截"
+      ],
+      "purpose": "旧微信HTTP请求封装"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/utils/storage.js",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧工程配置/辅助业务：storage.js"
+    },
+    {
+      "file": "coffee_digital_twin/server/apsim_engine/README_APSIM_PATH.txt",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧部署/引擎位置/备份占位"
+    },
+    {
+      "file": "coffee_digital_twin/server/backup/demo_video_data/.gitkeep",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧部署/引擎位置/备份占位"
+    },
+    {
+      "file": "coffee_digital_twin/server/backup/final_result_json/.gitkeep",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧部署/引擎位置/备份占位"
+    },
+    {
+      "file": "coffee_digital_twin/server/check_env.bat",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧部署/引擎位置/备份占位"
+    },
+    {
+      "file": "coffee_digital_twin/server/check_env.ps1",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧部署/引擎位置/备份占位"
+    },
+    {
+      "file": "coffee_digital_twin/server/deploy_readme.md",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧部署/引擎位置/备份占位"
+    },
+    {
+      "file": "coffee_digital_twin/server/hydrus_engine/H1D_CALC.EXE",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "外部HYDRUS数值引擎；许可待确认，非本届原创"
+    },
+    {
+      "file": "coffee_digital_twin/server/hydrus_engine/README_HYDRUS_PATH.txt",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧部署/引擎位置/备份占位"
+    },
+    {
+      "file": "coffee_digital_twin/server/logs/.gitkeep",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧部署/引擎位置/备份占位"
+    },
+    {
+      "file": "coffee_digital_twin/server/start_all.bat",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧部署/引擎位置/备份占位"
+    },
+    {
+      "file": "coffee_digital_twin/server/start_all.ps1",
+      "authors": [
+        "TommyNike"
+      ],
+      "header_markers": [],
+      "purpose": "旧部署/引擎位置/备份占位"
+    }
+  ],
+  "current_files": [
+    {
+      "file": ".gitignore",
+      "type": "新增",
+      "tasks": [
+        "T1.4",
+        "T0.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "AGENTS.md",
+      "type": "新增",
+      "tasks": [
+        "T0.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "README_从这里开始.md",
+      "type": "新增",
+      "tasks": [
+        "T5.3",
+        "T5.4",
+        "T4.5",
+        "T3.8",
+        "T2.8",
+        "T1.5",
+        "T0.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/README.md",
+      "type": "改造",
+      "tasks": [
+        "T5.4",
+        "T4.5",
+        "T3.8"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/.env.example",
+      "type": "新增",
+      "tasks": [
+        "T0.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/advice_api.py",
+      "type": "改造",
+      "tasks": [
+        "T2.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/assistant_api.py",
+      "type": "新增",
+      "tasks": [
+        "T2.8"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/data_api.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6",
+        "T3.8"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/farmop_api.py",
+      "type": "改造",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/model_api.py",
+      "type": "改造",
+      "tasks": [
+        "T2.5",
+        "T2.4"
+      ],
+      "description": "含旧模型外层仅适配/状态包装；不重建APSIM/BEPS数值核心"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/model_info_api.py",
+      "type": "改造",
+      "tasks": [
+        "T2.5"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/plot_api.py",
+      "type": "改造",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/report_api.py",
+      "type": "新增",
+      "tasks": [
+        "T3.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/result_api.py",
+      "type": "改造",
+      "tasks": [
+        "T2.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/api/scenario_api.py",
+      "type": "新增",
+      "tasks": [
+        "T4.4",
+        "T4.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/app.py",
+      "type": "改造",
+      "tasks": [
+        "T4.4",
+        "T4.1",
+        "T3.3",
+        "T2.8",
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/config.py",
+      "type": "改造",
+      "tasks": [
+        "T0.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data/hydrus_cases/case_baseline_0mm.json",
+      "type": "新增",
+      "tasks": [
+        "T2.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data/hydrus_cases/case_compare_0_vs_20.json",
+      "type": "新增",
+      "tasks": [
+        "T2.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data/hydrus_cases/case_engine_failed.json",
+      "type": "新增",
+      "tasks": [
+        "T2.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data/hydrus_cases/case_irrig_20mm.json",
+      "type": "新增",
+      "tasks": [
+        "T2.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data/hydrus_cases/case_missing_input.json",
+      "type": "新增",
+      "tasks": [
+        "T2.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data/hydrus_cases/historic_nonconverge_Error.msg",
+      "type": "新增",
+      "tasks": [
+        "T2.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/apply_catimor_confirmation.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/column_mapping.yaml",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/device_plot_map.csv",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/freeze.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/generate_dictionary.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/ingest_events.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/ingest_forms.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/ingest_lai.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/ingest_monitoring.py",
+      "type": "新增",
+      "tasks": [
+        "T2.8",
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/ingest_project_raw.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/ingest_project_soil.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/ingest_soil_reports.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/profile_raw.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/real_data_profile.json",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/relink_sources.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/schema.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/data_pipeline/soil_report_2026T108.json",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/database/init_db.py",
+      "type": "改造",
+      "tasks": [
+        "T4.1",
+        "T3.3",
+        "T2.8",
+        "T2.6",
+        "T2.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/models/fusion_engine.py",
+      "type": "改造",
+      "tasks": [
+        "T2.5"
+      ],
+      "description": "含旧模型外层仅适配/状态包装；不重建APSIM/BEPS数值核心"
+    },
+    {
+      "file": "coffee_digital_twin/backend/models/hydrus_adapter.py",
+      "type": "仅适配",
+      "tasks": [
+        "T4.1",
+        "T3.2",
+        "T2.8",
+        "T2.1"
+      ],
+      "description": "HYDRUS输入/执行/解析/来源与回放适配，数值引擎保持原样"
+    },
+    {
+      "file": "coffee_digital_twin/backend/requirements.lock.txt",
+      "type": "新增",
+      "tasks": [
+        "T1.2",
+        "T0.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/requirements.txt",
+      "type": "改造",
+      "tasks": [
+        "T1.2",
+        "T0.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/assistant_service.py",
+      "type": "新增",
+      "tasks": [
+        "T4.4",
+        "T4.2",
+        "T3.4",
+        "T2.8"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/data_service.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/errors.py",
+      "type": "新增",
+      "tasks": [
+        "T4.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/evidence_client.py",
+      "type": "新增",
+      "tasks": [
+        "T2.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/llm_service.py",
+      "type": "改造",
+      "tasks": [
+        "T2.8",
+        "T2.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/plot_context.py",
+      "type": "新增",
+      "tasks": [
+        "T2.8"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/report_builder.py",
+      "type": "新增",
+      "tasks": [
+        "T4.1",
+        "T3.8",
+        "T3.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/result_store.py",
+      "type": "新增",
+      "tasks": [
+        "T2.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/scenario_service.py",
+      "type": "新增",
+      "tasks": [
+        "T4.4",
+        "T4.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/tool_registry.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6",
+        "T4.1",
+        "T2.8",
+        "T2.5"
+      ],
+      "description": "含旧模型外层仅适配/状态包装；不重建APSIM/BEPS数值核心"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/tool_result.py",
+      "type": "新增",
+      "tasks": [
+        "T2.8",
+        "T2.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/trace_store.py",
+      "type": "新增",
+      "tasks": [
+        "T3.8",
+        "T2.8"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/services/weather_service.py",
+      "type": "改造",
+      "tasks": [
+        "T2.6",
+        "T2.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/conftest.py",
+      "type": "新增",
+      "tasks": [
+        "T0.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/fixtures/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/fixtures/raw_sample/export_a.csv",
+      "type": "新增",
+      "tasks": [
+        "T1.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/fixtures/raw_sample/export_b.csv",
+      "type": "新增",
+      "tasks": [
+        "T1.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/frontend_contract.cjs",
+      "type": "新增",
+      "tasks": [
+        "T3.7",
+        "T2.6",
+        "T4.4",
+        "T4.2",
+        "T3.8",
+        "T3.1",
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_assistant.py",
+      "type": "新增",
+      "tasks": [
+        "T2.8"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_assistant_http.py",
+      "type": "新增",
+      "tasks": [
+        "T2.8"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_business_selection.py",
+      "type": "新增",
+      "tasks": [
+        "T2.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_config.py",
+      "type": "新增",
+      "tasks": [
+        "T0.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_data_pipeline.py",
+      "type": "新增",
+      "tasks": [
+        "T3.8",
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_e2e_scenarios.py",
+      "type": "新增",
+      "tasks": [
+        "T3.8",
+        "T3.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_errors_phase4.py",
+      "type": "新增",
+      "tasks": [
+        "T4.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_evidence_client.py",
+      "type": "新增",
+      "tasks": [
+        "T2.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_frontend.py",
+      "type": "新增",
+      "tasks": [
+        "T3.3",
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_fusion_status.py",
+      "type": "新增",
+      "tasks": [
+        "T2.5"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_hydrus_adapter.py",
+      "type": "新增",
+      "tasks": [
+        "T2.2",
+        "T2.1"
+      ],
+      "description": "HYDRUS输入/执行/解析/来源与回放适配，数值引擎保持原样"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_hydrus_inspection.py",
+      "type": "新增",
+      "tasks": [
+        "T0.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_hydrus_stability.py",
+      "type": "新增",
+      "tasks": [
+        "T3.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_inventory_assets.py",
+      "type": "新增",
+      "tasks": [
+        "T1.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_ledger_check.py",
+      "type": "新增",
+      "tasks": [
+        "T1.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_phase4_flow.py",
+      "type": "新增",
+      "tasks": [
+        "T4.5"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_phase5_audits.py",
+      "type": "新增",
+      "tasks": [
+        "T5.4",
+        "T5.3",
+        "T5.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_plot_farm_phase3.py",
+      "type": "新增",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_project_raw.py",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_report.py",
+      "type": "新增",
+      "tasks": [
+        "T3.8",
+        "T3.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_scenario.py",
+      "type": "新增",
+      "tasks": [
+        "T4.2",
+        "T4.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_seed_demo.py",
+      "type": "新增",
+      "tasks": [
+        "T4.5"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_selfcheck.py",
+      "type": "新增",
+      "tasks": [
+        "T5.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_smoke.py",
+      "type": "新增",
+      "tasks": [
+        "T0.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_startup.py",
+      "type": "新增",
+      "tasks": [
+        "T0.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tests/test_verifiable_cases.py",
+      "type": "新增",
+      "tasks": [
+        "T3.5"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/audit_claims.py",
+      "type": "新增",
+      "tasks": [
+        "T5.4",
+        "T5.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/capture_phase0_baseline.py",
+      "type": "新增",
+      "tasks": [
+        "T0.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/check_delivery.py",
+      "type": "新增",
+      "tasks": [
+        "T5.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/contribution_audit.py",
+      "type": "新增",
+      "tasks": [
+        "T1.4",
+        "T5.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/export_traces.py",
+      "type": "新增",
+      "tasks": [
+        "T2.8"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/export_verifiable_cases.py",
+      "type": "新增",
+      "tasks": [
+        "T3.5"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/generate_hydrus_cases.py",
+      "type": "新增",
+      "tasks": [
+        "T2.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/inventory_assets.py",
+      "type": "新增",
+      "tasks": [
+        "T1.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/ledger_check.py",
+      "type": "新增",
+      "tasks": [
+        "T1.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/material_paths.py",
+      "type": "新增",
+      "tasks": [
+        "T1.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/mock_corpus.json",
+      "type": "新增",
+      "tasks": [
+        "T2.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/mock_evidence_service.py",
+      "type": "新增",
+      "tasks": [
+        "T3.4",
+        "T2.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/package_source.py",
+      "type": "新增",
+      "tasks": [
+        "T5.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/seed_demo.py",
+      "type": "新增",
+      "tasks": [
+        "T4.5"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/selfcheck.py",
+      "type": "新增",
+      "tasks": [
+        "T5.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/verify_hydrus_baseline.py",
+      "type": "新增",
+      "tasks": [
+        "T0.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/verify_hydrus_stability.py",
+      "type": "新增",
+      "tasks": [
+        "T3.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/backend/tools/verify_scenario_live.py",
+      "type": "新增",
+      "tasks": [
+        "T4.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/APSIM模型说明.md",
+      "type": "改造",
+      "tasks": [
+        "T5.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/BEPS模型说明.md",
+      "type": "改造",
+      "tasks": [
+        "T5.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/HYDRUS模型说明.md",
+      "type": "改造",
+      "tasks": [
+        "T5.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/model_dataset_specs.md",
+      "type": "改造",
+      "tasks": [
+        "T5.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/CODEX_PLAN.md",
+      "type": "新增",
+      "tasks": [
+        "T0.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/GitHub协作说明.md",
+      "type": "新增",
+      "tasks": [
+        "T5.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/HYDRUS工具说明.md",
+      "type": "新增",
+      "tasks": [
+        "T3.8",
+        "T3.6",
+        "T2.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/PROGRESS.md",
+      "type": "新增",
+      "tasks": [
+        "T5.3",
+        "T2.6",
+        "T5.1",
+        "T3.5",
+        "T3.7",
+        "T2.3",
+        "T1.4",
+        "T5.4",
+        "T5.2",
+        "T4.5",
+        "T4.4",
+        "T4.3",
+        "T4.2",
+        "T4.1",
+        "T3.8",
+        "T3.6",
+        "T3.4",
+        "T3.3",
+        "T3.2",
+        "T3.1",
+        "T3.0",
+        "T2.8",
+        "T2.7",
+        "T2.5",
+        "T2.4",
+        "T2.2",
+        "T2.1",
+        "T1.5",
+        "T1.3",
+        "T1.2",
+        "T1.1",
+        "T0.4",
+        "T0.3",
+        "T0.2",
+        "T0.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/Phase2使用说明.md",
+      "type": "新增",
+      "tasks": [
+        "T2.8"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/Phase3使用说明.md",
+      "type": "新增",
+      "tasks": [
+        "T5.2",
+        "T3.8"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/Phase4使用说明.md",
+      "type": "新增",
+      "tasks": [
+        "T4.5"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/Phase5使用说明.md",
+      "type": "新增",
+      "tasks": [
+        "T5.1",
+        "T5.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/baseline_snapshot_before.json",
+      "type": "新增",
+      "tasks": [
+        "T0.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/contribution_audit.json",
+      "type": "新增",
+      "tasks": [
+        "T5.3",
+        "T2.6",
+        "T5.1",
+        "T3.5",
+        "T3.7",
+        "T2.3",
+        "T1.4",
+        "T5.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/delivery_manifest.json",
+      "type": "新增",
+      "tasks": [
+        "T5.3",
+        "T5.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/git_diff_stat_phase5.txt",
+      "type": "新增",
+      "tasks": [
+        "T5.3",
+        "T2.6",
+        "T5.1",
+        "T3.5",
+        "T3.7",
+        "T2.3",
+        "T1.4",
+        "T5.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/git_history_phase5.txt",
+      "type": "新增",
+      "tasks": [
+        "T5.3",
+        "T2.6",
+        "T5.1",
+        "T3.5",
+        "T3.7",
+        "T2.3",
+        "T1.4",
+        "T5.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/hydrus_phase0_verification.json",
+      "type": "新增",
+      "tasks": [
+        "T0.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/hydrus_phase3_stability.json",
+      "type": "新增",
+      "tasks": [
+        "T3.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/scenario_phase4_verification.json",
+      "type": "新增",
+      "tasks": [
+        "T4.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/screenshots/README.md",
+      "type": "新增",
+      "tasks": [
+        "T5.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/selfcheck_latest.txt",
+      "type": "新增",
+      "tasks": [
+        "T5.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/selfcheck_phase5_initial.txt",
+      "type": "新增",
+      "tasks": [
+        "T5.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/交付目录.md",
+      "type": "新增",
+      "tasks": [
+        "T5.3",
+        "T5.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/功能核对表.md",
+      "type": "新增",
+      "tasks": [
+        "T5.3",
+        "T5.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/待人工确认.md",
+      "type": "新增",
+      "tasks": [
+        "T2.6",
+        "T5.1",
+        "T3.5",
+        "T2.3",
+        "T1.4",
+        "T4.5",
+        "T4.1",
+        "T3.0",
+        "T2.8",
+        "T2.5",
+        "T1.5",
+        "T1.2",
+        "T1.1",
+        "T0.3",
+        "T0.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/待补交付材料.md",
+      "type": "新增",
+      "tasks": [
+        "T5.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/措辞扫描明细.json",
+      "type": "新增",
+      "tasks": [
+        "T2.6",
+        "T5.3",
+        "T5.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/措辞核查.md",
+      "type": "新增",
+      "tasks": [
+        "T5.4",
+        "T5.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/数据字典.md",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/新旧贡献记录.md",
+      "type": "新增",
+      "tasks": [
+        "T5.3",
+        "T2.6",
+        "T5.1",
+        "T3.7",
+        "T2.3",
+        "T1.4",
+        "T5.4",
+        "T5.2",
+        "T4.5",
+        "T4.4",
+        "T4.3",
+        "T4.2",
+        "T4.1",
+        "T3.8",
+        "T3.6",
+        "T3.5",
+        "T3.3",
+        "T3.2",
+        "T3.1",
+        "T3.0",
+        "T2.8",
+        "T2.7",
+        "T2.5",
+        "T2.4",
+        "T2.2",
+        "T2.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/本地服务接口契约.md",
+      "type": "新增",
+      "tasks": [
+        "T2.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/清洗日志.md",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/源码交付配置.md",
+      "type": "新增",
+      "tasks": [
+        "T5.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/演示流程.md",
+      "type": "新增",
+      "tasks": [
+        "T4.5"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/现有数据接入与缺项_20261020.md",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/联调记录.md",
+      "type": "新增",
+      "tasks": [
+        "T3.5",
+        "T3.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/错误码与降级.md",
+      "type": "新增",
+      "tasks": [
+        "T4.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/降雨与土样口径复核_20261022.md",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/页面接口复用清单.md",
+      "type": "新增",
+      "tasks": [
+        "T1.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/开发文档.md",
+      "type": "改造",
+      "tasks": [
+        "T5.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/接口字段说明.md",
+      "type": "改造",
+      "tasks": [
+        "T5.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/演示流程脚本.md",
+      "type": "改造",
+      "tasks": [
+        "T5.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/docs/答辩问题准备.md",
+      "type": "改造",
+      "tasks": [
+        "T5.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/app.js",
+      "type": "改造",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/app.json",
+      "type": "改造",
+      "tasks": [
+        "T3.8",
+        "T3.7",
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/app.wxss",
+      "type": "改造",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/banner/banner.js",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/banner/banner.json",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/banner/banner.wxml",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/banner/banner.wxss",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/empty-state/empty-state.js",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/empty-state/empty-state.json",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/empty-state/empty-state.wxml",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/empty-state/empty-state.wxss",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/evidence-tag/evidence-tag.js",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/evidence-tag/evidence-tag.json",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/evidence-tag/evidence-tag.wxml",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/evidence-tag/evidence-tag.wxss",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/line-chart/line-chart.js",
+      "type": "新增",
+      "tasks": [
+        "T3.7",
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/line-chart/line-chart.json",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/line-chart/line-chart.wxml",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/line-chart/line-chart.wxss",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/loading-panel/loading-panel.js",
+      "type": "改造",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/loading-panel/loading-panel.json",
+      "type": "改造",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/loading-panel/loading-panel.wxml",
+      "type": "改造",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/loading-panel/loading-panel.wxss",
+      "type": "改造",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/msg-blocks/msg-blocks.js",
+      "type": "新增",
+      "tasks": [
+        "T3.7",
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/msg-blocks/msg-blocks.json",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/msg-blocks/msg-blocks.wxml",
+      "type": "新增",
+      "tasks": [
+        "T3.7",
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/msg-blocks/msg-blocks.wxss",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/plot-bar/plot-bar.js",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/plot-bar/plot-bar.json",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/plot-bar/plot-bar.wxml",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/plot-bar/plot-bar.wxss",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/status-card/status-card.js",
+      "type": "改造",
+      "tasks": [
+        "T3.7",
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/status-card/status-card.json",
+      "type": "改造",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/status-card/status-card.wxml",
+      "type": "改造",
+      "tasks": [
+        "T3.7",
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/components/status-card/status-card.wxss",
+      "type": "改造",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/ec-canvas/README.md",
+      "type": "删除",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "删除旧ec-canvas空占位，不含真实ECharts组件"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/ec-canvas/ec-canvas.js",
+      "type": "删除",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "删除旧ec-canvas空占位，不含真实ECharts组件"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/ec-canvas/ec-canvas.json",
+      "type": "删除",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "删除旧ec-canvas空占位，不含真实ECharts组件"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/ec-canvas/ec-canvas.wxml",
+      "type": "删除",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "删除旧ec-canvas空占位，不含真实ECharts组件"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/ec-canvas/ec-canvas.wxss",
+      "type": "删除",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "删除旧ec-canvas空占位，不含真实ECharts组件"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/_dev/_dev.js",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/_dev/_dev.json",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/_dev/_dev.wxml",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/_dev/_dev.wxss",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/advice/advice.js",
+      "type": "改造",
+      "tasks": [
+        "T3.8",
+        "T3.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/advice/advice.json",
+      "type": "改造",
+      "tasks": [
+        "T3.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/advice/advice.wxml",
+      "type": "改造",
+      "tasks": [
+        "T3.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/advice/advice.wxss",
+      "type": "改造",
+      "tasks": [
+        "T3.1"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/data/data.js",
+      "type": "新增",
+      "tasks": [
+        "T3.7",
+        "T2.6",
+        "T3.8"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/data/data.json",
+      "type": "新增",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/data/data.wxml",
+      "type": "新增",
+      "tasks": [
+        "T3.7",
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/data/data.wxss",
+      "type": "新增",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/evidence/evidence.js",
+      "type": "新增",
+      "tasks": [
+        "T3.8",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/evidence/evidence.json",
+      "type": "新增",
+      "tasks": [
+        "T3.8",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/evidence/evidence.wxml",
+      "type": "新增",
+      "tasks": [
+        "T3.8",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/evidence/evidence.wxss",
+      "type": "新增",
+      "tasks": [
+        "T3.8",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/farmLog/farmLog.js",
+      "type": "改造",
+      "tasks": [
+        "T3.8",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/farmLog/farmLog.json",
+      "type": "改造",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/farmLog/farmLog.wxml",
+      "type": "改造",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/farmLog/farmLog.wxss",
+      "type": "改造",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/index/index.js",
+      "type": "改造",
+      "tasks": [
+        "T2.6",
+        "T3.8",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/index/index.json",
+      "type": "改造",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/index/index.wxml",
+      "type": "改造",
+      "tasks": [
+        "T2.6",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/index/index.wxss",
+      "type": "改造",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/plotInit/plotInit.js",
+      "type": "改造",
+      "tasks": [
+        "T3.8",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/plotInit/plotInit.json",
+      "type": "改造",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/plotInit/plotInit.wxml",
+      "type": "改造",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/plotInit/plotInit.wxss",
+      "type": "改造",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/plots/plots.js",
+      "type": "新增",
+      "tasks": [
+        "T2.6",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/plots/plots.json",
+      "type": "新增",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/plots/plots.wxml",
+      "type": "新增",
+      "tasks": [
+        "T2.6",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/plots/plots.wxss",
+      "type": "新增",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/report/report.js",
+      "type": "新增",
+      "tasks": [
+        "T3.3",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/report/report.json",
+      "type": "新增",
+      "tasks": [
+        "T3.3",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/report/report.wxml",
+      "type": "新增",
+      "tasks": [
+        "T3.3",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/report/report.wxss",
+      "type": "新增",
+      "tasks": [
+        "T3.3",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/result/result.js",
+      "type": "改造",
+      "tasks": [
+        "T3.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/result/result.json",
+      "type": "改造",
+      "tasks": [
+        "T3.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/result/result.wxml",
+      "type": "改造",
+      "tasks": [
+        "T3.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/result/result.wxss",
+      "type": "改造",
+      "tasks": [
+        "T3.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/scenario/scenario.js",
+      "type": "改造",
+      "tasks": [
+        "T4.5",
+        "T4.4",
+        "T4.2",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/scenario/scenario.json",
+      "type": "改造",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/scenario/scenario.wxml",
+      "type": "改造",
+      "tasks": [
+        "T4.2",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/scenario/scenario.wxss",
+      "type": "改造",
+      "tasks": [
+        "T4.2",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/utils/chart.js",
+      "type": "新增",
+      "tasks": [
+        "T3.7",
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/utils/dates.js",
+      "type": "新增",
+      "tasks": [
+        "T3.8"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/utils/errors.js",
+      "type": "新增",
+      "tasks": [
+        "T4.4",
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/utils/format.js",
+      "type": "新增",
+      "tasks": [
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/utils/labels.js",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/utils/page.js",
+      "type": "新增",
+      "tasks": [
+        "T2.6",
+        "T3.7"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/utils/request.js",
+      "type": "改造",
+      "tasks": [
+        "T4.4",
+        "T3.0",
+        "T2.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/utils/session.js",
+      "type": "新增",
+      "tasks": [
+        "T3.0"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "coffee_digital_twin/server/start_backend.ps1",
+      "type": "新增",
+      "tasks": [
+        "T0.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/01_原始知识资料/A1_咖啡农技/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/01_原始知识资料/A2_水肥管理/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/01_原始知识资料/A3_土壤根区/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/01_原始知识资料/A3_土壤根区/下载核验_20261020.json",
+      "type": "新增",
+      "tasks": [
+        "T2.3",
+        "T1.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/01_原始知识资料/A3_土壤根区/检索清单.md",
+      "type": "新增",
+      "tasks": [
+        "T1.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/01_原始知识资料/A4_LAI冠层遮阴/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/01_原始知识资料/A5_气象驱动/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/01_原始知识资料/A6_云南咖啡规范/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/01_原始知识资料/A7_模型接口/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/01_原始知识资料/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/01_原始知识资料/来源台账.csv",
+      "type": "新增",
+      "tasks": [
+        "T2.3",
+        "T1.4",
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/02_标准化知识语料/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/02_标准化知识语料/卡蒂姆文献使用说明_20261020.md",
+      "type": "新增",
+      "tasks": [
+        "T2.3",
+        "T1.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/02_标准化知识语料/卡蒂姆文献证据卡_20261020.jsonl",
+      "type": "新增",
+      "tasks": [
+        "T2.3",
+        "T1.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/02_标准化知识语料/土壤字段映射表.csv",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/02_标准化知识语料/文献对照数值_20261020.csv",
+      "type": "新增",
+      "tasks": [
+        "T1.4"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/02_标准化知识语料/普洱西双版纳土壤依据_20261020.md",
+      "type": "新增",
+      "tasks": [
+        "T2.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/02_标准化知识语料/潞江坝土壤湿度单位核查_20261020.json",
+      "type": "新增",
+      "tasks": [
+        "T2.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/02_标准化知识语料/缺项表.csv",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/02_标准化知识语料/西双版纳土壤文献参数_20261020.json",
+      "type": "新增",
+      "tasks": [
+        "T2.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/03_地块与监测数据/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/03_地块与监测数据/字段画像.md",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/03_地块与监测数据/现有数据导入核验_20261020.json",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/03_地块与监测数据/现有数据接口验收_20261020.json",
+      "type": "新增",
+      "tasks": [
+        "T2.6"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/03_地块与监测数据/资产清单.csv",
+      "type": "新增",
+      "tasks": [
+        "T1.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/04_三模型工具资料/HYDRUS/HYDRUS工具说明.md",
+      "type": "新增",
+      "tasks": [
+        "T3.8",
+        "T3.6",
+        "T2.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/04_三模型工具资料/HYDRUS/cases/case_baseline_0mm.json",
+      "type": "新增",
+      "tasks": [
+        "T2.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/04_三模型工具资料/HYDRUS/cases/case_compare_0_vs_20.json",
+      "type": "新增",
+      "tasks": [
+        "T2.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/04_三模型工具资料/HYDRUS/cases/case_engine_failed.json",
+      "type": "新增",
+      "tasks": [
+        "T2.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/04_三模型工具资料/HYDRUS/cases/case_irrig_20mm.json",
+      "type": "新增",
+      "tasks": [
+        "T2.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/04_三模型工具资料/HYDRUS/cases/case_missing_input.json",
+      "type": "新增",
+      "tasks": [
+        "T2.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/04_三模型工具资料/HYDRUS/cases/historic_nonconverge_Error.msg",
+      "type": "新增",
+      "tasks": [
+        "T2.2"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/04_三模型工具资料/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/04_三模型工具资料/可核验案例_zyh.json",
+      "type": "新增",
+      "tasks": [
+        "T3.5"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/05_开发与训练资料/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.5",
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/05_开发与训练资料/dev_soil_zyh.jsonl",
+      "type": "新增",
+      "tasks": [
+        "T1.5"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/07_实验结果/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/08_需求与应用证据/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    },
+    {
+      "file": "实验资料/README.md",
+      "type": "新增",
+      "tasks": [
+        "T1.3"
+      ],
+      "description": "本届业务/数据/界面/检查或文档实现；详见任务提交"
+    }
+  ],
+  "missing_markers": [],
+  "git_log": "a18d755 ScaryMal 2026-10-22 [T5.3] 补充GitHub协作入口与共享说明\n78667f4 ScaryMal 2026-10-22 [T2.6] 核对降雨累计特征与代表土样并修复来源路径\nf71e93c ScaryMal 2026-10-22 [T5.3] 同步真实资料与最新交付核验状态\nbfe077e ScaryMal 2026-10-22 [T5.1] 修复实测诊断与历史回放自检\n850bb3f ScaryMal 2026-10-22 [T3.5] 修复多来源案例筛选与就绪核验\n7137b4a ScaryMal 2026-10-21 [T2.6] 确认降雨与文献参数口径\n5c3af1d ScaryMal 2026-10-21 [T2.6] 同步咖啡种植年份与株行距\n58870b3 ScaryMal 2026-10-21 [T2.6] 同步最新咖啡档案并在小程序展示管理信息\nf8d5995 ScaryMal 2026-10-21 [T2.6] 记录咖啡地块与管理口径补充确认\n7034245 ScaryMal 2026-10-21 [T3.7] 统一小程序数值显示保留两位小数\n2122c63 ScaryMal 2026-10-21 [T2.6] 统一卡蒂姆基地档案与用户确认的三层湿度口径\nd11240a ScaryMal 2026-10-20 [T2.6] 导入现有卡蒂姆监测与土壤报告并接入小程序\n629e2bc ScaryMal 2026-10-20 [T2.3] 补充普洱西双版纳土壤来源与水力参数对照\n8f03ad6 ScaryMal 2026-10-20 [T1.4] 下载核验卡蒂姆相关原文与补充表并整理文献依据\n9aa86c7 ScaryMal 2026-10-18 [T5.4] 汇总逐文件新旧贡献与Phase5交付核验\n06b6438 ScaryMal 2026-10-18 [T5.3] 整理交付目录与受限源码打包规则\n226c6d9 ScaryMal 2026-10-18 [T5.2] 完成研究成果核对及逐行措辞审计\n6e5539f ScaryMal 2026-10-18 [T5.1] 建立实际HTTP自检与缺项失败报告\n1633325 ScaryMal 2026-10-18 [T4.5] 完成真实快照导入器与六步演示流程\n4b8429a ScaryMal 2026-10-18 [T4.4] 统一错误码及情景重试回放恢复\nd16f952 ScaryMal 2026-10-18 [T4.3] 核验实时情景参数并保留live模式\n31ae43a ScaryMal 2026-10-18 [T4.2] 接入三步情景向导与报告解释入口\ne70eb9f ScaryMal 2026-10-18 [T4.1] 实现确认式灌溉A/B对比及参数核验\n715e583 ScaryMal 2026-10-14 [T3.8] 修正来源与地块切换并完成Phase3收尾\nd83210e ScaryMal 2026-10-14 [T3.6] 核验五轮HYDRUS实时运行稳定性\nf90786a ScaryMal 2026-10-14 [T3.5] 实现冻结版本可核验案例导出\na115090 ScaryMal 2026-10-14 [T3.4] 完成四路径循证联调记录\nf39bd03 ScaryMal 2026-10-14 [T3.3] 接入证据关联报告及打印HTML\n6a0bdf2 ScaryMal 2026-10-14 [T3.2] 按来源状态展示模型结果\n1fa7b85 ScaryMal 2026-10-14 [T3.8] 接入证据详情与原始记录回查\n54d7702 ScaryMal 2026-10-14 [T3.1] 改造循证问答与追问重试交互\n97ba238 ScaryMal 2026-10-14 [T3.7] 接入地块农事农情与工作台导航\nac18bde ScaryMal 2026-10-14 [T3.0] 建立原生Canvas及循证展示基础组件\n7b42a54 ScaryMal 2026-10-14 [T2.8] 串联白名单助手证据轨迹和降级流程\n117566d ScaryMal 2026-10-14 [T2.7] 接入本地循证客户端和确定性mock\n51a956e ScaryMal 2026-10-14 [T2.6] 建立确认映射驱动的真实数据工具首版\n7e610e4 ScaryMal 2026-10-14 [T2.5] 按可用状态融合并排除演示依据\n4d51196 ScaryMal 2026-10-14 [T2.4] 移除业务补值并按地块选择结果\n29482eb ScaryMal 2026-10-14 [T2.3] 记录HYDRUS输入输出和能力边界\n424b56d ScaryMal 2026-10-14 [T2.2] 生成HYDRUS假设案例和同参数对比包\n5b38a4e ScaryMal 2026-10-14 [T2.1] 统一HYDRUS状态和逐日参数核验\naf4926b ScaryMal 2026-10-14 [T1.5] 建立土壤开发题骨架和资料放置说明\n48bc181 ScaryMal 2026-10-14 [T1.4] 添加来源台账核验和土壤检索清单\n7e5f63c ScaryMal 2026-10-14 [T1.3] 建立资料目录与空值参数来源模板\n39c1e1b ScaryMal 2026-10-14 [T1.2] 添加只读数据盘点和重复导出检查\n2ebbf10 ScaryMal 2026-10-14 [T1.1] 核查旧页面接口和地块任务绑定\nc613b93 ScaryMal 2026-10-14 [T0.4] 核验实际HYDRUS输出并整理启动说明\n6be6eab ScaryMal 2026-10-14 [T0.3] 添加接口冒烟测试和实际运行基线\n7624147 ScaryMal 2026-10-14 [T0.2] 配置可移植环境和隔离启动验收\n8ea63d2 ScaryMal 2026-10-14 [T0.1] 建立独立参赛工程和执行记录\n221a26b TommyNike 2026-05-05 完成本土化注释\ndb87d68 TommyNike 2026-05-05 完成v0505模型机理内容更新\na3f24d4 TommyNike 2026-05-04 系统V0504集成完成，以此为基撰写文档\nba7f779 WSJGY 2026-05-03 Add files via upload\n7f1fc4f zyh100011 2026-05-02 HYDRUS\n59d0b0a TommyNike 2026-05-01 小程序前端+flask后端+APSIM已完成\n",
+  "diff_stat": " coffee_digital_twin/README.md                      |   61 +-\n coffee_digital_twin/backend/.env.example           |   13 +\n coffee_digital_twin/backend/api/advice_api.py      |   37 +-\n coffee_digital_twin/backend/api/assistant_api.py   |   27 +\n coffee_digital_twin/backend/api/data_api.py        |   71 +\n coffee_digital_twin/backend/api/farmop_api.py      |   26 +-\n coffee_digital_twin/backend/api/model_api.py       |   71 +-\n coffee_digital_twin/backend/api/model_info_api.py  |    2 +\n coffee_digital_twin/backend/api/plot_api.py        |   61 +-\n coffee_digital_twin/backend/api/report_api.py      |   37 +\n coffee_digital_twin/backend/api/result_api.py      |   74 +-\n coffee_digital_twin/backend/api/scenario_api.py    |   12 +\n coffee_digital_twin/backend/app.py                 |   42 +-\n coffee_digital_twin/backend/config.py              |   48 +-\n .../data/hydrus_cases/case_baseline_0mm.json       |  300 ++\n .../data/hydrus_cases/case_compare_0_vs_20.json    |   33 +\n .../data/hydrus_cases/case_engine_failed.json      |   82 +\n .../backend/data/hydrus_cases/case_irrig_20mm.json |  300 ++\n .../data/hydrus_cases/case_missing_input.json      |   36 +\n .../hydrus_cases/historic_nonconverge_Error.msg    |    4 +\n .../data_pipeline/apply_catimor_confirmation.py    |   46 +\n .../backend/data_pipeline/column_mapping.yaml      |   17 +\n .../backend/data_pipeline/device_plot_map.csv      |    1 +\n .../backend/data_pipeline/freeze.py                |   25 +\n .../backend/data_pipeline/generate_dictionary.py   |   18 +\n .../backend/data_pipeline/ingest_events.py         |   10 +\n .../backend/data_pipeline/ingest_forms.py          |   38 +\n .../backend/data_pipeline/ingest_lai.py            |   10 +\n .../backend/data_pipeline/ingest_monitoring.py     |  158 +\n .../backend/data_pipeline/ingest_project_raw.py    |  227 ++\n .../backend/data_pipeline/ingest_project_soil.py   |   44 +\n .../backend/data_pipeline/ingest_soil_reports.py   |   10 +\n .../backend/data_pipeline/profile_raw.py           |   61 +\n .../backend/data_pipeline/real_data_profile.json   |   71 +\n .../backend/data_pipeline/relink_sources.py        |   60 +\n .../backend/data_pipeline/schema.py                |   19 +\n .../data_pipeline/soil_report_2026T108.json        |   39 +\n coffee_digital_twin/backend/database/init_db.py    |   12 +\n .../backend/models/fusion_engine.py                |  287 +-\n .../backend/models/hydrus_adapter.py               |  528 ++-\n coffee_digital_twin/backend/requirements.lock.txt  |   33 +\n coffee_digital_twin/backend/requirements.txt       |    7 +\n .../backend/services/assistant_service.py          |  146 +\n .../backend/services/data_service.py               |  140 +\n coffee_digital_twin/backend/services/errors.py     |   27 +\n .../backend/services/evidence_client.py            |   41 +\n .../backend/services/llm_service.py                |   86 +-\n .../backend/services/plot_context.py               |   12 +\n .../backend/services/report_builder.py             |   76 +\n .../backend/services/result_store.py               |   24 +\n .../backend/services/scenario_service.py           |  122 +\n .../backend/services/tool_registry.py              |  171 +\n .../backend/services/tool_result.py                |   56 +\n .../backend/services/trace_store.py                |   50 +\n .../backend/services/weather_service.py            |   26 +-\n coffee_digital_twin/backend/tests/conftest.py      |   29 +\n .../backend/tests/fixtures/README.md               |    3 +\n .../backend/tests/fixtures/raw_sample/export_a.csv |    4 +\n .../backend/tests/fixtures/raw_sample/export_b.csv |    3 +\n .../backend/tests/frontend_contract.cjs            |  120 +\n .../backend/tests/test_assistant.py                |  110 +\n .../backend/tests/test_assistant_http.py           |   44 +\n .../backend/tests/test_business_selection.py       |   26 +\n coffee_digital_twin/backend/tests/test_config.py   |   52 +\n .../backend/tests/test_data_pipeline.py            |   62 +\n .../backend/tests/test_e2e_scenarios.py            |   49 +\n .../backend/tests/test_errors_phase4.py            |   45 +\n .../backend/tests/test_evidence_client.py          |   36 +\n coffee_digital_twin/backend/tests/test_frontend.py |   19 +\n .../backend/tests/test_fusion_status.py            |   28 +\n .../backend/tests/test_hydrus_adapter.py           |   75 +\n .../backend/tests/test_hydrus_inspection.py        |   29 +\n .../backend/tests/test_hydrus_stability.py         |   10 +\n .../backend/tests/test_inventory_assets.py         |   71 +\n .../backend/tests/test_ledger_check.py             |   61 +\n .../backend/tests/test_phase4_flow.py              |   46 +\n .../backend/tests/test_phase5_audits.py            |   38 +\n .../backend/tests/test_plot_farm_phase3.py         |   18 +\n .../backend/tests/test_project_raw.py              |  207 ++\n coffee_digital_twin/backend/tests/test_report.py   |   24 +\n coffee_digital_twin/backend/tests/test_scenario.py |   60 +\n .../backend/tests/test_seed_demo.py                |   49 +\n .../backend/tests/test_selfcheck.py                |   85 +\n coffee_digital_twin/backend/tests/test_smoke.py    |   55 +\n coffee_digital_twin/backend/tests/test_startup.py  |   50 +\n .../backend/tests/test_verifiable_cases.py         |   78 +\n coffee_digital_twin/backend/tools/audit_claims.py  |   47 +\n .../backend/tools/capture_phase0_baseline.py       |   89 +\n .../backend/tools/check_delivery.py                |   29 +\n .../backend/tools/contribution_audit.py            |  125 +\n coffee_digital_twin/backend/tools/export_traces.py |   34 +\n .../backend/tools/export_verifiable_cases.py       |  133 +\n .../backend/tools/generate_hydrus_cases.py         |   63 +\n .../backend/tools/inventory_assets.py              |  198 ++\n coffee_digital_twin/backend/tools/ledger_check.py  |   89 +\n .../backend/tools/material_paths.py                |   25 +\n coffee_digital_twin/backend/tools/mock_corpus.json |    5 +\n .../backend/tools/mock_evidence_service.py         |   62 +\n .../backend/tools/package_source.py                |   33 +\n coffee_digital_twin/backend/tools/seed_demo.py     |   76 +\n coffee_digital_twin/backend/tools/selfcheck.py     |  189 ++\n .../backend/tools/verify_hydrus_baseline.py        |  118 +\n .../backend/tools/verify_hydrus_stability.py       |   64 +\n .../backend/tools/verify_scenario_live.py          |   54 +\n coffee_digital_twin/docs/APSIM模型说明.md          |    2 +\n coffee_digital_twin/docs/BEPS模型说明.md           |    2 +\n coffee_digital_twin/docs/HYDRUS模型说明.md         |    2 +\n coffee_digital_twin/docs/model_dataset_specs.md    |   10 +-\n coffee_digital_twin/docs/zyh/CODEX_PLAN.md         |  899 +++++\n coffee_digital_twin/docs/zyh/GitHub协作说明.md     |   49 +\n coffee_digital_twin/docs/zyh/HYDRUS工具说明.md     |   65 +\n coffee_digital_twin/docs/zyh/PROGRESS.md           |  117 +\n coffee_digital_twin/docs/zyh/Phase2使用说明.md     |   15 +\n coffee_digital_twin/docs/zyh/Phase3使用说明.md     |   40 +\n coffee_digital_twin/docs/zyh/Phase4使用说明.md     |   13 +\n coffee_digital_twin/docs/zyh/Phase5使用说明.md     |   31 +\n .../docs/zyh/baseline_snapshot_before.json         |  551 +++\n .../docs/zyh/contribution_audit.json               | 3490 ++++++++++++++++++++\n .../docs/zyh/delivery_manifest.json                |  188 ++\n .../docs/zyh/git_diff_stat_phase5.txt              |  241 ++\n .../docs/zyh/git_history_phase5.txt                |   55 +\n .../docs/zyh/hydrus_phase0_verification.json       |  105 +\n .../docs/zyh/hydrus_phase3_stability.json          |  601 ++++\n .../docs/zyh/scenario_phase4_verification.json     |  578 ++++\n coffee_digital_twin/docs/zyh/screenshots/README.md |    7 +\n coffee_digital_twin/docs/zyh/selfcheck_latest.txt  |   17 +\n .../docs/zyh/selfcheck_phase5_initial.txt          |   17 +\n coffee_digital_twin/docs/zyh/交付目录.md           |   40 +\n coffee_digital_twin/docs/zyh/功能核对表.md         |   22 +\n coffee_digital_twin/docs/zyh/待人工确认.md         |   47 +\n coffee_digital_twin/docs/zyh/待补交付材料.md       |   14 +\n coffee_digital_twin/docs/zyh/措辞扫描明细.json     |  589 ++++\n coffee_digital_twin/docs/zyh/措辞核查.md           |   19 +\n coffee_digital_twin/docs/zyh/数据字典.md           |   99 +\n coffee_digital_twin/docs/zyh/新旧贡献记录.md       |  471 +++\n coffee_digital_twin/docs/zyh/本地服务接口契约.md   |   15 +\n coffee_digital_twin/docs/zyh/清洗日志.md           |    7 +\n coffee_digital_twin/docs/zyh/源码交付配置.md       |   26 +\n coffee_digital_twin/docs/zyh/演示流程.md           |   39 +\n .../docs/zyh/现有数据接入与缺项_20261020.md        |   82 +\n coffee_digital_twin/docs/zyh/联调记录.md           |   52 +\n coffee_digital_twin/docs/zyh/错误码与降级.md       |   26 +\n .../docs/zyh/降雨与土样口径复核_20261022.md        |   49 +\n coffee_digital_twin/docs/zyh/页面接口复用清单.md   |   65 +\n coffee_digital_twin/docs/开发文档.md               |    2 +\n coffee_digital_twin/docs/接口字段说明.md           |    2 +\n coffee_digital_twin/docs/演示流程脚本.md           |    2 +\n coffee_digital_twin/docs/答辩问题准备.md           |    2 +\n coffee_digital_twin/miniprogram/app.js             |    3 +-\n coffee_digital_twin/miniprogram/app.json           |   48 +-\n coffee_digital_twin/miniprogram/app.wxss           |    6 +\n .../miniprogram/components/banner/banner.js        |    1 +\n .../miniprogram/components/banner/banner.json      |    5 +\n .../miniprogram/components/banner/banner.wxml      |    1 +\n .../miniprogram/components/banner/banner.wxss      |    1 +\n .../components/empty-state/empty-state.js          |    1 +\n .../components/empty-state/empty-state.json        |    5 +\n .../components/empty-state/empty-state.wxml        |    1 +\n .../components/empty-state/empty-state.wxss        |    1 +\n .../components/evidence-tag/evidence-tag.js        |    2 +\n .../components/evidence-tag/evidence-tag.json      |    5 +\n .../components/evidence-tag/evidence-tag.wxml      |    1 +\n .../components/evidence-tag/evidence-tag.wxss      |    1 +\n .../components/line-chart/line-chart.js            |    2 +\n .../components/line-chart/line-chart.json          |    5 +\n .../components/line-chart/line-chart.wxml          |    1 +\n .../components/line-chart/line-chart.wxss          |    1 +\n .../components/loading-panel/loading-panel.js      |    9 +-\n .../components/loading-panel/loading-panel.json    |    4 +-\n .../components/loading-panel/loading-panel.wxml    |    5 +-\n .../components/loading-panel/loading-panel.wxss    |    2 +\n .../components/msg-blocks/msg-blocks.js            |    2 +\n .../components/msg-blocks/msg-blocks.json          |    8 +\n .../components/msg-blocks/msg-blocks.wxml          |   11 +\n .../components/msg-blocks/msg-blocks.wxss          |    1 +\n .../miniprogram/components/plot-bar/plot-bar.js    |    1 +\n .../miniprogram/components/plot-bar/plot-bar.json  |    5 +\n .../miniprogram/components/plot-bar/plot-bar.wxml  |    1 +\n .../miniprogram/components/plot-bar/plot-bar.wxss  |    1 +\n .../components/status-card/status-card.js          |    9 +-\n .../components/status-card/status-card.json        |    6 +-\n .../components/status-card/status-card.wxml        |    6 +-\n .../components/status-card/status-card.wxss        |    2 +\n .../miniprogram/ec-canvas/README.md                |    3 -\n .../miniprogram/ec-canvas/ec-canvas.js             |    5 -\n .../miniprogram/ec-canvas/ec-canvas.json           |    3 -\n .../miniprogram/ec-canvas/ec-canvas.wxml           |    1 -\n .../miniprogram/ec-canvas/ec-canvas.wxss           |    4 -\n coffee_digital_twin/miniprogram/pages/_dev/_dev.js |    1 +\n .../miniprogram/pages/_dev/_dev.json               |    1 +\n .../miniprogram/pages/_dev/_dev.wxml               |    1 +\n .../miniprogram/pages/_dev/_dev.wxss               |    1 +\n .../miniprogram/pages/advice/advice.js             |  129 +-\n .../miniprogram/pages/advice/advice.json           |    7 +-\n .../miniprogram/pages/advice/advice.wxml           |   63 +-\n .../miniprogram/pages/advice/advice.wxss           |   68 +-\n coffee_digital_twin/miniprogram/pages/data/data.js |   86 +\n .../miniprogram/pages/data/data.json               |    1 +\n .../miniprogram/pages/data/data.wxml               |   44 +\n .../miniprogram/pages/data/data.wxss               |    1 +\n .../miniprogram/pages/evidence/evidence.js         |    2 +\n .../miniprogram/pages/evidence/evidence.json       |    1 +\n .../miniprogram/pages/evidence/evidence.wxml       |    1 +\n .../miniprogram/pages/evidence/evidence.wxss       |    0\n .../miniprogram/pages/farmLog/farmLog.js           |   59 +-\n .../miniprogram/pages/farmLog/farmLog.json         |    4 +-\n .../miniprogram/pages/farmLog/farmLog.wxml         |   82 +-\n .../miniprogram/pages/farmLog/farmLog.wxss         |    4 +-\n .../miniprogram/pages/index/index.js               |   70 +-\n .../miniprogram/pages/index/index.json             |    9 +-\n .../miniprogram/pages/index/index.wxml             |   56 +-\n .../miniprogram/pages/index/index.wxss             |   68 -\n .../miniprogram/pages/plotInit/plotInit.js         |   56 +-\n .../miniprogram/pages/plotInit/plotInit.json       |    4 +-\n .../miniprogram/pages/plotInit/plotInit.wxml       |   70 +-\n .../miniprogram/pages/plotInit/plotInit.wxss       |    4 +-\n .../miniprogram/pages/plots/plots.js               |    3 +\n .../miniprogram/pages/plots/plots.json             |    1 +\n .../miniprogram/pages/plots/plots.wxml             |    1 +\n .../miniprogram/pages/plots/plots.wxss             |    1 +\n .../miniprogram/pages/report/report.js             |    2 +\n .../miniprogram/pages/report/report.json           |    1 +\n .../miniprogram/pages/report/report.wxml           |    1 +\n .../miniprogram/pages/report/report.wxss           |    0\n .../miniprogram/pages/result/result.js             |  142 +-\n .../miniprogram/pages/result/result.json           |   10 +-\n .../miniprogram/pages/result/result.wxml           |  200 +-\n .../miniprogram/pages/result/result.wxss           |  204 --\n .../miniprogram/pages/scenario/scenario.js         |   83 +-\n .../miniprogram/pages/scenario/scenario.json       |    7 +-\n .../miniprogram/pages/scenario/scenario.wxml       |   68 +-\n .../miniprogram/pages/scenario/scenario.wxss       |   25 +-\n coffee_digital_twin/miniprogram/utils/chart.js     |   17 +\n coffee_digital_twin/miniprogram/utils/dates.js     |   12 +\n coffee_digital_twin/miniprogram/utils/errors.js    |   17 +\n coffee_digital_twin/miniprogram/utils/format.js    |    8 +\n coffee_digital_twin/miniprogram/utils/labels.js    |   18 +\n coffee_digital_twin/miniprogram/utils/page.js      |   22 +\n coffee_digital_twin/miniprogram/utils/request.js   |   22 +-\n coffee_digital_twin/miniprogram/utils/session.js   |   18 +\n coffee_digital_twin/server/start_backend.ps1       |   22 +\n 241 files changed, 15575 insertions(+), 2222 deletions(-)\n"
+}

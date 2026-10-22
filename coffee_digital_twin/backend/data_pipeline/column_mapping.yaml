@@ -1,0 +1,17 @@
+# 必须由张源皓确认后改 confirmed: true；不要猜测设备、深度或雨量口径。
+confirmed: false
+source_type: observation
+files:
+  - file_glob: TODO_HUMAN
+    time_col: TODO_HUMAN
+    time_format: TODO_HUMAN
+    device_col: TODO_HUMAN
+    crop: TODO_HUMAN
+    rain_mode: unknown
+    priority: 0
+    data_version: TODO_HUMAN
+    value_cols:
+      - col: TODO_HUMAN
+        parameter: TODO_HUMAN
+        depth_cm: TODO_HUMAN
+        unit: TODO_HUMAN

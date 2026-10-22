@@ -1,0 +1,36 @@
+{
+  "tool": "hydrus",
+  "task_id": "hydrus_3b22a098522b47089ccfc2ec753a4464",
+  "plot_id": null,
+  "time_range": {
+    "start": null,
+    "end": null
+  },
+  "status": "missing_input",
+  "source_type": "simulation_uncalibrated",
+  "model_version": "",
+  "parameter_version": "",
+  "inputs": {},
+  "assumptions": [
+    "土壤水力参数为模板通用值，非地块实测",
+    "初始压力水头剖面为模板值",
+    "下边界自由排水",
+    "模拟窗口 7 天",
+    "结果未经田间校准"
+  ],
+  "outputs": {},
+  "units": {
+    "theta": "cm3/cm3",
+    "depth": "cm",
+    "prec": "cm/d",
+    "root_uptake_ratio": "dimensionless"
+  },
+  "missing_fields": [
+    "start_date"
+  ],
+  "warnings": [],
+  "evidence_id": "ev_hydrus_hydrus_3b22a098522b47089ccfc2ec753a4464_a5096f23ef724bbcae3e1bac57d4ce10",
+  "created_at": "2026-10-14T09:16:50.618021+00:00",
+  "mode": "live",
+  "input_label": "假设输入"
+}

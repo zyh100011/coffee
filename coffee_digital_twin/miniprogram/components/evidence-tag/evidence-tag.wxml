@@ -1,0 +1,1 @@
+<text class="tag {{label.className}} size-{{size}}" aria-label="{{label.aria}}">{{label.text}}</text>

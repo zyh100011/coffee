@@ -1,0 +1,183 @@
+{
+  "doc_id": "A3-WEB-008",
+  "doi": "10.3390/w14030295",
+  "source_type": "literature",
+  "region": "云南西双版纳",
+  "vegetation": "橡胶林，非咖啡",
+  "use_as_site_observation": false,
+  "auto_apply_to_hydrus": false,
+  "physical_properties": [
+    {
+      "depth_top_cm": 0,
+      "depth_bottom_cm": 10,
+      "sand_percent": 33.23,
+      "silt_percent": 37.52,
+      "clay_percent": 30.25,
+      "bulk_density_g_cm3": 1.39,
+      "fraction_sum_percent": 101.0,
+      "quality_flag": "source_fraction_sum_101",
+      "locator": "PDF第4页表2",
+      "parameter_origin": "paper_reported_physical_measurement"
+    },
+    {
+      "depth_top_cm": 10,
+      "depth_bottom_cm": 20,
+      "sand_percent": 32.14,
+      "silt_percent": 39.88,
+      "clay_percent": 27.98,
+      "bulk_density_g_cm3": 1.43,
+      "fraction_sum_percent": 100.0,
+      "quality_flag": "source_transcribed",
+      "locator": "PDF第4页表2",
+      "parameter_origin": "paper_reported_physical_measurement"
+    },
+    {
+      "depth_top_cm": 20,
+      "depth_bottom_cm": 30,
+      "sand_percent": 32.59,
+      "silt_percent": 37.92,
+      "clay_percent": 29.49,
+      "bulk_density_g_cm3": 1.52,
+      "fraction_sum_percent": 100.0,
+      "quality_flag": "source_transcribed",
+      "locator": "PDF第4页表2",
+      "parameter_origin": "paper_reported_physical_measurement"
+    },
+    {
+      "depth_top_cm": 30,
+      "depth_bottom_cm": 40,
+      "sand_percent": 32.73,
+      "silt_percent": 36.62,
+      "clay_percent": 30.65,
+      "bulk_density_g_cm3": 1.59,
+      "fraction_sum_percent": 100.0,
+      "quality_flag": "source_transcribed",
+      "locator": "PDF第4页表2",
+      "parameter_origin": "paper_reported_physical_measurement"
+    },
+    {
+      "depth_top_cm": 40,
+      "depth_bottom_cm": 70,
+      "sand_percent": 31.05,
+      "silt_percent": 35.27,
+      "clay_percent": 33.68,
+      "bulk_density_g_cm3": 1.61,
+      "fraction_sum_percent": 100.0,
+      "quality_flag": "source_transcribed",
+      "locator": "PDF第4页表2",
+      "parameter_origin": "paper_reported_physical_measurement"
+    },
+    {
+      "depth_top_cm": 70,
+      "depth_bottom_cm": 100,
+      "sand_percent": 31.94,
+      "silt_percent": 36.89,
+      "clay_percent": 31.17,
+      "bulk_density_g_cm3": 1.65,
+      "fraction_sum_percent": 100.0,
+      "quality_flag": "source_transcribed",
+      "locator": "PDF第4页表2",
+      "parameter_origin": "paper_reported_physical_measurement"
+    },
+    {
+      "depth_top_cm": 100,
+      "depth_bottom_cm": 130,
+      "sand_percent": 31.91,
+      "silt_percent": 32.27,
+      "clay_percent": 33.82,
+      "bulk_density_g_cm3": 1.67,
+      "fraction_sum_percent": 98.0,
+      "quality_flag": "source_transcribed",
+      "locator": "PDF第4页表2",
+      "parameter_origin": "paper_reported_physical_measurement"
+    }
+  ],
+  "hydraulic_parameters": [
+    {
+      "depth_label_cm": 10,
+      "theta_r_cm3_cm3": 0.0884,
+      "theta_s_cm3_cm3": 0.476,
+      "alpha_cm_inverse": 0.0078,
+      "n": 1.53,
+      "Ks_cm_day": 9.46,
+      "locator": "PDF第7页表4",
+      "parameter_origin": "model_optimized_in_original_study"
+    },
+    {
+      "depth_label_cm": 20,
+      "theta_r_cm3_cm3": 0.0861,
+      "theta_s_cm3_cm3": 0.472,
+      "alpha_cm_inverse": 0.0074,
+      "n": 1.55,
+      "Ks_cm_day": 9.35,
+      "locator": "PDF第7页表4",
+      "parameter_origin": "model_optimized_in_original_study"
+    },
+    {
+      "depth_label_cm": 30,
+      "theta_r_cm3_cm3": 0.0875,
+      "theta_s_cm3_cm3": 0.474,
+      "alpha_cm_inverse": 0.0076,
+      "n": 1.54,
+      "Ks_cm_day": 9.59,
+      "locator": "PDF第7页表4",
+      "parameter_origin": "model_optimized_in_original_study"
+    },
+    {
+      "depth_label_cm": 40,
+      "theta_r_cm3_cm3": 0.0887,
+      "theta_s_cm3_cm3": 0.476,
+      "alpha_cm_inverse": 0.0079,
+      "n": 1.53,
+      "Ks_cm_day": 9.71,
+      "locator": "PDF第7页表4",
+      "parameter_origin": "model_optimized_in_original_study"
+    },
+    {
+      "depth_label_cm": 70,
+      "theta_r_cm3_cm3": 0.0926,
+      "theta_s_cm3_cm3": 0.486,
+      "alpha_cm_inverse": 0.0088,
+      "n": 1.5,
+      "Ks_cm_day": 9.2,
+      "locator": "PDF第7页表4",
+      "parameter_origin": "model_optimized_in_original_study"
+    },
+    {
+      "depth_label_cm": 100,
+      "theta_r_cm3_cm3": 0.0896,
+      "theta_s_cm3_cm3": 0.478,
+      "alpha_cm_inverse": 0.0081,
+      "n": 1.53,
+      "Ks_cm_day": 9.38,
+      "locator": "PDF第7页表4",
+      "parameter_origin": "model_optimized_in_original_study"
+    },
+    {
+      "depth_label_cm": 130,
+      "theta_r_cm3_cm3": 0.0917,
+      "theta_s_cm3_cm3": 0.482,
+      "alpha_cm_inverse": 0.0086,
+      "n": 1.51,
+      "Ks_cm_day": 10.47,
+      "locator": "PDF第7页表4",
+      "parameter_origin": "model_optimized_in_original_study"
+    }
+  ],
+  "missing_fields": [
+    "site_soil_classification",
+    "site_texture",
+    "site_bulk_density",
+    "station_water_content_basis",
+    "actual_probe_depths",
+    "site_hydraulic_calibration",
+    "pore_connectivity_l"
+  ],
+  "warnings": [
+    "表2的0–10cm砂粉黏合计101%，原文保留不归一化",
+    "正文silty loam描述与表2粒径比例存在分类解释问题，未强制赋USDA质地类",
+    "表4深度标签按原文保留，未重分为0–20/20–40/40–60cm",
+    "表4为原研究模型优化值，并非本站实测",
+    "未从橡胶研究迁入根系、吸水胁迫或无灌溉条件"
+  ]
+}
