@@ -1,23 +1,21 @@
 # 咖啡农事循证决策助手
 
-张源皓负责的小程序、Flask业务层、监测数据工具及HYDRUS适配工程。
+本仓库用于本届比赛的项目协作，主要内容如下：
 
-当前项目在默认分支 `zyh/competition`，主要代码位于 **`coffee_digital_twin/`**。
+| 目录 | 用途 |
+|---|---|
+| `coffee_digital_twin/` | 本届主工程：小程序、Flask后端、模型适配、数据处理和文档 |
+| `zyh/` | 张源皓的原始HYDRUS实现，作为只读参考与回归案例 |
+| `实验资料/` | 本届资料目录、来源台账、字段映射、案例和交付说明 |
+
+此前比赛的独立 `JGY/` 工程、旧开发文档及临时解析脚本已从当前分支移除。本届 `coffee_digital_twin/` 内沿用并改造的小程序和后端、模型外层接口属于当前运行所需代码，继续保留；原作者署名和AI辅助注释保留。
 
 - [协作说明与启动方法](coffee_digital_twin/docs/zyh/GitHub协作说明.md)
-- [项目入口与阶段记录](README_从这里开始.md)
 - [最新进度](coffee_digital_twin/docs/zyh/PROGRESS.md)
 - [蔡的本地服务接口契约](coffee_digital_twin/docs/zyh/本地服务接口契约.md)
 - [HYDRUS工具说明](coffee_digital_twin/docs/zyh/HYDRUS工具说明.md)
-- [功能核对表](coffee_digital_twin/docs/zyh/功能核对表.md)
 - [新旧贡献记录](coffee_digital_twin/docs/zyh/新旧贡献记录.md)
 
-## 当前范围
+当前默认分支为 `zyh/competition`。原始监测文件、文献PDF、本地数据库、密钥、虚拟环境和HYDRUS EXE未包含在上传内容中；`实验资料/` 中不是本机全部资料，正式测试资料保持隔离。实时运行需要另行配置环境、数据和合法取得的引擎。
 
-Phase 0–5工程已实现。开发仓库最近一次完整测试为86项通过；真实循证服务联调、正式数据冻结和人工验收仍待完成。
-
-本仓库是源码快照，保留原作者署名及AI辅助注释。原始监测数据、运行数据库、密钥、虚拟环境与HYDRUS EXE不包含在本次上传中；本地开发者配置的未提交修改也不上传。首次克隆需要按协作说明配置环境和数据，不能自动获得开发电脑上的监测记录或引擎。
-
-原工程与本届逐任务历史：[ToomyNike/VX_3Models 的 zyh/competition 分支](https://github.com/ToomyNike/VX_3Models/tree/zyh/competition)。
-
-源码快照对应的本机提交：`e7dbc4683fde941646c7aed310712683d6b9bca1`。
+开发源仓库86项测试通过。真实循证服务联调、正式数据冻结和人工验收仍待完成。新仓库为源码快照，旧逐任务历史与贡献审计基线见协作说明；当前目录精简只调整GitHub共享范围，本机旧文件不删除。
