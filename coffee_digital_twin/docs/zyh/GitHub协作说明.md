@@ -1,51 +1,60 @@
-# GitHub 协作说明
+# GitHub协作说明
 
-更新日期：2026-10-22。
+更新日期：2026-10-29。
+
+## 先看当前交接
+
+- [团队最新交接说明](../../../团队交接说明.md)：现有代码、监测数据、来源口径、运行方式与共享边界。
+- [三人联调待办](三人联调待办_20261029.md)：蔡济远、简光耀、张源皓的收尾任务和完成依据。
+- [操作手册](操作手册.md)：安装、快照导入、启动、手机预览及恢复。
+- [最新进度](PROGRESS.md)、[交付问题清单](交付问题清单.md)：详细核验记录。
 
 ## 查看与下载
 
-当前协作仓库：https://github.com/zyh100011/coffee 。协作分支：`zyh/competition`。本届代码位于 `coffee_digital_twin/`；`zyh/` 是旧 HYDRUS 实现参考，不是本届主入口。
-
-队友可在 GitHub 切换到 `zyh/competition`，或执行：
+协作仓库为 https://github.com/zyh100011/coffee ，默认展示与协作分支为zyh/competition。本届入口是coffee_digital_twin/；zyh/为旧HYDRUS只读参考，不是主入口。无需下载上一届独立JGY工程。
 
 ```powershell
 git clone --branch zyh/competition --single-branch https://github.com/zyh100011/coffee.git coffee_competition_zyh
-Set-Location coffee_competition_zyh
+Set-Location coffee_competition_zyh\coffee_digital_twin
 ```
 
-## 给队友的文档入口
+也可在仓库选择Code → Download ZIP；更新前保存自己的配置和改动。Git克隆的干净工作区可以在确认分支后用git pull --ff-only，不要直接覆盖自己的未提交修改。
 
-- [本地服务接口契约](本地服务接口契约.md)：蔡的 route/answer 服务请求、响应和错误处理约定。真实地址、字段确认及联调仍待完成。
-- [HYDRUS 工具说明](HYDRUS工具说明.md)：输入、输出、版本、案例和适用限制。
-- [进度记录](PROGRESS.md)：实际完成任务与验收结果，最新一行优先。
-- [待人工确认](待人工确认.md)：仍待确认的接口、许可和人工验收。
-- [功能核对表](功能核对表.md)、[交付目录](交付目录.md)：页面、接口及交付成果位置。
-- [新旧贡献记录](新旧贡献记录.md)：继承内容和本届改造的归属。
+## 数据与引擎
 
-## 本机启动
+原始监测和土检目录已共享33个文件（31个CSV、1份土检PDF、1份README），更新时保留原内容。原数据有来源、时段和单位差异，实际筛选以catalog为准；不能把所有记录直接混接。
 
-需要 Windows 和 Python 3.11，微信开发者工具用于查看小程序。以下命令在克隆仓库根目录运行；已有 `.venv` 时不必重建。
+运行数据库不在GitHub。按当前核验安装流程，需另取张源皓的data-v1.0.db冻结快照及匹配原始文件，按操作手册放置或传入-Snapshot和-RawRoot后再运行server/setup_windows.ps1。需显示JGY历史气象时另交匹配原始目录，并按手册配置-TeamRoot。已有数据库不会被安装脚本直接覆盖；缺资料时不要生成假数据补齐。
+
+本地数据冻结已完成，原始监测476,215条，其中有效424,988条；土检9样品81项。日降雨已按已确认计数器规则接入HYDRUS外层。快照实际交接与接收电脑复跑仍需登记，这不等于“尚未冻结”。
+
+HYDRUS EXE未上传；新机须合法取得并配置引擎，或使用原日期的历史回放。再分发许可未确认前不把EXE随包发布。.env、令牌、虚拟环境、本机配置的未提交修改、运行数据库、完整队友交付目录及正式测试资料不随本次文档更新上传。
+
+## 启动与联调
+
+数据和环境齐备后，在coffee_digital_twin目录执行：
 
 ```powershell
-Set-Location coffee_digital_twin
-py -3.11 -m venv .venv
-& ./.venv/Scripts/python.exe -m pip install -r ./backend/requirements.lock.txt
-if (-not (Test-Path ./backend/.env)) { Copy-Item ./backend/.env.example ./backend/.env }
-& ./server/start_backend.ps1
+.\server\setup_windows.ps1
+.\server\start_demo.ps1
 ```
 
-另开 PowerShell 查看 `http://127.0.0.1:5000/api/ping`。微信开发者工具导入 `coffee_digital_twin/miniprogram/`；使用自己本地的开发者配置，并核对 `utils/config.js` 的后端地址。真机中的 `127.0.0.1` 指手机自身，需按实际局域网环境配置。后端没有鉴权，仅供本机或可信局域网联调，不应直接开放到公网。
+要求Windows、Python 3.11和微信开发者工具；依赖固定在backend/requirements.lock.txt，小程序不用npm。查看本机5000端口的/api/ping后，微信工具导入miniprogram/。新机根据utils/config.example.js创建本机配置；手机预览须改用电脑的可信局域网IP，手机127.0.0.1并不指电脑。
 
-## 数据、引擎与验收边界
+蔡的真实模型服务在另一台电脑。按[蔡服务接入操作](蔡服务接入操作.md)配置可达业务地址和后端本地令牌，重启后验证health、route与answer；原模型电脑的127.0.0.1不能直接跨电脑访问。客户端与mock可用不代表真实服务已接通。
 
-代码共享不包含 `.env`、本地虚拟环境、运行数据库、原始监测文件或文献 PDF。字段画像、数据处理逻辑、报告结构和测试可查看；克隆后真实农情查询可能为空，数据需通过团队单独约定的渠道提供并按现有导入流程处理，不生成替代真实数据的示例值。
+小程序默认用户模式；工作台基地名连续点击5次切换开发者模式，可查看服务模式、来源、假设和轨迹。后端接口与报告HTML保留证据状态。当前业务接口无鉴权，仅供本机或可信局域网，不向公网暴露。
 
-新仓库采用当前已提交源码的独立快照，保留原作者署名、AI辅助注释及已导出的贡献记录；此前逐任务 Git 历史保留在本机与原仓库的 `zyh/competition` 分支：https://github.com/ToomyNike/VX_3Models/tree/zyh/competition 。新仓库不包含 HYDRUS EXE，待许可确认后按合法渠道另行配置；本地原有引擎文件不修改。未配置引擎的电脑不能直接进行实时 HYDRUS 运算，可查看已有案例和回放结果。
+## 验收与历史
 
-贡献审计工具引用旧基线 `221a26b`；独立快照克隆本身不含该历史对象。需要复跑 Git 归属审计时，可在克隆目录执行 `git fetch https://github.com/ToomyNike/VX_3Models.git main` 取得基线历史；已导出的贡献表可直接阅读。86项测试通过的记录来自具有完整历史和本地引擎的开发仓库，不代表新电脑无需配置即可全部运行。
+开发电脑最近完整回归115项通过；最近综合自检12项通过，evidence_health/http_assistant两项因真实服务仍未完成而未通过。真实服务、微信/手机、案例实际交接、引擎许可、第二台电脑和录屏仍须分别验收。不要把模板、mock、模拟图或同机新目录当成真实验收。
 
-目前完整环境自检仍有未通过项：环境配置、正式冻结版本及真实循证服务。mock 仅用于开发联调，必须保留 MOCK 标识。雨量口径复核尚未生成模型日雨量输入。Phase 6、正式评测、截图和录屏未完成。
+新仓库以独立快照方式接收本机提交内容，保留已有远程提交和原作者署名、AI辅助注释。本机逐任务历史与导出的[新旧贡献记录](新旧贡献记录.md)用于溯源；快照Git历史不同于本机开发历史。
 
-## 后续同步
+贡献审计引用旧基线221a26b；仅克隆新仓库时不含该对象。如需复跑Git归属审计，可取原仓库基线：
 
-在干净工作区并确认当前分支为 `zyh/competition` 后，可用 `git pull --ff-only` 更新。不要覆盖自己的未提交配置，不向 `main` 直接推送，也不要 force push。
+```powershell
+git fetch https://github.com/ToomyNike/VX_3Models.git main
+```
+
+数据版本data-v1.0已在本地建立，本次不上传DB或新增远程标签；最终submit-v1待人工验收完成。只更新zyh/competition，不向main推送、不force push、不修改Git配置。

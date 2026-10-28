@@ -260,6 +260,20 @@
       "status": "ready",
       "outcome": "十-1/3/4/7",
       "note": "冻结日计数器59mm、真实Windows引擎0/20mm历史窗口核验"
+    },
+    {
+      "id": "team-handover-current",
+      "path": "团队交接说明.md",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "2026-10-29现有数据、工程进度、启动依赖及共享范围；不代替人工验收"
+    },
+    {
+      "id": "team-todo-current",
+      "path": "coffee_digital_twin/docs/zyh/三人联调待办_20261029.md",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "三人责任、交付依据和回填模板；待办不标记为已完成"
     }
   ]
 }

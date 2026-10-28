@@ -51,7 +51,7 @@
  .../backend/services/llm_service.py                |   86 +-
  .../backend/services/moisture_query.py             |   64 +
  .../backend/services/plot_context.py               |   17 +
- coffee_digital_twin/backend/services/rainfall.py   |   72 +
+ coffee_digital_twin/backend/services/rainfall.py   |   73 +
  .../backend/services/report_builder.py             |   78 +
  .../backend/services/result_store.py               |   24 +
  .../backend/services/scenario_service.py           |  122 +
@@ -91,7 +91,7 @@
  coffee_digital_twin/backend/tests/test_rainfall.py |   54 +
  coffee_digital_twin/backend/tests/test_report.py   |   24 +
  coffee_digital_twin/backend/tests/test_scenario.py |   60 +
- .../backend/tests/test_seed_demo.py                |   65 +
+ .../backend/tests/test_seed_demo.py                |   88 +
  .../backend/tests/test_selfcheck.py                |   85 +
  .../backend/tests/test_single_base.py              |   20 +
  coffee_digital_twin/backend/tests/test_smoke.py    |   61 +
@@ -117,7 +117,7 @@
  .../backend/tools/package_source.py                |   33 +
  coffee_digital_twin/backend/tools/reset_demo.ps1   |   10 +
  coffee_digital_twin/backend/tools/reset_demo.py    |   96 +
- coffee_digital_twin/backend/tools/seed_demo.py     |  112 +
+ coffee_digital_twin/backend/tools/seed_demo.py     |  125 +
  coffee_digital_twin/backend/tools/selfcheck.py     |  189 +
  coffee_digital_twin/backend/tools/setup_data.py    |   52 +
  .../backend/tools/startup_config.py                |   17 +
@@ -138,20 +138,20 @@
  coffee_digital_twin/docs/zyh/HYDRUS工具说明.md     |   65 +
  .../docs/zyh/JGY融合验收_20261025.json             |  700 ++++
  .../docs/zyh/JGY资料融合与三人收尾清单.md          |   52 +
- coffee_digital_twin/docs/zyh/PROGRESS.md           |  171 +
+ coffee_digital_twin/docs/zyh/PROGRESS.md           |  173 +
  coffee_digital_twin/docs/zyh/Phase2使用说明.md     |   15 +
  coffee_digital_twin/docs/zyh/Phase3使用说明.md     |   40 +
  coffee_digital_twin/docs/zyh/Phase4使用说明.md     |   13 +
  coffee_digital_twin/docs/zyh/Phase5使用说明.md     |   31 +
  .../docs/zyh/baseline_snapshot_before.json         |  551 +++
- .../docs/zyh/contribution_audit.json               | 4053 ++++++++++++++++++++
- .../docs/zyh/delivery_manifest.json                |  244 ++
- .../docs/zyh/git_diff_stat_phase5.txt              |  299 ++
+ .../docs/zyh/contribution_audit.json               | 4058 ++++++++++++++++++++
+ .../docs/zyh/delivery_manifest.json                |  265 ++
+ .../docs/zyh/git_diff_stat_phase5.txt              |  300 ++
  .../docs/zyh/git_history_phase5.txt                |   80 +
  .../docs/zyh/hydrus_phase0_verification.json       |  105 +
  .../docs/zyh/hydrus_phase3_stability.json          |  601 +++
  .../docs/zyh/scenario_phase4_verification.json     |  578 +++
- coffee_digital_twin/docs/zyh/screenshots/README.md |    7 +
+ coffee_digital_twin/docs/zyh/screenshots/README.md |   13 +
  .../screenshots/claude_review_20261028/README.md   |    3 +
  .../claude_review_20261028/ui_advice_d.png         |  Bin 0 -> 173270 bytes
  .../claude_review_20261028/ui_advice_empty.png     |  Bin 0 -> 99482 bytes
@@ -164,13 +164,13 @@
  .../claude_review_20261028/ui_scenario1.png        |  Bin 0 -> 92016 bytes
  coffee_digital_twin/docs/zyh/selfcheck_latest.txt  |   17 +
  .../docs/zyh/selfcheck_phase5_initial.txt          |   17 +
- coffee_digital_twin/docs/zyh/交付目录.md           |   59 +
- .../docs/zyh/交付链接核验_20261028.json            |  206 +
- coffee_digital_twin/docs/zyh/交付问题清单.md       |   37 +
- coffee_digital_twin/docs/zyh/功能核对表.md         |   22 +
+ coffee_digital_twin/docs/zyh/交付目录.md           |   70 +
+ .../docs/zyh/交付链接核验_20261028.json            |  224 ++
+ coffee_digital_twin/docs/zyh/交付问题清单.md       |   29 +
+ coffee_digital_twin/docs/zyh/功能核对表.md         |   25 +
  .../docs/zyh/干净目录复测_20261028.json            |   22 +
- coffee_digital_twin/docs/zyh/待人工确认.md         |   94 +
- coffee_digital_twin/docs/zyh/待补交付材料.md       |   14 +
+ coffee_digital_twin/docs/zyh/待人工确认.md         |   98 +
+ coffee_digital_twin/docs/zyh/待补交付材料.md       |   16 +
  coffee_digital_twin/docs/zyh/措辞扫描明细.json     |  679 ++++
  coffee_digital_twin/docs/zyh/措辞核查.md           |   19 +
  coffee_digital_twin/docs/zyh/操作手册.md           |  100 +
@@ -182,7 +182,7 @@
  coffee_digital_twin/docs/zyh/源码交付配置.md       |   26 +
  coffee_digital_twin/docs/zyh/演示流程.md           |   41 +
  .../docs/zyh/现有数据接入与缺项_20261020.md        |   82 +
- coffee_digital_twin/docs/zyh/联调记录.md           |   68 +
+ coffee_digital_twin/docs/zyh/联调记录.md           |   72 +
  coffee_digital_twin/docs/zyh/蔡服务接入操作.md     |   44 +
  coffee_digital_twin/docs/zyh/错误码与降级.md       |   26 +
  .../docs/zyh/降雨与土样口径复核_20261022.md        |   49 +
@@ -297,4 +297,4 @@
  coffee_digital_twin/server/start_all.ps1           |   22 +-
  coffee_digital_twin/server/start_backend.ps1       |   22 +
  coffee_digital_twin/server/start_demo.ps1          |   44 +
- 299 files changed, 23281 insertions(+), 2304 deletions(-)
+ 299 files changed, 23387 insertions(+), 2304 deletions(-)
