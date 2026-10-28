@@ -1,6 +1,6 @@
 <view class="page">
  <plot-bar plot="{{plot}}"/>
- <view class="page-title">灌溉假设情景 <text wx:if="{{mode === 'replay'}}" class="replay-title">历史结果回放</text></view>
+ <view class="page-subtitle">灌溉情景 <text wx:if="{{isDev && mode === 'replay'}}" class="replay-title">历史结果回放</text></view>
  <banner wx:if="{{mode === 'replay'}}" kind="replay" text="历史结果回放：只解释历史假设案例，保留原日期，不代表当前地块新计算"/>
  <banner wx:if="{{error}}" kind="{{state === 'offline' ? 'offline' : 'warning'}}" text="{{error.message}}" action-text="{{error.retryable ? '重试' : ''}}" bind:action="retry"/>
  <loading-panel wx:if="{{state === 'loading'}}" text="加载地块"/>
@@ -9,22 +9,21 @@
  <view class="steps" aria-label="情景步骤"><text class="{{step === 1 ? 'current' : ''}}">1 设定</text><text>→</text><text class="{{step === 2 ? 'current' : ''}}">2 确认</text><text>→</text><text class="{{step === 3 ? 'current' : ''}}">3 对比</text></view>
  <view wx:if="{{step === 1}}" class="panel">
   <view class="section-title">设定单一变化</view><view>地块：{{plot.plot_name}}</view>
-  <picker mode="date" value="{{start}}" bindchange="date" disabled="{{running}}" aria-label="模拟起始日期"><view class="picker">起始日期：{{start}} ▾</view></picker>
+  <view wx:if="{{isDev}}" class="muted">按历史监测窗口模拟 · 数据截至 {{dataEnd || '未提供'}}</view><picker mode="date" value="{{start}}" start="{{minStart}}" end="{{maxStart}}" bindchange="date" disabled="{{running}}" aria-label="模拟起始日期"><view class="picker">起始日期：{{start}} ▾</view></picker>
   <view class="field-label">第1天额外灌溉（mm）</view><slider min="0" max="100" step="5" value="{{sliderValue}}" bindchange="amount" disabled="{{running}}" aria-label="额外灌溉0至100毫米"/>
   <input class="input" type="digit" value="{{amount}}" bindinput="amount" disabled="{{running}}" aria-label="额外灌溉毫米数"/>
-  <view class="quick"><button data-amount="10" bindtap="quick" disabled="{{running}}">+10mm</button><button data-amount="20" bindtap="quick" disabled="{{running}}">+20mm</button><button data-amount="30" bindtap="quick" disabled="{{running}}">+30mm</button></view>
-  <view class="unsupported">遮阴 · 本期不支持</view><view class="unsupported">追肥 · 本期不支持</view>
-  <view class="error-text" wx:if="{{fieldError}}">{{fieldError}}</view><view class="muted">模拟假设，非实际灌溉指令。基线与假设将在下一步由后端列出。</view>
+  <view class="quick"><button class="chip" data-amount="10" bindtap="quick" disabled="{{running}}">+10mm</button><button class="chip" data-amount="20" bindtap="quick" disabled="{{running}}">+20mm</button><button class="chip" data-amount="30" bindtap="quick" disabled="{{running}}">+30mm</button></view>
+  <view class="error-text" wx:if="{{fieldError}}">{{fieldError}}</view><view wx:if="{{isDev}}" class="muted">模拟假设，非实际灌溉指令。基线与假设将在下一步由后端列出。</view>
   <button class="primary-btn" bindtap="next" loading="{{running}}" disabled="{{running}}">下一步</button>
  </view>
  <view wx:if="{{step === 2 && preview}}" class="panel">
   <view class="section-title">确认比较条件</view><evidence-tag source-type="simulation_uncalibrated" mode="{{mode}}"/>
-  <view>基线：{{preview.confirmation.baseline}}</view><view>变化：{{preview.confirmation.change}}</view><view>请求起始：{{preview.confirmation.start_date}} · {{preview.confirmation.window_days}}天</view>
-  <view class="section-title">窗口内已记录灌溉</view><view wx:if="{{!preview.confirmation.recorded_irrigation.length}}">无；记录缺失不证明实际未灌溉</view>
+  <view wx:if="{{isDev}}">基线：{{preview.confirmation.baseline}}</view><view wx:else>基线：当前管理条件</view><view>变化：{{preview.confirmation.change}}</view><view>请求起始：{{preview.confirmation.start_date}} · {{preview.confirmation.window_days}}天</view>
+  <block wx:if="{{isDev}}"><view class="section-title">窗口内已记录灌溉</view><view wx:if="{{!preview.confirmation.recorded_irrigation.length}}">无；记录缺失不证明实际未灌溉</view>
   <view wx:for="{{preview.confirmation.recorded_irrigation}}" wx:key="index">{{item.date || item.op_date}} · {{item.normalized_mm}}mm · 农事记录</view>
   <view wx:for="{{preview.confirmation.historical_cases}}" wx:key="evidence_id">历史窗口：{{item.time_range.start}} 至 {{item.time_range.end}} · 生成于 {{item.created_at}}</view>
   <view class="section-title">假设与限制</view><view wx:for="{{preview.assumptions}}" wx:key="*this" class="limit">• {{item}}</view>
-  <banner kind="warning" text="模拟假设，非实际灌溉指令"/>
+  <banner kind="warning" text="模拟假设，非实际灌溉指令"/></block>
   <button bindtap="back" disabled="{{running}}">返回修改</button><button class="primary-btn" bindtap="confirm" loading="{{running}}" disabled="{{running}}">确认运行</button>
  </view>
  <block wx:if="{{step === 3}}">
@@ -32,17 +31,17 @@
   <view wx:if="{{result && result.parameter_verified}}" class="panel">
    <view class="section-title">同参数、同窗口比较</view><evidence-tag source-type="simulation_uncalibrated" mode="{{result.mode}}"/>
    <view>实际窗口：{{result.time_range.start}} 至 {{result.time_range.end}}</view>
-   <line-chart series="{{result.series}}" unit="cm3/cm3"/>
+   <line-chart series="{{result.series}}" unit="cm³/cm³"/>
    <view class="table-row table-head"><text>深度cm</text><text>基线第7天</text><text>变化第7天</text><text>差值</text></view>
-   <view class="table-row" wx:for="{{result.rows}}" wx:key="depth_cm"><text>{{item.depth_cm}}</text><text>{{item.baseline}}</text><text>{{item.variant}}</text><text>{{item.difference}}</text></view>
-   <view class="section-title">湿润锋与吸水比</view><view>湿润锋：{{result.baseline.outputs.infiltration_depth_cm}} → {{result.variant.outputs.infiltration_depth_cm}} cm</view><view>吸水比：{{result.baseline.outputs.root_uptake_ratio === null ? '缺失' : result.baseline.outputs.root_uptake_ratio}} → {{result.variant.outputs.root_uptake_ratio === null ? '缺失' : result.variant.outputs.root_uptake_ratio}}</view>
-   <view class="verified">参数核验：第1天输入差值 {{result.input_diff[0]}} cm ✓（调用轨迹反读）</view>
+   <view class="table-row" wx:for="{{result.rows}}" wx:key="depth_cm"><text>{{item.depth_cm}}</text><text>{{item.baselineText}}</text><text>{{item.variantText}}</text><text>{{item.differenceText}}</text></view>
+   <view class="section-title">湿润锋与吸水比</view><view>湿润锋：{{result.baselineFront}} → {{result.variantFront}} cm</view><view>吸水比：{{result.baselineUptake}} → {{result.variantUptake}}</view>
+   <block wx:if="{{isDev}}"><view class="verified">参数核验：第1天输入差值 {{result.input_diff[0]}} cm ✓（调用轨迹反读）</view>
    <button data-id="{{result.baseline.evidence_id}}" bindtap="evidence">基线输入与出处 ›</button><button data-id="{{result.variant.evidence_id}}" bindtap="evidence">变化组输入与出处 ›</button>
    <view class="section-title">未确定条件</view><view wx:for="{{result.undetermined}}" wx:key="*this" class="limit">• {{item}}</view><view wx:for="{{result.assumptions}}" wx:key="*this" class="limit">• {{item}}</view>
-   <button class="primary-btn" bindtap="report" loading="{{creatingReport}}" disabled="{{creatingReport}}">生成报告</button><button bindtap="ask">问问助手怎么理解</button>
+   </block><button class="primary-btn" bindtap="report" loading="{{creatingReport}}" disabled="{{creatingReport}}">生成报告</button><button bindtap="ask">问问助手怎么理解</button>
   </view>
-  <view wx:if="{{result && !result.parameter_verified}}" class="panel"><view class="section-title">情景未完成</view><view wx:for="{{result.warnings}}" wx:key="*this" class="error-text">{{item}}</view><text class="muted">本次不展示差值。</text></view>
-  <button wx:if="{{!running}}" bindtap="back">返回修改</button><button wx:if="{{!running && (error || (result && !result.parameter_verified))}}" bindtap="replay">改用历史结果回放</button>
+  <view wx:if="{{result && !result.parameter_verified}}" class="panel"><view class="section-title">情景未完成</view><view wx:if="{{isDev}}" wx:for="{{result.warnings}}" wx:key="*this" class="error-text">{{item}}</view><text class="muted">本次计算未完成，请重试。</text></view>
+  <button wx:if="{{!running}}" bindtap="back">返回修改</button><button wx:if="{{!running && (error || (result && !result.parameter_verified))}}" bindtap="replay">{{isDev ? '改用历史结果回放' : '查看已有结果'}}</button>
  </block>
  </block>
 </view>

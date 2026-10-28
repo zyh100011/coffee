@@ -1,19 +1,3 @@
-$ErrorActionPreference = "Stop"
-
-$backendDir = Resolve-Path (Join-Path $PSScriptRoot "..\backend")
-Set-Location $backendDir
-
-$condaHook = "D:\AAACODE\PYTHON\anaconda\shell\condabin\conda-hook.ps1"
-$condaExe = "D:\AAACODE\PYTHON\anaconda\Scripts\conda.exe"
-
-Write-Host "Starting backend at http://0.0.0.0:5000 with conda env: pyweb"
-
-if (Test-Path $condaHook) {
-    . $condaHook
-    conda activate pyweb
-    python app.py
-} elseif (Test-Path $condaExe) {
-    & $condaExe run -n pyweb python app.py
-} else {
-    throw "Conda was not found at D:\AAACODE\PYTHON\anaconda"
-}
+﻿# Compatibility entry: use the portable Python 3.11 launcher.
+param([string]$BindAddress = '127.0.0.1', [int]$Port = 5000)
+& (Join-Path $PSScriptRoot 'start_demo.ps1') -BindAddress $BindAddress -Port $Port

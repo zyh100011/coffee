@@ -47,3 +47,42 @@ def test_import_and_refuse_mutated_demo_or_unverified(tmp_path,monkeypatch):
             conn.execute("UPDATE raw_files SET source_type='observation'")
             conn.execute("UPDATE plots SET raw_json=?",(json.dumps({'plot_name':'unverified','crop':'coffee'}),))
     with pytest.raises(ValueError,match='档案'): import_frozen(source,tmp_path/'bad.db','test-only')
+
+
+def test_relocate_and_keep_qualified_age(tmp_path,monkeypatch):
+    source,raw=snapshot(tmp_path,monkeypatch)
+    with closing(sqlite3.connect(source)) as conn:
+        profile=json.loads(conn.execute('SELECT raw_json FROM plots').fetchone()[0])
+        profile.update(tree_age=3,planting_year=2023,tree_age_reference_year=2026,tree_age_source='按种植年份估算约3年')
+        profile['field_sources'].update(tree_age='estimated',planting_year='field_record')
+        with conn:conn.execute('UPDATE plots SET raw_json=?',(json.dumps(profile),))
+    newroot=tmp_path/'moved';newroot.mkdir();raw.rename(newroot/'renamed.csv')
+    out=tmp_path/'new.db'
+    import_frozen(source,out,'test-only',newroot)
+    with closing(sqlite3.connect(out)) as conn:
+        result=json.loads(conn.execute('SELECT raw_json FROM plots').fetchone()[0])
+        assert result['tree_age']==3 and result['field_sources']['tree_age']=='estimated'
+        assert conn.execute('SELECT path FROM raw_files').fetchone()[0]==str(newroot/'renamed.csv')
+
+
+def test_original_release_import_uses_current_profile_without_rewriting_source(tmp_path,monkeypatch):
+    from data_pipeline.ingest_project_raw import load_profile
+    source,raw=snapshot(tmp_path,monkeypatch);profile=load_profile();pid=profile['plot_id']
+    with closing(sqlite3.connect(source)) as conn:
+        stored=json.loads(conn.execute('SELECT raw_json FROM plots').fetchone()[0]);stored['plot_id']=pid
+        with conn:
+            conn.execute('UPDATE plots SET plot_id=?,raw_json=?',(pid,json.dumps(stored)))
+            conn.execute('UPDATE obs_long SET plot_id=?,data_version=?',(pid,'data-v1.0'))
+            conn.execute("UPDATE raw_files SET data_version='data-v1.0'")
+            conn.execute("UPDATE data_versions SET data_version='data-v1.0'")
+    digest=sha256_file(source);out=tmp_path/'new-current.db'
+    import_frozen(source,out,'data-v1.0')
+    assert sha256_file(source)==digest
+    with closing(sqlite3.connect(out)) as conn:
+        p=json.loads(conn.execute('SELECT raw_json FROM plots').fetchone()[0])
+        assert p['soil_type']==profile['soil_type'] and p['plant_density']==333
+        assert p['field_sources']['soil_type']=='literature' and p['auto_apply_to_hydrus'] is False
+        assert p['rainfall_counter_review']['model_daily_rain_enabled'] is True
+        assert conn.execute('SELECT value FROM obs_long').fetchone()[0]==.2
+    # A snapshot may carry approved reference fields without becoming site observations.
+    import_frozen(out,tmp_path/'new-again.db','data-v1.0')

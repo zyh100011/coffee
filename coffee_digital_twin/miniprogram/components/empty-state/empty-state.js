@@ -1,1 +1,1 @@
-Component({properties:{title:String,desc:String,actionText:String},methods:{act(){this.triggerEvent('action');}}});
+Component({options:{styleIsolation:'apply-shared'},properties:{title:String,desc:String,actionText:String},methods:{act(){this.triggerEvent('action');}}});

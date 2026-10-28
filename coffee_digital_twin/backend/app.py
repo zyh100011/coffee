@@ -14,7 +14,7 @@ from api.data_api import data_bp
 from api.assistant_api import assistant_bp
 from api.report_api import report_bp
 from api.scenario_api import scenario_bp
-from config import DEBUG, HOST, PORT, SERVER_DIR, ensure_dirs
+from config import DEBUG, HOST, PORT, SERVER_DIR, SINGLE_PLOT_ID, ensure_dirs
 from services.errors import envelope
 from database.init_db import init_db
 
@@ -25,7 +25,18 @@ def create_app():
     init_db()
 
     app = Flask(__name__)
+    app.config['SINGLE_PLOT_ID']=SINGLE_PLOT_ID
     CORS(app)
+
+    @app.before_request
+    def default_base():
+        plot_id=app.config.get('SINGLE_PLOT_ID')
+        if not plot_id or not request.path.startswith('/api/') or request.path=='/api/plot/init':return
+        if request.method=='GET' and not request.args.get('plot_id'):
+            args=request.args.copy();args['plot_id']=plot_id;request.args=args
+        if request.method=='POST':
+            payload=request.get_json(silent=True)
+            if isinstance(payload,dict) and not payload.get('plot_id'):payload['plot_id']=plot_id
     log_path=SERVER_DIR/'logs'/'backend.log'
     if not any(isinstance(h,RotatingFileHandler) and h.baseFilename==str(log_path.resolve()) for h in app.logger.handlers):
         handler=RotatingFileHandler(log_path,maxBytes=2_000_000,backupCount=2,encoding='utf-8')

@@ -1,0 +1,224 @@
+[
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/backend",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/miniprogram",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/backend/requirements.lock.txt",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/backend/.env.example",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/源码交付配置.md",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/server/start_backend.ps1",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/数据冻结核验_20261028.json",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/backend/data/hydrus_cases",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "实验资料/04_三模型工具资料/可核验案例_zyh.json",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/HYDRUS工具说明.md",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/backend/data_pipeline",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "实验资料/01_原始知识资料/来源台账.csv",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/本地服务接口契约.md",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/scenario_phase4_verification.json",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/selfcheck_latest.txt",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/功能核对表.md",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/措辞扫描明细.json",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/演示流程.md",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/错误码与降级.md",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/screenshots/README.md",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/待补交付材料.md",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/新旧贡献记录.md",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/backend/tools/package_source.py",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/PROGRESS.md",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/backend/runtime/delivery/source_phase5.zip",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/server/setup_windows.ps1",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/server/start_demo.ps1",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/backend/tools/reset_demo.ps1",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/操作手册.md",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/交付问题清单.md",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/backend/tools/check_links.py",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/交付链接核验_20261028.json",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/干净目录复测_20261028.json",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/答辩问题准备.md",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/CODEX_FIX2_20261028.md",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/G3_档案核验_20261028.json",
+    "status": "PASS",
+    "detail": "存在"
+  },
+  {
+    "kind": "path",
+    "target": "coffee_digital_twin/docs/zyh/G6_实测降雨情景核验_20261028.json",
+    "status": "PASS",
+    "detail": "存在"
+  }
+]

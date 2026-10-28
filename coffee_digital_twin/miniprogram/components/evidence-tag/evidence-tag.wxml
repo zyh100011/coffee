@@ -1,1 +1,1 @@
-<text class="tag {{label.className}} size-{{size}}" aria-label="{{label.aria}}">{{label.text}}</text>
+<text wx:if="{{isDev}}" class="tag {{label.className}} size-{{size}}" aria-label="{{label.aria}}">{{label.text}}</text>

@@ -17,13 +17,13 @@ page {
 
 .section-title {
   margin: 12rpx 0 18rpx;
-  font-size: 34rpx;
-  font-weight: 700;
+  font-size: 30rpx;
+  font-weight: 600;
 }
 
 .muted {
-  color: #68756c;
-  font-size: 26rpx;
+  color: #5f6b63;
+  font-size: 24rpx;
 }
 
 .panel {
@@ -49,12 +49,13 @@ page {
 
 .primary-btn,
 .ghost-btn {
-  height: 84rpx;
+  min-height: 88rpx;
+  height: auto;
   border-radius: 8rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30rpx;
+  font-size: 28rpx;
 }
 
 .primary-btn {
@@ -110,4 +111,14 @@ page{--color-primary:#1f5a3a;--color-text:#1d2a22;--color-muted:#5f6b63;--observ
 .tag{display:inline-block;padding:6rpx 12rpx;border-radius:8rpx;font-size:24rpx;margin:4rpx;white-space:normal;}
 .tag-observation{color:#1f6b40;background:#e4f2e9;}.tag-literature{color:#1d4f91;background:#e3ecf8;}.tag-simulation{color:#8a4b00;background:#fff1d6;}.tag-proxy{color:#4b5563;background:#eceff1;}.tag-replay{color:#5b3fa0;background:#efeafb;}.tag-demo{color:#fff;background:#b42318;}
 .banner{padding:24rpx;margin-bottom:24rpx;border-radius:8rpx;display:flex;gap:16rpx;flex-wrap:wrap;align-items:center;}.banner-mock{color:white;background:#b42318;}.banner-replay{color:#5b3fa0;background:#efeafb;}.banner-offline{color:#4b5563;background:#eceff1;}.banner-warning{color:#8a4b00;background:#fff1d6;}
-.primary-btn,.ghost-btn{min-height:88rpx;height:auto;padding:16rpx;}.input,.picker{min-height:88rpx;}.section-title{font-size:30rpx;}.page-title{font-size:36rpx;font-weight:700;margin:24rpx 0;}.muted{color:#5f6b63;font-size:24rpx;}.error-text{color:#b42318;font-size:24rpx;margin:8rpx 0;}.actions{flex-wrap:wrap;}.panel{overflow-wrap:anywhere;}.kv{padding:16rpx 0;border-bottom:1rpx solid #dfe7df;display:flex;gap:16rpx;flex-wrap:wrap;}.kv text{word-break:break-word;}button{min-height:88rpx;} .page{padding-bottom:48rpx;}
+.primary-btn,.ghost-btn{min-height:88rpx;height:auto;padding:16rpx;}.input,.picker{min-height:88rpx;}.page-title{font-size:36rpx;font-weight:700;margin:24rpx 0;}.error-text{color:#b42318;font-size:24rpx;margin:8rpx 0;}.panel{overflow-wrap:anywhere;}.kv{padding:16rpx 0;border-bottom:1rpx solid #dfe7df;display:flex;gap:16rpx;flex-wrap:wrap;}.kv text{word-break:break-word;}button{min-height:88rpx;} .page{padding-bottom:48rpx;}
+
+/* FIX-03：覆盖微信原生按钮的默认字号和固定宽度。 */
+button{box-sizing:border-box;font-size:28rpx !important;font-weight:400 !important;line-height:1.4;padding:16rpx 24rpx;border-radius:8rpx;}
+button:not([size='mini']){width:100% !important;}
+button::after{border:none;}
+.btn-row,.actions{display:flex;flex-wrap:nowrap;gap:16rpx;}
+.btn-row button,.actions button{width:0 !important;min-width:0;flex:1 1 0;padding-left:8rpx;padding-right:8rpx;}
+.btn-link{background:transparent;color:#1f5a3a;border:0;font-size:26rpx !important;text-align:left;min-height:88rpx;}
+button.chip{width:auto !important;max-width:100%;background:#e4f2e9;color:#1f5a3a;font-size:26rpx !important;text-align:left;margin:8rpx 8rpx 8rpx 0;display:inline-flex;align-items:center;white-space:normal;}
+.page-subtitle{font-size:24rpx;color:#5f6b63;margin:16rpx 0;}

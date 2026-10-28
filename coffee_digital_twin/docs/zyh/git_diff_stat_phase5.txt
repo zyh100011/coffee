@@ -1,17 +1,18 @@
+ coffee_digital_twin/.gitignore                     |    3 +
  coffee_digital_twin/README.md                      |   61 +-
- coffee_digital_twin/backend/.env.example           |   13 +
+ coffee_digital_twin/backend/.env.example           |   17 +
  coffee_digital_twin/backend/api/advice_api.py      |   37 +-
- coffee_digital_twin/backend/api/assistant_api.py   |   27 +
- coffee_digital_twin/backend/api/data_api.py        |   71 +
+ coffee_digital_twin/backend/api/assistant_api.py   |   29 +
+ coffee_digital_twin/backend/api/data_api.py        |  122 +
  coffee_digital_twin/backend/api/farmop_api.py      |   26 +-
- coffee_digital_twin/backend/api/model_api.py       |   71 +-
+ coffee_digital_twin/backend/api/model_api.py       |   70 +-
  coffee_digital_twin/backend/api/model_info_api.py  |    2 +
- coffee_digital_twin/backend/api/plot_api.py        |   61 +-
+ coffee_digital_twin/backend/api/plot_api.py        |   82 +-
  coffee_digital_twin/backend/api/report_api.py      |   37 +
  coffee_digital_twin/backend/api/result_api.py      |   74 +-
  coffee_digital_twin/backend/api/scenario_api.py    |   12 +
- coffee_digital_twin/backend/app.py                 |   42 +-
- coffee_digital_twin/backend/config.py              |   48 +-
+ coffee_digital_twin/backend/app.py                 |   53 +-
+ coffee_digital_twin/backend/config.py              |   49 +-
  .../data/hydrus_cases/case_baseline_0mm.json       |  300 ++
  .../data/hydrus_cases/case_compare_0_vs_20.json    |   33 +
  .../data/hydrus_cases/case_engine_failed.json      |   82 +
@@ -21,166 +22,213 @@
  .../data_pipeline/apply_catimor_confirmation.py    |   46 +
  .../backend/data_pipeline/column_mapping.yaml      |   17 +
  .../backend/data_pipeline/device_plot_map.csv      |    1 +
- .../backend/data_pipeline/freeze.py                |   25 +
+ .../backend/data_pipeline/freeze.py                |   53 +
  .../backend/data_pipeline/generate_dictionary.py   |   18 +
  .../backend/data_pipeline/ingest_events.py         |   10 +
  .../backend/data_pipeline/ingest_forms.py          |   38 +
  .../backend/data_pipeline/ingest_lai.py            |   10 +
- .../backend/data_pipeline/ingest_monitoring.py     |  158 +
- .../backend/data_pipeline/ingest_project_raw.py    |  227 ++
+ .../backend/data_pipeline/ingest_monitoring.py     |  159 +
+ .../backend/data_pipeline/ingest_project_raw.py    |  244 ++
  .../backend/data_pipeline/ingest_project_soil.py   |   44 +
  .../backend/data_pipeline/ingest_soil_reports.py   |   10 +
  .../backend/data_pipeline/profile_raw.py           |   61 +
- .../backend/data_pipeline/real_data_profile.json   |   71 +
+ .../backend/data_pipeline/real_data_profile.json   |  396 ++
  .../backend/data_pipeline/relink_sources.py        |   60 +
- .../backend/data_pipeline/schema.py                |   19 +
+ .../backend/data_pipeline/schema.py                |   25 +
  .../data_pipeline/soil_report_2026T108.json        |   39 +
- coffee_digital_twin/backend/database/init_db.py    |   12 +
+ coffee_digital_twin/backend/database/init_db.py    |   17 +-
  .../backend/models/fusion_engine.py                |  287 +-
- .../backend/models/hydrus_adapter.py               |  528 ++-
+ .../backend/models/hydrus_adapter.py               |  540 ++-
  coffee_digital_twin/backend/requirements.lock.txt  |   33 +
  coffee_digital_twin/backend/requirements.txt       |    7 +
- .../backend/services/assistant_service.py          |  146 +
- .../backend/services/data_service.py               |  140 +
+ .../backend/services/assistant_service.py          |  174 +
+ .../backend/services/beps_gateway.py               |   67 +
+ .../backend/services/data_service.py               |  157 +
  coffee_digital_twin/backend/services/errors.py     |   27 +
- .../backend/services/evidence_client.py            |   41 +
+ .../backend/services/evidence_client.py            |   57 +
+ .../backend/services/evidence_transport.py         |   50 +
+ .../backend/services/jgy_delivery.py               |  153 +
  .../backend/services/llm_service.py                |   86 +-
- .../backend/services/plot_context.py               |   12 +
- .../backend/services/report_builder.py             |   76 +
+ .../backend/services/moisture_query.py             |   64 +
+ .../backend/services/plot_context.py               |   17 +
+ coffee_digital_twin/backend/services/rainfall.py   |   72 +
+ .../backend/services/report_builder.py             |   78 +
  .../backend/services/result_store.py               |   24 +
  .../backend/services/scenario_service.py           |  122 +
- .../backend/services/tool_registry.py              |  171 +
+ .../backend/services/tool_registry.py              |  176 +
  .../backend/services/tool_result.py                |   56 +
  .../backend/services/trace_store.py                |   50 +
  .../backend/services/weather_service.py            |   26 +-
- coffee_digital_twin/backend/tests/conftest.py      |   29 +
+ coffee_digital_twin/backend/start_server.ps1       |   21 +-
+ coffee_digital_twin/backend/tests/conftest.py      |   32 +
  .../backend/tests/fixtures/README.md               |    3 +
  .../backend/tests/fixtures/raw_sample/export_a.csv |    4 +
  .../backend/tests/fixtures/raw_sample/export_b.csv |    3 +
- .../backend/tests/frontend_contract.cjs            |  120 +
+ .../backend/tests/frontend_contract.cjs            |  216 ++
  .../backend/tests/test_assistant.py                |  110 +
  .../backend/tests/test_assistant_http.py           |   44 +
  .../backend/tests/test_business_selection.py       |   26 +
+ .../backend/tests/test_cjy_compatibility.py        |   93 +
  coffee_digital_twin/backend/tests/test_config.py   |   52 +
- .../backend/tests/test_data_pipeline.py            |   62 +
+ .../backend/tests/test_data_pipeline.py            |   86 +
  .../backend/tests/test_e2e_scenarios.py            |   49 +
  .../backend/tests/test_errors_phase4.py            |   45 +
- .../backend/tests/test_evidence_client.py          |   36 +
+ .../backend/tests/test_evidence_client.py          |   93 +
  coffee_digital_twin/backend/tests/test_frontend.py |   19 +
  .../backend/tests/test_fusion_status.py            |   28 +
  .../backend/tests/test_hydrus_adapter.py           |   75 +
  .../backend/tests/test_hydrus_inspection.py        |   29 +
  .../backend/tests/test_hydrus_stability.py         |   10 +
  .../backend/tests/test_inventory_assets.py         |   71 +
+ .../backend/tests/test_jgy_delivery.py             |  104 +
  .../backend/tests/test_ledger_check.py             |   61 +
+ coffee_digital_twin/backend/tests/test_links.py    |   35 +
+ .../backend/tests/test_moisture_layers.py          |   28 +
  .../backend/tests/test_phase4_flow.py              |   46 +
  .../backend/tests/test_phase5_audits.py            |   38 +
  .../backend/tests/test_plot_farm_phase3.py         |   18 +
- .../backend/tests/test_project_raw.py              |  207 ++
+ .../backend/tests/test_project_raw.py              |  246 ++
+ coffee_digital_twin/backend/tests/test_rainfall.py |   54 +
  coffee_digital_twin/backend/tests/test_report.py   |   24 +
  coffee_digital_twin/backend/tests/test_scenario.py |   60 +
- .../backend/tests/test_seed_demo.py                |   49 +
+ .../backend/tests/test_seed_demo.py                |   65 +
  .../backend/tests/test_selfcheck.py                |   85 +
- coffee_digital_twin/backend/tests/test_smoke.py    |   55 +
+ .../backend/tests/test_single_base.py              |   20 +
+ coffee_digital_twin/backend/tests/test_smoke.py    |   61 +
  coffee_digital_twin/backend/tests/test_startup.py  |   50 +
+ .../backend/tests/test_startup_reset.py            |   93 +
  .../backend/tests/test_verifiable_cases.py         |   78 +
  coffee_digital_twin/backend/tools/audit_claims.py  |   47 +
  .../backend/tools/capture_phase0_baseline.py       |   89 +
  .../backend/tools/check_delivery.py                |   29 +
+ .../backend/tools/check_evidence_connection.py     |   35 +
+ coffee_digital_twin/backend/tools/check_links.py   |   68 +
  .../backend/tools/contribution_audit.py            |  125 +
  coffee_digital_twin/backend/tools/export_traces.py |   34 +
+ .../backend/tools/export_training_handoff_zyh.py   |  149 +
  .../backend/tools/export_verifiable_cases.py       |  133 +
  .../backend/tools/generate_hydrus_cases.py         |   63 +
- .../backend/tools/inventory_assets.py              |  198 ++
+ .../backend/tools/import_jgy_delivery.py           |   23 +
+ .../backend/tools/inventory_assets.py              |  198 +
  coffee_digital_twin/backend/tools/ledger_check.py  |   89 +
  .../backend/tools/material_paths.py                |   25 +
- coffee_digital_twin/backend/tools/mock_corpus.json |    5 +
- .../backend/tools/mock_evidence_service.py         |   62 +
+ coffee_digital_twin/backend/tools/mock_corpus.json |   23 +
+ .../backend/tools/mock_evidence_service.py         |   76 +
  .../backend/tools/package_source.py                |   33 +
- coffee_digital_twin/backend/tools/seed_demo.py     |   76 +
- coffee_digital_twin/backend/tools/selfcheck.py     |  189 ++
+ coffee_digital_twin/backend/tools/reset_demo.ps1   |   10 +
+ coffee_digital_twin/backend/tools/reset_demo.py    |   96 +
+ coffee_digital_twin/backend/tools/seed_demo.py     |  112 +
+ coffee_digital_twin/backend/tools/selfcheck.py     |  189 +
+ coffee_digital_twin/backend/tools/setup_data.py    |   52 +
+ .../backend/tools/startup_config.py                |   17 +
  .../backend/tools/verify_hydrus_baseline.py        |  118 +
  .../backend/tools/verify_hydrus_stability.py       |   64 +
- .../backend/tools/verify_scenario_live.py          |   54 +
+ .../backend/tools/verify_scenario_live.py          |   64 +
  coffee_digital_twin/docs/APSIM模型说明.md          |    2 +
  coffee_digital_twin/docs/BEPS模型说明.md           |    2 +
  coffee_digital_twin/docs/HYDRUS模型说明.md         |    2 +
  coffee_digital_twin/docs/model_dataset_specs.md    |   10 +-
+ .../docs/zyh/CODEX_FIX2_20261028.md                |  164 +
+ coffee_digital_twin/docs/zyh/CODEX_FIX_20261028.md |  186 +
  coffee_digital_twin/docs/zyh/CODEX_PLAN.md         |  899 +++++
- coffee_digital_twin/docs/zyh/GitHub协作说明.md     |   49 +
+ .../docs/zyh/FIX06_历史窗口核验.json               |   77 +
+ .../docs/zyh/G3_档案核验_20261028.json             |   31 +
+ .../docs/zyh/G6_实测降雨情景核验_20261028.json     | 2520 ++++++++++++
+ coffee_digital_twin/docs/zyh/GitHub协作说明.md     |   51 +
  coffee_digital_twin/docs/zyh/HYDRUS工具说明.md     |   65 +
- coffee_digital_twin/docs/zyh/PROGRESS.md           |  117 +
+ .../docs/zyh/JGY融合验收_20261025.json             |  700 ++++
+ .../docs/zyh/JGY资料融合与三人收尾清单.md          |   52 +
+ coffee_digital_twin/docs/zyh/PROGRESS.md           |  171 +
  coffee_digital_twin/docs/zyh/Phase2使用说明.md     |   15 +
  coffee_digital_twin/docs/zyh/Phase3使用说明.md     |   40 +
  coffee_digital_twin/docs/zyh/Phase4使用说明.md     |   13 +
  coffee_digital_twin/docs/zyh/Phase5使用说明.md     |   31 +
  .../docs/zyh/baseline_snapshot_before.json         |  551 +++
- .../docs/zyh/contribution_audit.json               | 3490 ++++++++++++++++++++
- .../docs/zyh/delivery_manifest.json                |  188 ++
- .../docs/zyh/git_diff_stat_phase5.txt              |  241 ++
- .../docs/zyh/git_history_phase5.txt                |   55 +
+ .../docs/zyh/contribution_audit.json               | 4053 ++++++++++++++++++++
+ .../docs/zyh/delivery_manifest.json                |  244 ++
+ .../docs/zyh/git_diff_stat_phase5.txt              |  299 ++
+ .../docs/zyh/git_history_phase5.txt                |   80 +
  .../docs/zyh/hydrus_phase0_verification.json       |  105 +
- .../docs/zyh/hydrus_phase3_stability.json          |  601 ++++
- .../docs/zyh/scenario_phase4_verification.json     |  578 ++++
+ .../docs/zyh/hydrus_phase3_stability.json          |  601 +++
+ .../docs/zyh/scenario_phase4_verification.json     |  578 +++
  coffee_digital_twin/docs/zyh/screenshots/README.md |    7 +
+ .../screenshots/claude_review_20261028/README.md   |    3 +
+ .../claude_review_20261028/ui_advice_d.png         |  Bin 0 -> 173270 bytes
+ .../claude_review_20261028/ui_advice_empty.png     |  Bin 0 -> 99482 bytes
+ .../claude_review_20261028/ui_advice_m.png         |  Bin 0 -> 139437 bytes
+ .../screenshots/claude_review_20261028/ui_data.png |  Bin 0 -> 347247 bytes
+ .../claude_review_20261028/ui_index.png            |  Bin 0 -> 173605 bytes
+ .../claude_review_20261028/ui_plotinit.png         |  Bin 0 -> 180882 bytes
+ .../claude_review_20261028/ui_plots.png            |  Bin 0 -> 123884 bytes
+ .../claude_review_20261028/ui_result.png           |  Bin 0 -> 399927 bytes
+ .../claude_review_20261028/ui_scenario1.png        |  Bin 0 -> 92016 bytes
  coffee_digital_twin/docs/zyh/selfcheck_latest.txt  |   17 +
  .../docs/zyh/selfcheck_phase5_initial.txt          |   17 +
- coffee_digital_twin/docs/zyh/交付目录.md           |   40 +
+ coffee_digital_twin/docs/zyh/交付目录.md           |   59 +
+ .../docs/zyh/交付链接核验_20261028.json            |  206 +
+ coffee_digital_twin/docs/zyh/交付问题清单.md       |   37 +
  coffee_digital_twin/docs/zyh/功能核对表.md         |   22 +
- coffee_digital_twin/docs/zyh/待人工确认.md         |   47 +
+ .../docs/zyh/干净目录复测_20261028.json            |   22 +
+ coffee_digital_twin/docs/zyh/待人工确认.md         |   94 +
  coffee_digital_twin/docs/zyh/待补交付材料.md       |   14 +
- coffee_digital_twin/docs/zyh/措辞扫描明细.json     |  589 ++++
+ coffee_digital_twin/docs/zyh/措辞扫描明细.json     |  679 ++++
  coffee_digital_twin/docs/zyh/措辞核查.md           |   19 +
- coffee_digital_twin/docs/zyh/数据字典.md           |   99 +
- coffee_digital_twin/docs/zyh/新旧贡献记录.md       |  471 +++
- coffee_digital_twin/docs/zyh/本地服务接口契约.md   |   15 +
- coffee_digital_twin/docs/zyh/清洗日志.md           |    7 +
+ coffee_digital_twin/docs/zyh/操作手册.md           |  100 +
+ .../docs/zyh/数据冻结核验_20261028.json            |   41 +
+ coffee_digital_twin/docs/zyh/数据字典.md           |  105 +
+ coffee_digital_twin/docs/zyh/新旧贡献记录.md       |  537 +++
+ coffee_digital_twin/docs/zyh/本地服务接口契约.md   |   37 +
+ coffee_digital_twin/docs/zyh/清洗日志.md           |   11 +
  coffee_digital_twin/docs/zyh/源码交付配置.md       |   26 +
- coffee_digital_twin/docs/zyh/演示流程.md           |   39 +
+ coffee_digital_twin/docs/zyh/演示流程.md           |   41 +
  .../docs/zyh/现有数据接入与缺项_20261020.md        |   82 +
- coffee_digital_twin/docs/zyh/联调记录.md           |   52 +
+ coffee_digital_twin/docs/zyh/联调记录.md           |   68 +
+ coffee_digital_twin/docs/zyh/蔡服务接入操作.md     |   44 +
  coffee_digital_twin/docs/zyh/错误码与降级.md       |   26 +
  .../docs/zyh/降雨与土样口径复核_20261022.md        |   49 +
  coffee_digital_twin/docs/zyh/页面接口复用清单.md   |   65 +
  coffee_digital_twin/docs/开发文档.md               |    2 +
  coffee_digital_twin/docs/接口字段说明.md           |    2 +
  coffee_digital_twin/docs/演示流程脚本.md           |    2 +
- coffee_digital_twin/docs/答辩问题准备.md           |    2 +
+ coffee_digital_twin/docs/答辩问题准备.md           |   15 +
  coffee_digital_twin/miniprogram/app.js             |    3 +-
  coffee_digital_twin/miniprogram/app.json           |   48 +-
- coffee_digital_twin/miniprogram/app.wxss           |    6 +
- .../miniprogram/components/banner/banner.js        |    1 +
+ coffee_digital_twin/miniprogram/app.wxss           |   29 +-
+ .../miniprogram/components/banner/banner.js        |    2 +
  .../miniprogram/components/banner/banner.json      |    5 +
  .../miniprogram/components/banner/banner.wxml      |    1 +
  .../miniprogram/components/banner/banner.wxss      |    1 +
+ .../components/chart-card/chart-card.js            |    3 +
+ .../components/chart-card/chart-card.wxml          |    4 +-
+ .../components/chart-card/chart-card.wxss          |    4 +-
  .../components/empty-state/empty-state.js          |    1 +
  .../components/empty-state/empty-state.json        |    5 +
  .../components/empty-state/empty-state.wxml        |    1 +
  .../components/empty-state/empty-state.wxss        |    1 +
- .../components/evidence-tag/evidence-tag.js        |    2 +
+ .../components/evidence-tag/evidence-tag.js        |    3 +
  .../components/evidence-tag/evidence-tag.json      |    5 +
  .../components/evidence-tag/evidence-tag.wxml      |    1 +
  .../components/evidence-tag/evidence-tag.wxss      |    1 +
- .../components/line-chart/line-chart.js            |    2 +
+ .../components/line-chart/line-chart.js            |    3 +
  .../components/line-chart/line-chart.json          |    5 +
  .../components/line-chart/line-chart.wxml          |    1 +
  .../components/line-chart/line-chart.wxss          |    1 +
- .../components/loading-panel/loading-panel.js      |    9 +-
+ .../components/loading-panel/loading-panel.js      |   10 +-
  .../components/loading-panel/loading-panel.json    |    4 +-
  .../components/loading-panel/loading-panel.wxml    |    5 +-
  .../components/loading-panel/loading-panel.wxss    |    2 +
- .../components/msg-blocks/msg-blocks.js            |    2 +
+ .../components/msg-blocks/msg-blocks.js            |    4 +
  .../components/msg-blocks/msg-blocks.json          |    8 +
- .../components/msg-blocks/msg-blocks.wxml          |   11 +
- .../components/msg-blocks/msg-blocks.wxss          |    1 +
- .../miniprogram/components/plot-bar/plot-bar.js    |    1 +
+ .../components/msg-blocks/msg-blocks.wxml          |   12 +
+ .../components/msg-blocks/msg-blocks.wxss          |    3 +
+ .../miniprogram/components/plot-bar/plot-bar.js    |    2 +
  .../miniprogram/components/plot-bar/plot-bar.json  |    5 +
  .../miniprogram/components/plot-bar/plot-bar.wxml  |    1 +
  .../miniprogram/components/plot-bar/plot-bar.wxss  |    1 +
  .../components/status-card/status-card.js          |    9 +-
  .../components/status-card/status-card.json        |    6 +-
  .../components/status-card/status-card.wxml        |    6 +-
- .../components/status-card/status-card.wxss        |    2 +
+ .../components/status-card/status-card.wxss        |    6 +-
  .../miniprogram/ec-canvas/README.md                |    3 -
  .../miniprogram/ec-canvas/ec-canvas.js             |    5 -
  .../miniprogram/ec-canvas/ec-canvas.json           |    3 -
@@ -190,15 +238,15 @@
  .../miniprogram/pages/_dev/_dev.json               |    1 +
  .../miniprogram/pages/_dev/_dev.wxml               |    1 +
  .../miniprogram/pages/_dev/_dev.wxss               |    1 +
- .../miniprogram/pages/advice/advice.js             |  129 +-
+ .../miniprogram/pages/advice/advice.js             |  130 +-
  .../miniprogram/pages/advice/advice.json           |    7 +-
- .../miniprogram/pages/advice/advice.wxml           |   63 +-
- .../miniprogram/pages/advice/advice.wxss           |   68 +-
- coffee_digital_twin/miniprogram/pages/data/data.js |   86 +
+ .../miniprogram/pages/advice/advice.wxml           |   67 +-
+ .../miniprogram/pages/advice/advice.wxss           |   69 +-
+ coffee_digital_twin/miniprogram/pages/data/data.js |  128 +
  .../miniprogram/pages/data/data.json               |    1 +
- .../miniprogram/pages/data/data.wxml               |   44 +
+ .../miniprogram/pages/data/data.wxml               |   59 +
  .../miniprogram/pages/data/data.wxss               |    1 +
- .../miniprogram/pages/evidence/evidence.js         |    2 +
+ .../miniprogram/pages/evidence/evidence.js         |    9 +
  .../miniprogram/pages/evidence/evidence.json       |    1 +
  .../miniprogram/pages/evidence/evidence.wxml       |    1 +
  .../miniprogram/pages/evidence/evidence.wxss       |    0
@@ -206,7 +254,7 @@
  .../miniprogram/pages/farmLog/farmLog.json         |    4 +-
  .../miniprogram/pages/farmLog/farmLog.wxml         |   82 +-
  .../miniprogram/pages/farmLog/farmLog.wxss         |    4 +-
- .../miniprogram/pages/index/index.js               |   70 +-
+ .../miniprogram/pages/index/index.js               |   71 +-
  .../miniprogram/pages/index/index.json             |    9 +-
  .../miniprogram/pages/index/index.wxml             |   56 +-
  .../miniprogram/pages/index/index.wxss             |   68 -
@@ -218,25 +266,35 @@
  .../miniprogram/pages/plots/plots.json             |    1 +
  .../miniprogram/pages/plots/plots.wxml             |    1 +
  .../miniprogram/pages/plots/plots.wxss             |    1 +
- .../miniprogram/pages/report/report.js             |    2 +
+ .../miniprogram/pages/report/report.js             |    3 +
  .../miniprogram/pages/report/report.json           |    1 +
  .../miniprogram/pages/report/report.wxml           |    1 +
  .../miniprogram/pages/report/report.wxss           |    0
- .../miniprogram/pages/result/result.js             |  142 +-
+ .../miniprogram/pages/result/result.js             |  144 +-
  .../miniprogram/pages/result/result.json           |   10 +-
  .../miniprogram/pages/result/result.wxml           |  200 +-
- .../miniprogram/pages/result/result.wxss           |  204 --
- .../miniprogram/pages/scenario/scenario.js         |   83 +-
+ .../miniprogram/pages/result/result.wxss           |  204 -
+ .../miniprogram/pages/scenario/scenario.js         |  100 +-
  .../miniprogram/pages/scenario/scenario.json       |    7 +-
- .../miniprogram/pages/scenario/scenario.wxml       |   68 +-
+ .../miniprogram/pages/scenario/scenario.wxml       |   67 +-
  .../miniprogram/pages/scenario/scenario.wxss       |   25 +-
  coffee_digital_twin/miniprogram/utils/chart.js     |   17 +
+ .../miniprogram/utils/config.example.js            |    5 +
+ .../miniprogram/utils/data-options.js              |   16 +
  coffee_digital_twin/miniprogram/utils/dates.js     |   12 +
  coffee_digital_twin/miniprogram/utils/errors.js    |   17 +
- coffee_digital_twin/miniprogram/utils/format.js    |    8 +
- coffee_digital_twin/miniprogram/utils/labels.js    |   18 +
- coffee_digital_twin/miniprogram/utils/page.js      |   22 +
+ coffee_digital_twin/miniprogram/utils/format.js    |   19 +
+ coffee_digital_twin/miniprogram/utils/formatter.js |    2 +
+ coffee_digital_twin/miniprogram/utils/labels.js    |   20 +
+ .../miniprogram/utils/message-display.js           |   27 +
+ coffee_digital_twin/miniprogram/utils/page.js      |   23 +
+ .../miniprogram/utils/report-display.js            |   19 +
  coffee_digital_twin/miniprogram/utils/request.js   |   22 +-
  coffee_digital_twin/miniprogram/utils/session.js   |   18 +
+ coffee_digital_twin/miniprogram/utils/viewMode.js  |   17 +
+ coffee_digital_twin/server/check_env.ps1           |   37 +-
+ coffee_digital_twin/server/setup_windows.ps1       |   39 +
+ coffee_digital_twin/server/start_all.ps1           |   22 +-
  coffee_digital_twin/server/start_backend.ps1       |   22 +
- 241 files changed, 15575 insertions(+), 2222 deletions(-)
+ coffee_digital_twin/server/start_demo.ps1          |   44 +
+ 299 files changed, 23281 insertions(+), 2304 deletions(-)

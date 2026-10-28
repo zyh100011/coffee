@@ -2,8 +2,9 @@ const { request } = require('./request');
 const { getPlotId, savePlotId } = require('./storage');
 const session = require('./session');
 const { normalizeError } = require('./errors');
-const defaults = { plot: null, health: {}, state: 'loading', error: null };
+const defaults = { plot: null, health: {}, state: 'loading', error: null, isDev:false };
 async function context(page, explicitPlotId) {
+ page.setData({isDev:require('./viewMode').isDev()});
  const id = explicitPlotId || getPlotId();
  const healthPromise = session.getHealth().catch(() => null);
  let plot = null;
@@ -18,5 +19,5 @@ async function context(page, explicitPlotId) {
 }
 function fail(page,error) { const normalized = normalizeError(error);page.setData({error:normalized,state:normalized.code==='E_OFFLINE'?'offline':'error'}); }
 function missingLabels(keys) { const { FIELDS }=require('./labels');return (keys||[]).map(k=>FIELDS[k]||k).join('、'); }
-function openEvidence(id,obsId) { wx.navigateTo({url:'/pages/evidence/evidence?'+(obsId?'obs_id='+encodeURIComponent(obsId):'evidence_id='+encodeURIComponent(id))}); }
+function openEvidence(id,obsId) { if(!require('./viewMode').isDev())return;wx.navigateTo({url:'/pages/evidence/evidence?'+(obsId?'obs_id='+encodeURIComponent(obsId):'evidence_id='+encodeURIComponent(id))}); }
 module.exports={defaults,context,fail,missingLabels,openEvidence};

@@ -3,11 +3,20 @@
   "hits": [
     {
       "file": "coffee_digital_twin/miniprogram/pages/data/data.wxml",
-      "line": 34,
+      "line": 48,
       "terms": [
         "success"
       ],
       "text": "    <evidence-tag source-type=\"observation\" status=\"success\"/>",
+      "disposition": "协议状态/微信回调名称；仅表示代码或工具可用，不是科学验证"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/evidence/evidence.js",
+      "line": 5,
+      "terms": [
+        "success"
+      ],
+      "text": " async reload(){this.setData({state:'loading',error:null});try{if(this.obs){const source=await request({url:'/api/data/source/'+encodeURIComponent(this.obs)});this.setData({source,state:'ready'});return;}const r=await request({url:'/api/evidence/'+encodeURIComponent(this.id||'')});this.setData({result:r,inputs:Object.keys(r.inputs||{}).map(key=>({key,value:JSON.stringify(r.inputs[key])})),sources:(r.outputs||{}).source_obs_ids||[],state:'ready'});if(r.tool==='data_query'&&r.status==='success')await this.loadSources(0);}catch(e){ui.fail(this,e);}},",
       "disposition": "协议状态/微信回调名称；仅表示代码或工具可用，不是科学验证"
     },
     {
@@ -16,30 +25,30 @@
       "terms": [
         "success"
       ],
-      "text": "Page({data:{...ui.defaults,items:[],current:''},onShow(){this.reload();},async reload(){this.setData({state:'loading',error:null});try{await ui.context(this);const response=await request({url:'/api/plot/list'});this.setData({items:response.items.map(p=>({...p,areaText:numberText(p.area_mu),elevationText:numberText(p.elevation_m),missingText:ui.missingLabels(p.completeness.missing)})),current:getPlotId(),state:response.items.length?'ready':'empty'});}catch(e){ui.fail(this,e);}},select(e){savePlotId(e.currentTarget.dataset.id);this.setData({current:e.currentTarget.dataset.id});wx.showToast({title:'已设为当前',icon:'success'});},edit(e){wx.navigateTo({url:'/pages/plotInit/plotInit?plot_id='+encodeURIComponent(e.currentTarget.dataset.id)});},farm(e){wx.navigateTo({url:'/pages/farmLog/farmLog?plot_id='+encodeURIComponent(e.currentTarget.dataset.id)});},create(){wx.navigateTo({url:'/pages/plotInit/plotInit'});}});",
+      "text": "Page({data:{...ui.defaults,items:[],notesOpen:false,current:''},onShow(){this.reload();},async reload(){this.setData({state:'loading',error:null});try{await ui.context(this);const response=await request({url:'/api/plot/list'});this.setData({items:response.items.map(p=>({...p,referenceNotes:Object.entries(p.field_notes||{}).map(([key,note])=>({key,note})),areaText:formatValue(p.area_mu),elevationText:formatValue(p.elevation_m),missingText:ui.missingLabels(p.completeness.missing)})),current:getPlotId(),singleBase:!!response.single_plot_id,state:response.items.length?'ready':'empty'});}catch(e){ui.fail(this,e);}},toggleNotes(){this.setData({notesOpen:!this.data.notesOpen});},select(e){savePlotId(e.currentTarget.dataset.id);this.setData({current:e.currentTarget.dataset.id});wx.showToast({title:'已设为当前',icon:'success'});},edit(e){wx.navigateTo({url:'/pages/plotInit/plotInit?plot_id='+encodeURIComponent(e.currentTarget.dataset.id)});},farm(e){wx.navigateTo({url:'/pages/farmLog/farmLog?plot_id='+encodeURIComponent(e.currentTarget.dataset.id)});},create(){wx.navigateTo({url:'/pages/plotInit/plotInit'});}});",
       "disposition": "协议状态/微信回调名称；仅表示代码或工具可用，不是科学验证"
     },
     {
       "file": "coffee_digital_twin/miniprogram/pages/report/report.js",
-      "line": 2,
-      "terms": [
-        "success"
-      ],
-      "text": "Page({data:{...ui.defaults,report:null,items:[],sections:[]},onLoad(o){this.reportId=o.report_id||'';},onShow(){this.reload();},async reload(){this.setData({state:'loading',error:null});try{await ui.context(this);if(!this.reportId){if(!this.data.plot){this.setData({state:'empty',items:[]});return;}const r=await request({url:'/api/report/list',data:{plot_id:this.data.plot.plot_id}});this.setData({items:r.items,state:r.items.length?'ready':'empty'});return;}const report=await request({url:'/api/report/'+encodeURIComponent(this.reportId)});const map={};(report.evidence||[]).forEach(e=>map[e.evidence_id]=e);this.setData({report,sections:report.sections.map(s=>({...s,evidence:s.evidence_ids.map(id=>map[id]||{evidence_id:id}),blocks:s.items.filter(i=>i.type==='fact'||i.type==='chart')})),state:'ready'});}catch(e){ui.fail(this,e);}},open(e){wx.navigateTo({url:'/pages/report/report?report_id='+encodeURIComponent(e.currentTarget.dataset.id)});},evidence(e){ui.openEvidence(e.currentTarget.dataset.id||e.detail.evidence_id);},copy(){wx.setClipboardData({data:BASE_URL+'/api/report/'+encodeURIComponent(this.reportId)+'.html',success(){wx.showToast({title:'在电脑浏览器打开后可打印PDF',icon:'none'});}});}});",
-      "disposition": "协议状态/微信回调名称；仅表示代码或工具可用，不是科学验证"
-    },
-    {
-      "file": "coffee_digital_twin/miniprogram/pages/result/result.js",
       "line": 3,
       "terms": [
         "success"
       ],
-      "text": "Page({data:{...ui.defaults,result:null,tools:[],validationCases:[],info:[{name:'APSIM',text:'OilPalm代理映射，无咖啡产量验证'},{name:'HYDRUS',text:'未校准假设情景，模板通用参数，仅解释水分响应'},{name:'BEPS',text:'简化计算，可能依赖APSIM LAI与HYDRUS水分因子'}],advice:null,generating:false},onLoad(o){this.taskId=o.task_id||'';},onShow(){this.reload();},async reload(){this.setData({state:'loading',error:null,result:null,tools:[],validationCases:[]});try{const plot=await ui.context(this);if(!plot){this.setData({state:'empty'});return;}const result=await request({url:this.taskId?'/api/model/result/'+encodeURIComponent(this.taskId):'/api/model/result',data:{plot_id:plot.plot_id}});const tools=['apsim','hydrus','beps'].map(name=>{const r=result[name]||{status:'missing_input',warnings:['没有本工具结果']};const available=['success','replay'].includes(r.status)&&r.source_type!=='demo';const out=available?r.outputs||{}:{};const metrics=Object.keys(out).filter(k=>typeof out[k]==='number'||typeof out[k]==='string').map(key=>({key,value:out[key]}));return {name,...r,available,metrics,soil:chartItems((out.soil_profile_current||[]).map(p=>({label:p.depth_cm+'cm',value:p.theta})),'label','value',0.6),series:name==='hydrus'?[10,40,60].map(d=>({name:d+'cm',data:(out.soil_moisture_series||[]).map(p=>[p.date,p['d'+d]])})):[]};});this.taskId=result.task_id;this.setData({result,tools,state:'ready'});this._loadValidationCases();}catch(e){if(e.code==='E_DATA_EMPTY'){this.setData({state:'empty'});return;}ui.fail(this,e);}},async _loadValidationCases(){try{const r=await request({url:'/api/model/validation_cases'});this.setData({validationCases:Array.isArray(r)?r.map(c=>({case_id:c.case_id,case_name:c.case_name,scenario:c.scenario,note:c.note,verification_status:c.verification_status})):[]});}catch(e){this.setData({validationCases:[]});}},openEvidence(e){ui.openEvidence(e.currentTarget.dataset.id);},goAdvice(){session.setPendingQuestion('解释模型结果 '+this.taskId);wx.switchTab({url:'/pages/advice/advice'});},async generate(){if(this.data.generating)return;this.setData({generating:true});try{const r=await request({url:'/api/advice/generate',method:'POST',data:{task_id:this.taskId}});this.setData({advice:r.advice});}catch(e){ui.fail(this,e);}finally{this.setData({generating:false});}}});",
+      "text": "Page({data:{...ui.defaults,report:null,items:[],sections:[],userSections:[]},onLoad(o){this.reportId=o.report_id||'';},onShow(){this.reload();},async reload(){this.setData({state:'loading',error:null});try{await ui.context(this);if(!this.reportId){if(!this.data.plot){this.setData({state:'empty',items:[]});return;}const r=await request({url:'/api/report/list',data:{plot_id:this.data.plot.plot_id}});this.setData({items:r.items,state:r.items.length?'ready':'empty'});return;}const report=await request({url:'/api/report/'+encodeURIComponent(this.reportId)});const map={};(report.evidence||[]).forEach(e=>map[e.evidence_id]=e);this.setData({userSections:userSections(report.sections),report,sections:report.sections.map(s=>({...s,evidence:s.evidence_ids.map(id=>map[id]||{evidence_id:id}),blocks:s.items.filter(i=>i.type==='fact'||i.type==='chart')})),state:'ready'});}catch(e){ui.fail(this,e);}},open(e){wx.navigateTo({url:'/pages/report/report?report_id='+encodeURIComponent(e.currentTarget.dataset.id)});},evidence(e){ui.openEvidence(e.currentTarget.dataset.id||e.detail.evidence_id);},copy(){wx.setClipboardData({data:BASE_URL+'/api/report/'+encodeURIComponent(this.reportId)+'.html',success(){wx.showToast({title:'在电脑浏览器打开后可打印PDF',icon:'none'});}});}});",
+      "disposition": "协议状态/微信回调名称；仅表示代码或工具可用，不是科学验证"
+    },
+    {
+      "file": "coffee_digital_twin/miniprogram/pages/result/result.js",
+      "line": 5,
+      "terms": [
+        "success"
+      ],
+      "text": "Page({data:{...ui.defaults,result:null,tools:[],unavailableText:'',assumptionsOpen:false,info:[{name:'APSIM',text:'OilPalm代理映射，无咖啡产量验证'},{name:'HYDRUS',text:'未校准假设情景，模板通用参数，仅解释水分响应'},{name:'BEPS',text:'简化计算，可能依赖APSIM LAI与HYDRUS水分因子'}],advice:null,generating:false},onLoad(o){this.taskId=o.task_id||'';},onShow(){this.reload();},async reload(){this.setData({state:'loading',error:null,result:null,tools:[],unavailableText:'',assumptionsOpen:false});try{const plot=await ui.context(this);if(!plot){this.setData({state:'empty'});return;}const result=await request({url:this.taskId?'/api/model/result/'+encodeURIComponent(this.taskId):'/api/model/result',data:{plot_id:plot.plot_id}});const tools=['apsim','hydrus','beps'].map(name=>{const r=result[name]||{status:'missing_input',warnings:['没有本工具结果']};const available=['success','replay'].includes(r.status)&&r.source_type!=='demo';const out=available?r.outputs||{}:{};const labels={classification_basis:'分级依据',infiltration_depth_cm:'湿润锋深度',root_uptake_ratio:'根系吸水比',water_status:'水分状态'};const values={normal:'正常',adequate:'充足',dry:'偏干',wet:'偏湿',unknown:'未确定',stress:'水分胁迫'};const metrics=Object.keys(out).filter(k=>(this.data.isDev||k!=='classification_basis')&&(typeof out[k]==='number'||typeof out[k]==='string')).map(key=>({key,label:labels[key]||key,value:typeof out[key]==='number'?formatValue(out[key],(r.units||{})[key]):(values[out[key]]||out[key]),unit:key==='infiltration_depth_cm'?'cm':displayUnit((r.units||{})[key])}));return {name,displayName:TOOL_NAMES[name],...r,available,metrics,soil:chartItems((out.soil_profile_current||[]).map(p=>({label:p.depth_cm+'cm',value:p.theta})),'label','value',0.6),series:name==='hydrus'?[10,40,60].map(d=>({name:d+'cm',data:(out.soil_moisture_series||[]).map(p=>[p.date,p['d'+d]])})):[]};});this.taskId=result.task_id;this.setData({result,tools:tools.filter(t=>t.available),unavailableText:tools.filter(t=>!t.available).map(t=>TOOL_NAMES[t.name]||t.name).join('、'),state:'ready'});}catch(e){if(e.code==='E_DATA_EMPTY'){this.setData({state:'empty'});return;}ui.fail(this,e);}},toggleAssumptions(){this.setData({assumptionsOpen:!this.data.assumptionsOpen});},openEvidence(e){ui.openEvidence(e.currentTarget.dataset.id);},goAdvice(){const target=this.data.tools.find(t=>t.name==='hydrus'&&t.available)||this.data.tools.find(t=>t.available);if(!target){wx.showToast({title:'暂无可解释模型结果',icon:'none'});return;}session.setPendingQuestion({message:'解释 '+target.name.toUpperCase()+' 已有模型结果',entry_mode:'auto',supplement:{task_id:this.taskId,tool:target.name}});wx.switchTab({url:'/pages/advice/advice'});},async generate(){if(this.data.generating)return;this.setData({generating:true});try{const r=await request({url:'/api/advice/generate',method:'POST',data:{task_id:this.taskId}});this.setData({advice:r.advice});}catch(e){ui.fail(this,e);}finally{this.setData({generating:false});}}});",
       "disposition": "协议状态/微信回调名称；仅表示代码或工具可用，不是科学验证"
     },
     {
       "file": "coffee_digital_twin/miniprogram/utils/labels.js",
-      "line": 9,
+      "line": 10,
       "terms": [
         "success"
       ],
@@ -278,6 +287,60 @@
       "disposition": "执行规范/待验收要求，非已取得成果"
     },
     {
+      "file": "coffee_digital_twin/docs/zyh/FIX06_历史窗口核验.json",
+      "line": 2,
+      "terms": [
+        "success"
+      ],
+      "text": "  \"status\": \"success\",",
+      "disposition": "工程状态/可用性定义，须结合原文的来源与适用限制"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/FIX06_历史窗口核验.json",
+      "line": 75,
+      "terms": [
+        "success"
+      ],
+      "text": "  \"baseline_status\": \"success\",",
+      "disposition": "工程状态/可用性定义，须结合原文的来源与适用限制"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/FIX06_历史窗口核验.json",
+      "line": 76,
+      "terms": [
+        "success"
+      ],
+      "text": "  \"variant_status\": \"success\"",
+      "disposition": "工程状态/可用性定义，须结合原文的来源与适用限制"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/G6_实测降雨情景核验_20261028.json",
+      "line": 1170,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"status\": \"success\",",
+      "disposition": "工程状态/可用性定义，须结合原文的来源与适用限制"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/G6_实测降雨情景核验_20261028.json",
+      "line": 1338,
+      "terms": [
+        "success"
+      ],
+      "text": "    \"status\": \"success\",",
+      "disposition": "工程状态/可用性定义，须结合原文的来源与适用限制"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/G6_实测降雨情景核验_20261028.json",
+      "line": 2499,
+      "terms": [
+        "success"
+      ],
+      "text": "      \"status\": \"success\",",
+      "disposition": "工程状态/可用性定义，须结合原文的来源与适用限制"
+    },
+    {
       "file": "coffee_digital_twin/docs/zyh/hydrus_phase0_verification.json",
       "line": 4,
       "terms": [
@@ -440,6 +503,24 @@
       "disposition": "工程状态/可用性定义，须结合原文的来源与适用限制"
     },
     {
+      "file": "coffee_digital_twin/docs/zyh/JGY融合验收_20261025.json",
+      "line": 563,
+      "terms": [
+        "success"
+      ],
+      "text": "    \"status\": \"success\"",
+      "disposition": "工程状态/可用性定义，须结合原文的来源与适用限制"
+    },
+    {
+      "file": "coffee_digital_twin/docs/zyh/JGY融合验收_20261025.json",
+      "line": 636,
+      "terms": [
+        "success"
+      ],
+      "text": "    \"status\": \"success\",",
+      "disposition": "工程状态/可用性定义，须结合原文的来源与适用限制"
+    },
+    {
       "file": "coffee_digital_twin/docs/zyh/Phase3使用说明.md",
       "line": 29,
       "terms": [
@@ -450,7 +531,7 @@
     },
     {
       "file": "coffee_digital_twin/docs/zyh/PROGRESS.md",
-      "line": 9,
+      "line": 15,
       "terms": [
         "success"
       ],
@@ -459,7 +540,7 @@
     },
     {
       "file": "coffee_digital_twin/docs/zyh/PROGRESS.md",
-      "line": 10,
+      "line": 16,
       "terms": [
         "success"
       ],
@@ -468,7 +549,7 @@
     },
     {
       "file": "coffee_digital_twin/docs/zyh/PROGRESS.md",
-      "line": 49,
+      "line": 55,
       "terms": [
         "success"
       ],
@@ -477,7 +558,7 @@
     },
     {
       "file": "coffee_digital_twin/docs/zyh/PROGRESS.md",
-      "line": 58,
+      "line": 64,
       "terms": [
         "success"
       ],
@@ -486,7 +567,7 @@
     },
     {
       "file": "coffee_digital_twin/docs/zyh/PROGRESS.md",
-      "line": 77,
+      "line": 83,
       "terms": [
         "success"
       ],
@@ -495,7 +576,7 @@
     },
     {
       "file": "coffee_digital_twin/docs/zyh/PROGRESS.md",
-      "line": 115,
+      "line": 121,
       "terms": [
         "success"
       ],
@@ -540,7 +621,7 @@
     },
     {
       "file": "coffee_digital_twin/docs/zyh/本地服务接口契约.md",
-      "line": 13,
+      "line": 27,
       "terms": [
         "success"
       ],
@@ -549,7 +630,7 @@
     },
     {
       "file": "coffee_digital_twin/docs/zyh/演示流程.md",
-      "line": 31,
+      "line": 33,
       "terms": [
         "增产",
         "节水"
@@ -582,6 +663,15 @@
         "专家通过"
       ],
       "text": "| pages/result | task_id 结果、横条图、机理说明、三条专家通过兜底案例 | GET /api/model/result/<task_id>；GET /api/model/validation_cases | 改造 | 按工具状态显示可用结果；来源标签；HYDRUS outputs；逐日 Canvas 图；移除伪验证 | T3.2 |",
+      "disposition": "范围限制/缺项/历史诊断，保留警示语义"
+    },
+    {
+      "file": "coffee_digital_twin/docs/答辩问题准备.md",
+      "line": 28,
+      "terms": [
+        "success"
+      ],
+      "text": "3. **fallback怎样区分？** 统一契约只允许success/replay的有效非demo结果进入解释，fallback显示演示身份；失败/超时/缺条件不冒充成功。replay读取已有案例并保留原日期、地块和参数。真实服务不可达时只保留数据事实和不可用说明，mock始终标明规则联调，不是正式模型。",
       "disposition": "范围限制/缺项/历史诊断，保留警示语义"
     }
   ],

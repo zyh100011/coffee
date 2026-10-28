@@ -1,0 +1,95 @@
+{
+  "purpose": "开发训练/小程序展示交接，不是正式测试集",
+  "cases": [
+    {
+      "case_id": "history_soil_moisture",
+      "input": {
+        "plot_id": "plot_catimor_project",
+        "parameter": "soil_humidity_layer1_raw",
+        "start": "2026-06-01",
+        "end": "2026-06-07",
+        "agg": "daily_mean",
+        "device_id": "source:lujiangba:soil2",
+        "unit": "%RH",
+        "data_version": "lujiangba-original-20261020"
+      },
+      "output_file": "case_history_soil_moisture.json",
+      "summary": {
+        "n": 958,
+        "mean": 0.1745271398747384,
+        "min": 0.17,
+        "max": 0.17800000000000002,
+        "missing_days": 0
+      },
+      "source_type": "observation",
+      "page": "coffee_digital_twin/miniprogram/pages/data/data"
+    },
+    {
+      "case_id": "hydrus_compare",
+      "input": {
+        "start_date": "2026-09-01",
+        "baseline_extra_irrigation_mm": 0,
+        "variant_extra_irrigation_mm": 20
+      },
+      "output_files": [
+        "case_baseline_0mm.json",
+        "case_irrig_20mm.json",
+        "case_compare_0_vs_20.json"
+      ],
+      "summary": {
+        "input_label": "假设输入",
+        "mode": "live",
+        "status": "success",
+        "note": "同一参数版本、同一窗口；不是地块校准或田间节水验证",
+        "baseline_evidence_id": "ev_hydrus_case_46288ab7cb6c4314b9611ed4def12f7b_cbb80bf38434400baed0a98db581f052",
+        "variant_evidence_id": "ev_hydrus_case_eed6387eeae3429ebe1adb1433547850_2580ea427a8146839d5bbd2571d56964",
+        "parameter_version": "hydrus-params-3e5da27bd790",
+        "time_range": {
+          "start": "2026-09-01",
+          "end": "2026-09-08"
+        },
+        "input_diff": [
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "output_diff": {
+          "theta_day7_by_depth": {
+            "10": 0.04199999999999998,
+            "20": 0.03720000000000001,
+            "40": 0.011499999999999982,
+            "60": 9.999999999998899e-05,
+            "100": 0.0
+          },
+          "infiltration_depth_cm": 0.0,
+          "root_uptake_ratio": 0.08233766233766238
+        }
+      },
+      "source_type": "simulation_uncalibrated",
+      "note": "已有引擎成功运行的历史快照，plot_id=null；不是当前地块的新预测。回放须保留原日期、参数及来源。",
+      "page": "coffee_digital_twin/miniprogram/pages/scenario/scenario"
+    },
+    {
+      "case_id": "missing_start_date",
+      "input": {
+        "adapter_input": {},
+        "entry": "models.hydrus_adapter.run_hydrus_model"
+      },
+      "output_file": "case_missing_input.json",
+      "summary": {
+        "status": "missing_input",
+        "missing_fields": [
+          "start_date"
+        ],
+        "outputs": {}
+      },
+      "source_type": "simulation_uncalibrated",
+      "note": "适配层缺参返回案例；不是完整聊天HTTP响应。页面应提示补充日期，不展示数值。",
+      "page": "coffee_digital_twin/miniprogram/pages/advice/advice"
+    }
+  ]
+}

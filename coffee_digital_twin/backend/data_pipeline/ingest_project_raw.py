@@ -16,6 +16,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from data_pipeline.profile_raw import read_tables, precision_suspect
 from data_pipeline.ingest_monitoring import _ts
+from data_pipeline.schema import version_frozen
 from database.init_db import get_connection, init_db, now_iso
 from tools.material_paths import MATERIAL_ROOT, allowed_path, sha256_file
 
@@ -56,7 +57,8 @@ def sync_confirmed_profile(conn, profile):
                 'soil_parameter_policy','soil_parameter_note',
                 'fertilizer_management','lai_use','confirmation_source','area_mu','elevation_m',
                 'planting_year','tree_age','tree_age_reference_year','tree_age_source',
-                'shade_level','row_spacing_m','plant_spacing_m'):
+                'shade_level','row_spacing_m','plant_spacing_m','soil_type','plant_density',
+                'soil_bulk_density','soil_texture','field_notes','auto_apply_to_hydrus'):
         if key in profile:
             raw[key] = profile[key]
     raw.update(coffee_variety=profile['cultivar'], data_scope=profile['scope'])
@@ -74,14 +76,29 @@ def sync_confirmed_profile(conn, profile):
         sources[key] = 'field_record'
     if 'tree_age' in profile:
         sources['tree_age'] = 'estimated'
+    sources.update(profile.get('field_sources', {}))
     raw['verified_fields'] = list(dict.fromkeys(raw.get('verified_fields', []) + confirmed))
     conn.execute('''UPDATE plots SET plot_name=?,coffee_variety=?,area_mu=?,elevation_m=?,
                     latitude=?,longitude=?,tree_age=?,shade_level=?,row_spacing_m=?,
-                    plant_spacing_m=?,raw_json=?,updated_at=? WHERE plot_id=?''',
+                    plant_spacing_m=?,soil_type=?,plant_density=?,raw_json=?,updated_at=? WHERE plot_id=?''',
                  (raw['plot_name'],raw['coffee_variety'],raw.get('area_mu'),raw.get('elevation_m'),
                   raw.get('latitude'),raw.get('longitude'),raw.get('tree_age'),raw.get('shade_level'),
-                  raw.get('row_spacing_m'),raw.get('plant_spacing_m'),json.dumps(raw,ensure_ascii=False),
+                  raw.get('row_spacing_m'),raw.get('plant_spacing_m'),raw.get('soil_type'),raw.get('plant_density'),json.dumps(raw,ensure_ascii=False),
                   now_iso(),profile['plot_id']))
+    sampling=profile.get('soil_sampling_context',{})
+    if sampling.get('depth_source')=='field_record':
+        # Frozen laboratory values stay untouched. Confirmed sampling metadata
+        # is stored in soil_reports and overlaid when serving the original lab rows.
+        rows=conn.execute('SELECT * FROM soil_lab_results WHERE plot_id=?',(profile['plot_id'],)).fetchall()
+        for item in rows:
+            key=(profile['plot_id'],item['lab_sample_id'],item['item'])
+            if not conn.execute('SELECT 1 FROM soil_reports WHERE plot_id=? AND report_ref=? AND item=?',key).fetchone():
+                conn.execute('INSERT INTO soil_reports VALUES (?,?,?,?,?,?,?,?,?,?)',
+                    (profile['plot_id'],None,sampling['depth_top_cm'],sampling['depth_bottom_cm'],
+                     item['item'],item['value'],item['unit'],item['method'],item['lab_sample_id'],'field_record'))
+            else:
+                conn.execute('UPDATE soil_reports SET depth_top_cm=?,depth_bottom_cm=?,status=? WHERE plot_id=? AND report_ref=? AND item=?',
+                    (sampling['depth_top_cm'],sampling['depth_bottom_cm'],'field_record',*key))
 
 
 def _source(kind, path, row):
@@ -122,7 +139,7 @@ def ingest_project(root=None, profile=None):
                 if conn.execute('SELECT 1 FROM raw_files WHERE file_id=?', (fid,)).fetchone():
                     reports.append({'file': path.name, 'status': 'already_imported', 'sha256': digest})
                     continue
-                if conn.execute('SELECT 1 FROM data_versions WHERE data_version=?', (version,)).fetchone():
+                if version_frozen(conn, version):
                     raise ValueError('冻结版本不可修改：' + version)
                 frame = next(iter(read_tables(path).values()))
                 required = {'参数名称', '参数数值', '参数单位'} | ({'日期','时间','设备编号','参数标识'} if spec['kind']=='puer' else {'记录时间'})

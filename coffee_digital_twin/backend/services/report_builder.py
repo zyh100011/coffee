@@ -3,6 +3,7 @@ import html
 import json
 from database.init_db import get_connection
 from services.trace_store import lookup
+from services.evidence_transport import citation_source,REJECTED_ANSWERS
 
 ORDER=['事实','依据','情景差异','建议/核查','缺项与限制']
 def build_report(source_id,kind='trace',plot_id=None):
@@ -18,13 +19,14 @@ def build_report(source_id,kind='trace',plot_id=None):
             claims=[]
             forbidden={r['evidence_id'] for r in results}-available
             allowed=available|{c['evidence_id'] for c in citations if c['evidence_id'] not in forbidden}
-            for c in answer.get('claims',[]):
+            answer_status=answer.get('retrieval_trace',{}).get('status')
+            for c in ([] if answer_status in REJECTED_ANSWERS else answer.get('claims',[])):
                 valid=bool(c.get('evidence_ids')) and set(c['evidence_ids'])<=allowed
                 claims.append({'text':c['text'] if valid else '[未核验] '+c['text'],'evidence_ids':c['evidence_ids'] if valid else []})
             checks=answer.get('check_items',[])+[x for b in blocks if b['type']=='check_items' for x in b['items']]
             limits=[b['text'] for b in blocks if b['type']=='warning']+[b.get('question','缺项：'+','.join(b.get('fields',[]))) for b in blocks if b['type']=='missing']
             evidence=[{'evidence_id':r['evidence_id'],'source_type':r['source_type'],'status':r['status'],'mode':r['mode'],'text':r['tool']+' · '+r['parameter_version']} for r in results]
-            evidence += [{'evidence_id':c['evidence_id'],'source_type':'demo' if row['service_mode']=='mock' else 'literature','status':'success','mode':'live','text':c['title']+' · '+c['locator']} for c in citations]
+            evidence += [{'evidence_id':c['evidence_id'],'source_type':citation_source(c,results,row['service_mode']=='mock'),'status':'success','mode':'live','text':c['title']+' · '+c['locator']} for c in citations if c['evidence_id'] not in {r['evidence_id'] for r in results}]
             items=[facts,evidence,[],claims+[{'text':x,'evidence_ids':[]} for x in checks],[{'text':x,'evidence_ids':[]} for x in limits]]
         else:
             exists=conn.execute("SELECT 1 FROM sqlite_master WHERE name='scenario_compares'").fetchone()
@@ -50,7 +52,7 @@ def build_report(source_id,kind='trace',plot_id=None):
 
 def render_html(report):
     esc=lambda x:html.escape(str(x),quote=True)
-    labels={'observation':'实测','literature':'文献','simulation_uncalibrated':'模拟·未校准','proxy_model':'代理模型','simplified_model':'简化模型','demo':'演示数据'}
+    labels={'observation':'实测','literature':'文献','simulation_uncalibrated':'模拟·未校准','proxy_model':'代理模型','simplified_model':'简化模型','demo':'演示数据','internal_tool_description':'工具说明'}
     evidence={e['evidence_id']:e for e in report.get('evidence',[])}
     def provenance(item):
         source=item.get('source_type') or evidence.get(item.get('evidence_id'),{}).get('source_type')

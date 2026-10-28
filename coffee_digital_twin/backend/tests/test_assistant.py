@@ -48,7 +48,7 @@ def test_failed_hydrus_never_claim_evidence(client,monkeypatch):
             'limitations':[],'check_items':[],'mock':True}
     monkeypatch.setattr(ec,'answer',answer)
     r=client.post('/api/assistant/chat',json={'plot_id':'p','message':'如果2026-09-01多浇20mm'}).get_json()
-    assert any(b['type']=='warning' and 'failed' in b['text'] for b in r['blocks'])
+    assert any(b['type']=='warning' and '失败' in b['text'] for b in r['blocks'])
     assert any(b['type']=='text' and b['text'].startswith('[未核验]') for b in r['blocks'])
     from database.init_db import get_connection
     with get_connection() as conn: row=conn.execute('SELECT errors_json FROM assistant_traces WHERE trace_id=?',(r['trace_id'],)).fetchone()

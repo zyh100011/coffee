@@ -10,3 +10,6 @@ server/backup/final_result_json/*
 __pycache__/
 *.pyc
 backend/.env
+
+server/backup/frozen/
+backend/database/freeze_backups/

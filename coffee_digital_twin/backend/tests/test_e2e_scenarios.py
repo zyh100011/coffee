@@ -42,7 +42,7 @@ def test_four_mock_scenarios(client,monkeypatch):
         check=chat('帮我看看墒情',session_id='e2e-check',supplement={'text':'不知道'})
         assert any(b['type']=='check_items' for b in check['blocks'])
         failed=chat('如果'+today.isoformat()+'多浇20mm')
-        assert any(b['type']=='warning' and 'failed' in b['text'] for b in failed['blocks'])
+        assert any(b['type']=='warning' and '失败' in b['text'] for b in failed['blocks'])
         assert not any(b['type']=='fact' for b in failed['blocks'])
     with get_connection() as conn:
         traces=conn.execute('SELECT trace_id,route_json,service_mode FROM assistant_traces').fetchall()

@@ -4,7 +4,8 @@ const SOURCES = {
   simulation_uncalibrated: { text: '模拟·未校准', className: 'tag-simulation' },
   proxy_model: { text: '代理模型', className: 'tag-proxy' },
   simplified_model: { text: '简化模型', className: 'tag-proxy' },
-  demo: { text: '演示数据', className: 'tag-demo' }
+  demo: { text: '演示数据', className: 'tag-demo' },
+  internal_tool_description: { text: '工具说明', className: 'tag-proxy' }
 };
 const STATUSES = { success: '可用', replay: '历史回放', partial: '部分可用', failed: '失败', timeout: '超时', missing_input: '缺少条件', fallback: '演示回退' };
 function evidenceLabel(source, status, mode) {
@@ -15,4 +16,5 @@ function evidenceLabel(source, status, mode) {
 }
 const PARAMETERS = { soil_moisture: '土壤含水量', soil_temperature: '土壤温度', air_temperature: '空气温度', rainfall: '降雨', rain: '降雨' };
 const FIELDS = { plot_name: '名称', coffee_variety: '品种', tree_age: '树龄', area_mu: '面积', latitude: '纬度', longitude: '经度', elevation_m: '海拔', soil_type: '土质', shade_level: '遮阴', plant_density: '密度', row_spacing_m: '行距', plant_spacing_m: '株距' };
-module.exports = { SOURCES, STATUSES, PARAMETERS, FIELDS, evidenceLabel };
+const TOOL_NAMES = {hydrus:'HYDRUS-1D 土壤水分',apsim:'APSIM',beps:'BEPS-Lite'};
+module.exports = { TOOL_NAMES, SOURCES, STATUSES, PARAMETERS, FIELDS, evidenceLabel };

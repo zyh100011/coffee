@@ -98,12 +98,12 @@ def test_report_preserves_samples_missing_dates_and_no_rain_conversion(client,tm
     assert ingest_report(soil,tmp_path)['status']=='already_imported'
     r=client.get('/api/data/soil-reports?plot_id='+profile['plot_id']).get_json()
     assert len(r['items'])==9
-    assert r['items'][0]['sample_date'] is None and r['items'][0]['depth_top_cm'] is None
+    assert r['items'][0]['sample_date'] is None and r['items'][0]['depth_top_cm']==0
     assert r['items'][0]['received_date']=='2026-03-26'
     assert [s['sample_label'] for s in r['items'] if s['is_representative']]==['C06']
     assert r['representative_sample']['lab_sample_id']=='2026T108008'
     assert r['sampling_context']['location']=='监测器旁'
-    assert all(s['depth_top_cm'] is None for s in r['items'])
+    assert all(s['depth_top_cm']==0 and s['depth_bottom_cm']==20 and s['depth_source']=='field_record' for s in r['items'])
     assert sum(len(s['measurements']) for s in r['items'])==81
     final=r['items'][-1]
     assert next(i['value'] for i in final['measurements'] if i['item']=='速效钾')==1320
@@ -163,7 +163,7 @@ def test_remove_only_authorized_plots_with_backup(client,tmp_path,monkeypatch):
     result=migration.apply_confirmation()
     assert len(result['removed_plot_ids'])==3 and Path(result['backup']).is_file()
     listed=client.get('/api/plot/list').get_json()['items']
-    assert len(listed)==1 and listed[0]['plot_name']=='云南卡蒂姆咖啡基地'
+    assert len(listed)==1 and listed[0]['plot_name']=='云南普洱卡蒂姆咖啡基地'
     assert listed[0]['rain_source']=='natural_rainfall'
     with get_connection() as conn: assert conn.execute('SELECT COUNT(*) FROM obs_long').fetchone()[0]==3
     assert migration.apply_confirmation()['removed_plot_ids']==[]
@@ -193,15 +193,54 @@ def test_profile_sync_preserves_records_and_exposes_confirmed_fields(client,tmp_
     assert plot['rainfall_input_policy']=='csv_observations_only'
     assert plot['irrigation_input_policy']=='management_description_only'
     assert plot['soil_parameter_policy']=='regional_literature_with_provenance'
-    assert 'rainfall_accumulation_mode' in plot['missing_fields']
+    assert 'rainfall_accumulation_mode' not in plot['missing_fields']
     assert 'soil_hydraulic_parameters' in plot['missing_fields']
     assert plot['shade_level']=='无遮挡'
     assert (plot['row_spacing_m'],plot['plant_spacing_m'])==(2,1)
-    assert plot['completeness']=={'filled':10,'total':12,'missing':['soil_type','plant_density']}
-    assert plot.get('plant_density') is None
+    assert plot['completeness']=={'filled':12,'total':12,'missing':[]}
+    assert plot['plant_density']==333
+    assert plot['field_sources']['soil_type']=='literature' and plot['field_sources']['plant_density']=='estimated'
+    assert plot['auto_apply_to_hydrus'] is False
     with get_connection() as conn:
         assert [tuple(r) for r in conn.execute('SELECT * FROM obs_long ORDER BY obs_id')]==before
         row=conn.execute('SELECT area_mu,elevation_m,tree_age,shade_level,row_spacing_m,plant_spacing_m FROM plots WHERE plot_id=?',(profile['plot_id'],)).fetchone()
         assert tuple(row)==(10,1050,3,'无遮挡',2,1)
         assert conn.execute('SELECT COUNT(*) FROM farm_operations').fetchone()[0]==0
     assert client.get('/api/plot/'+migration.REMOVED_IDS[0]).status_code==200
+
+
+def test_sampling_confirmation_does_not_rewrite_frozen_lab(client,tmp_path):
+    from data_pipeline.ingest_project_soil import ingest_report
+    from data_pipeline.ingest_project_raw import sync_confirmed_profile
+    profile,path=setup_source(tmp_path)
+    ingest_project(tmp_path,profile)
+    soil=json.loads(Path('data_pipeline/soil_report_2026T108.json').read_text(encoding='utf-8'))
+    (tmp_path/'report.pdf').write_bytes(b'isolated report fixture')
+    soil['source_path']='report.pdf'
+    ingest_report(soil,tmp_path)
+    with get_connection() as conn:
+        before=[tuple(r) for r in conn.execute('SELECT * FROM soil_lab_results ORDER BY result_id')]
+        sync_confirmed_profile(conn,profile)
+        sync_confirmed_profile(conn,profile)
+        assert conn.execute('SELECT COUNT(*) FROM soil_reports').fetchone()[0]==81
+        assert all(tuple(r)==(0,20,'field_record') for r in conn.execute('SELECT depth_top_cm,depth_bottom_cm,status FROM soil_reports'))
+        assert before==[tuple(r) for r in conn.execute('SELECT * FROM soil_lab_results ORDER BY result_id')]
+    from services.plot_context import load_plot_context
+    context=load_plot_context(profile['plot_id'])
+    assert context['reference_fields']['plant_density']['source']=='estimated'
+    assert context['reference_fields']['soil_bulk_density']['source']=='literature'
+    assert context['auto_apply_to_hydrus'] is False
+
+
+def test_edit_preserves_hidden_reference_provenance(client,tmp_path,monkeypatch):
+    from api.plot_api import PROFILE_FIELDS
+    profile,path=setup_source(tmp_path);ingest_project(tmp_path,profile)
+    monkeypatch.setitem(client.application.config,'SINGLE_PLOT_ID',profile['plot_id'])
+    before=client.get('/api/plot/'+profile['plot_id']).get_json()['plot']
+    payload={key:before.get(key) for key in PROFILE_FIELDS}
+    payload.update(plot_id=profile['plot_id'],field_sources={key:before.get('field_sources',{}).get(key,'unknown') for key in PROFILE_FIELDS})
+    assert client.post('/api/plot/init',json=payload).status_code==200
+    after=client.get('/api/plot/'+profile['plot_id']).get_json()['plot']
+    assert after['field_sources']['soil_bulk_density']=='literature'
+    assert after['field_sources']['soil_texture']=='literature'
+    assert after['field_notes']==before['field_notes'] and after['auto_apply_to_hydrus'] is False

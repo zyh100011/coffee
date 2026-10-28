@@ -1,0 +1,41 @@
+{
+  "version": "data-v1.0",
+  "backup": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\raw_review\\before_data_v1_20261028_202300.db",
+  "before": {
+    "observations": {
+      "rows": 476215,
+      "sha256": "24b90805173c54f4951151fbd1b24b328667b71a73a8181d9fc7b9c7bad63640"
+    },
+    "soil": {
+      "rows": 81,
+      "sha256": "5972d3bbb8dff2d1ba743e18257bfff82c94012970e02778855a8b52925353d8"
+    }
+  },
+  "after": {
+    "observations": {
+      "rows": 476215,
+      "sha256": "24b90805173c54f4951151fbd1b24b328667b71a73a8181d9fc7b9c7bad63640"
+    },
+    "soil": {
+      "rows": 81,
+      "sha256": "5972d3bbb8dff2d1ba743e18257bfff82c94012970e02778855a8b52925353d8"
+    }
+  },
+  "original_values_unchanged": true,
+  "file_count": 32,
+  "valid_observations": 424988,
+  "original_versions": [
+    {
+      "source_version": "lujiangba-original-20261020",
+      "files": 30
+    },
+    {
+      "source_version": "puer-original-20261020",
+      "files": 1
+    },
+    {
+      "source_version": "soil-report-2026T108-20261020",
+      "files": 1
+    }
+  ]
+}

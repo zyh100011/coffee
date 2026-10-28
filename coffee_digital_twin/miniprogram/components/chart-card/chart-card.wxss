@@ -35,7 +35,9 @@
 }
 
 .bar-value {
-  width: 126rpx;
+  width: 170rpx;
+  flex-shrink: 0;
+  white-space: nowrap;
   text-align: right;
 }
 

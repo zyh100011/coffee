@@ -34,7 +34,7 @@ def test_three_typical_http_requests(client,flask_app,monkeypatch,tmp_path):
             result=response.json(); results.append(result)
             assert result['mock'] and result['blocks'][-1]['type']=='trace'
         assert any(b['type']=='evidence' for b in results[0]['blocks'])
-        assert any(b['type']=='warning' and 'missing_input' in b['text'] for b in results[1]['blocks'])
+        assert any(b['type']=='warning' and '缺少' in b['text'] for b in results[1]['blocks'])
         assert any(b['type']=='chart' for b in results[2]['blocks'])
         with get_connection() as conn:
             traces=conn.execute('SELECT tool_results_json FROM assistant_traces').fetchall()

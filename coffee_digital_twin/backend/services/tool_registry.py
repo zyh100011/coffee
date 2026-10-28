@@ -160,8 +160,13 @@ def execute(calls,ctx):
         name=call['name']; args=dict(call['arguments'])
         if time.monotonic()>=tool_deadline-1:
             results.append(make_tool_result(tool='data_query',status='timeout',warnings=['工具时间预算耗尽'])); break
-        if name=='query_soil_moisture': args['parameter']='soil_moisture'
-        try: result=FUNCTIONS[name](args,{**ctx,'deadline':tool_deadline})
+        try:
+            if name=='query_soil_moisture' and FUNCTIONS[name] is _query:
+                from services.moisture_query import run
+                result=run(args,{**ctx,'deadline':tool_deadline})
+            else:
+                if name=='query_soil_moisture':args['parameter']='soil_moisture'
+                result=FUNCTIONS[name](args,{**ctx,'deadline':tool_deadline})
         except (ValueError,TypeError) as error:
             result=make_tool_result(tool='hydrus' if name=='run_hydrus_scenario' else 'data_query',status='missing_input',missing_fields=['tool_inputs'],warnings=[str(error)])
         except Exception:

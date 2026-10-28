@@ -11,6 +11,7 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import yaml
 from data_pipeline.profile_raw import read_tables, precision_suspect
+from data_pipeline.schema import version_frozen
 from database.init_db import get_connection, init_db, now_iso
 from tools.material_paths import allowed_path, sha256_file, MATERIAL_ROOT
 
@@ -61,7 +62,7 @@ def ingest(root,mapping,device_map,log_path=None):
         conn.execute('BEGIN')
         for item in files:
             version=item['data_version']
-            if conn.execute('SELECT 1 FROM data_versions WHERE data_version=?',(version,)).fetchone():
+            if version_frozen(conn, version):
                 raise ValueError('冻结版本不可修改：'+version)
             pattern=item['file_glob']
             if Path(pattern).is_absolute() or '..' in Path(pattern).parts:

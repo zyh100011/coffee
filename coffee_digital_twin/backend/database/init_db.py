@@ -1,3 +1,4 @@
+from contextlib import closing
 import sqlite3
 from datetime import datetime
 
@@ -17,7 +18,7 @@ def now_iso():
 
 def init_db():
     ensure_dirs()
-    with get_connection() as conn:
+    with closing(get_connection()) as conn, conn:
         conn.executescript(
             """
             CREATE TABLE IF NOT EXISTS plots (
@@ -92,6 +93,8 @@ def init_db():
         init_reports(conn)
         from services.scenario_service import init_compares
         init_compares(conn)
+        from services.jgy_delivery import init_schema as init_team_materials
+        init_team_materials(conn)
 
 
 if __name__ == "__main__":

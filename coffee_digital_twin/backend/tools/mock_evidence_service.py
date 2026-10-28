@@ -3,6 +3,8 @@ import argparse
 from datetime import date,timedelta
 import json
 from pathlib import Path
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import re
 from flask import Flask,jsonify,request
 def route_rules(payload):
@@ -28,7 +30,9 @@ def route_rules(payload):
         depth=re.search(r'([0-9]+(?:[.][0-9]+)?)[ ]*(?:cm|厘米)',text,re.I)
         depths={c['depth_cm'] for c in payload.get('plot_context',{}).get('observation_catalog',[]) if c['parameter']=='soil_moisture' and c['depth_cm'] is not None}
         unique=next(iter(depths)) if len(depths)==1 else None
-        args.update(depth_cm=supplement.get('depth_cm',float(depth[1]) if depth else unique),start=start,end=end,agg='daily_mean')
+        from services.moisture_query import depth_from_text
+        parsed_depth=depth_from_text(text)
+        args.update(depth_cm=supplement.get('depth_cm',parsed_depth if parsed_depth is not None else unique),start=start,end=end,agg='daily_mean')
         name='query_soil_moisture'; result.update(intent='data_query',need_retrieval=False)
     elif any(k in text for k in ('解释','为什么')) and (supplement.get('task_id') or re.search(r'task_[A-Za-z0-9_-]+',text)):
         task=re.search(r'task_[A-Za-z0-9_-]+',text)
@@ -42,14 +46,24 @@ def answer_rules(payload):
     claims=[]; citations=[]; limitations=['MOCK模板回答，不是蔡济远真实服务或真实文献检索']
     if payload.get('intent')=='knowledge':
         citations=json.loads(Path(__file__).with_name('mock_corpus.json').read_text(encoding='utf-8'))
-        claims=[{'text':c['snippet'],'evidence_ids':[c['evidence_id']]} for c in citations]
+        claims=[{'text':'该问题需要连接知识服务后回答','evidence_ids':[c['evidence_id'] for c in citations]}]
     for r in payload.get('tool_results',[]):
         if r.get('status') not in {'success','replay'} or r.get('source_type')=='demo':
             limitations.append('工具不可用或演示，不生成数值解释'); continue
-        numbers={k:v for k,v in r['outputs'].items() if isinstance(v,(int,float)) and not isinstance(v,bool)}
-        text='MOCK 模板：'+r['tool']+'；'+json.dumps(numbers,ensure_ascii=False)+'；来源='+r['source_type']
+        out=r['outputs']; unit=r.get('units',{}).get('value','').replace('cm3/cm3','cm³/cm³')
+        if r['tool']=='data_query' and out.get('mean') is not None:
+            window=r.get('time_range',{});layer=r.get('inputs',{}).get('layer_interval_cm')
+            depth=f"{layer['top']}–{layer['bottom']}cm " if layer else ''
+            measure='平均含水率' if 'cm³/cm³' in unit else '平均读数'
+            text=f"{window.get('start','')} 至 {window.get('end','')}，{depth}{measure} {out['mean']:.2f} {unit}"
+            if out.get('min') is not None and out.get('max') is not None:
+                text+=f"，范围 {out['min']:.2f}–{out['max']:.2f}"
+            text+='。'
+        elif r['tool']=='hydrus':
+            text='土壤水分计算已完成，请查看剖面和变化曲线。'
+        else:text='计算结果已返回，请查看数值和图表。'
         claims.append({'text':text,'evidence_ids':[r['evidence_id']]})
-    return {'answer':'；'.join(c['text'] for c in claims) or 'MOCK：没有可解释的有效工具结果','claims':claims,'citations':citations,'limitations':limitations,'check_items':[],'clarify_question':None,'retrieval_trace':{'mode':'mock'},'mock':True}
+    return {'answer':'；'.join(c['text'] for c in claims) or '暂无可解释的有效结果','claims':claims,'citations':citations,'limitations':limitations,'check_items':[],'clarify_question':None,'retrieval_trace':{'mode':'mock'},'mock':True}
 app=Flask(__name__)
 @app.get('/health')
 def health(): return jsonify(status='ok',mock=True,service='deterministic_mock')

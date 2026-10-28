@@ -1,0 +1,31 @@
+{
+  "task": "G3",
+  "backup": "E:\\coffe model\\coffee_competition_zyh\\coffee_digital_twin\\backend\\runtime\\raw_review\\before_catimor_confirmation_20261028_231744_503616.db",
+  "raw_fingerprints_before": {
+    "obs_long": "782e5f83e5df8bcafe094cbda860acf2140d57485f00c5e64be2dcf20b59473f",
+    "soil_lab_results": "5972d3bbb8dff2d1ba743e18257bfff82c94012970e02778855a8b52925353d8",
+    "selector": "5a52a5f7e99e2179ed9fd30bd8f75b06f860d1d90067dbc5898cc5cc410f284e"
+  },
+  "raw_fingerprints_after": {
+    "obs_long": "782e5f83e5df8bcafe094cbda860acf2140d57485f00c5e64be2dcf20b59473f",
+    "soil_lab_results": "5972d3bbb8dff2d1ba743e18257bfff82c94012970e02778855a8b52925353d8",
+    "selector": "5a52a5f7e99e2179ed9fd30bd8f75b06f860d1d90067dbc5898cc5cc410f284e"
+  },
+  "completeness": {
+    "filled": 12,
+    "missing": [],
+    "total": 12
+  },
+  "field_sources": {
+    "soil_type": "literature",
+    "plant_density": "estimated",
+    "soil_bulk_density": "literature",
+    "soil_texture": "literature"
+  },
+  "soil_samples": 9,
+  "soil_depth_cm": [
+    0,
+    20
+  ],
+  "auto_apply_to_hydrus": false
+}

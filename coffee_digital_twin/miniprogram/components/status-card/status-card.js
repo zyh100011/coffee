@@ -1,2 +1,2 @@
-const { numberText } = require('../../utils/format');
-Component({properties:{label:String,value:{type:null,value:null},unit:String,sub:String,sourceType:String,status:String},data:{unavailable:false,valueText:'—'},observers:{value(value){this.setData({valueText:numberText(value)});},status(status){this.setData({unavailable:['failed','timeout','missing_input','fallback'].includes(status)});}}});
+const { formatValue, displayUnit } = require('../../utils/format');
+Component({options:{styleIsolation:'apply-shared'},properties:{label:String,value:{type:null,value:null},unit:String,sub:String,sourceType:String,status:String},data:{unavailable:false,valueText:'—',unitText:''},observers:{'value,unit'(value,unit){this.setData({valueText:formatValue(value,unit),unitText:displayUnit(unit)});},status(status){this.setData({unavailable:['failed','timeout','missing_input','fallback'].includes(status)});}}});

@@ -1,3 +1,4 @@
+const { formatValue } = require('./format');
 function asText(value, fallback) {
   if (value === undefined || value === null || value === '') {
     return fallback || '-';
@@ -18,6 +19,7 @@ function chartItems(list, labelKey, valueKey, maxValue) {
     return {
       label: item[labelKey],
       value,
+      displayValue: formatValue(value, 'moisture'),
       width: Math.max(6, Math.round((value / max) * 100))
     };
   });

@@ -2,7 +2,7 @@ import json
 import uuid
 import math
 
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, current_app
 
 from database.init_db import get_connection, now_iso
 
@@ -32,7 +32,7 @@ def _default_plot(payload):
         else: value=value.strip() or None
         plot[key]=value
     sources=payload.get('field_sources') or {}
-    if not isinstance(sources,dict) or any(v not in ('field_record','现场记录','estimated','估计','unknown','未知') for v in sources.values()): raise ValueError('来源选项无效')
+    if not isinstance(sources,dict) or any(v not in ('field_record','现场记录','estimated','估计','literature','unknown','未知') for v in sources.values()): raise ValueError('来源选项无效')
     plot['field_sources']={k:sources.get(k,'unknown') for k in PROFILE_FIELDS}
     plot['verified_fields']=[k for k in PROFILE_FIELDS if plot[k] is not None and sources.get(k) in ('field_record','现场记录')]
     return plot
@@ -41,8 +41,18 @@ def _default_plot(payload):
 @plot_bp.post("/init")
 def init_plot():
     payload = request.get_json(silent=True) or {}
+    single=current_app.config.get('SINGLE_PLOT_ID')
+    if single:
+        with get_connection() as conn:existing=conn.execute('SELECT raw_json FROM plots WHERE plot_id=?',(single,)).fetchone()
+        if not isinstance(payload,dict) or payload.get('plot_id')!=single or not existing:
+            return jsonify(status='error',code='E_PARAM_INVALID',message='单一基地模式，仅可编辑现有基地档案',retryable=False),400
     try: plot = _default_plot(payload)
     except (ValueError,TypeError) as error: return jsonify(status='error',code='E_PARAM_INVALID',message=str(error),retryable=False),400
+    if single:
+        # Preserve classification, layer conventions, and source records when editing.
+        original=json.loads(existing['raw_json'])
+        plot={**original,**plot,'field_sources':{**original.get('field_sources',{}),**plot['field_sources']}}
+        plot.update(plot_name='云南普洱卡蒂姆咖啡基地',coffee_variety='卡蒂姆')
     timestamp = now_iso()
 
     with get_connection() as conn:
@@ -97,26 +107,29 @@ def init_plot():
 
 @plot_bp.get('/list')
 def list_plots():
-    with get_connection() as conn: rows=conn.execute('SELECT raw_json FROM plots ORDER BY updated_at DESC,plot_id').fetchall()
+    single=current_app.config.get('SINGLE_PLOT_ID')
+    with get_connection() as conn:
+        rows=conn.execute('SELECT raw_json FROM plots WHERE plot_id=?',(single,)).fetchall() if single else conn.execute('SELECT raw_json FROM plots ORDER BY updated_at DESC,plot_id').fetchall()
     items=[]
     for row in rows:
-        plot=json.loads(row['raw_json']); plot['completeness']=profile_completeness(plot); items.append(plot)
-    return jsonify(status='success',items=items)
+        plot=json.loads(row['raw_json']); plot['single_base']=bool(single); plot['completeness']=profile_completeness(plot); items.append(plot)
+    return jsonify(status='success',items=items,single_plot_id=single or None)
 
 @plot_bp.get('/<plot_id>')
 def plot_detail(plot_id):
+    single=current_app.config.get('SINGLE_PLOT_ID')
+    if single and plot_id!=single:return jsonify(status='not_found'),404
     with get_connection() as conn: row=conn.execute('SELECT raw_json FROM plots WHERE plot_id=?',(plot_id,)).fetchone()
     if not row: return jsonify(status='error',code='E_PLOT_REQUIRED',message='地块不存在',retryable=False),404
-    plot=json.loads(row['raw_json']); plot['completeness']=profile_completeness(plot)
+    plot=json.loads(row['raw_json']); plot['single_base']=bool(single); plot['completeness']=profile_completeness(plot)
     return jsonify(status='success',plot=plot)
 
 
 @plot_bp.get("/latest")
 def latest_plot():
+    single=current_app.config.get('SINGLE_PLOT_ID')
     with get_connection() as conn:
-        row = conn.execute(
-            "SELECT raw_json FROM plots ORDER BY updated_at DESC LIMIT 1"
-        ).fetchone()
+        row = conn.execute('SELECT raw_json FROM plots WHERE plot_id=?',(single,)).fetchone() if single else conn.execute('SELECT raw_json FROM plots ORDER BY updated_at DESC LIMIT 1').fetchone()
     if not row:
         return jsonify({"status": "empty", "plot": None})
     return jsonify({"status": "success", "plot": json.loads(row["raw_json"])})

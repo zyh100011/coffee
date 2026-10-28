@@ -8,8 +8,10 @@ assistant_bp=Blueprint('assistant_api',__name__,url_prefix='/api')
 @assistant_bp.post('/assistant/chat')
 def assistant_chat():
     p=request.get_json(silent=True)
-    if not isinstance(p,dict) or not isinstance(p.get('message'),str) or not p['message'].strip() or len(p['message'])>10000:
-        return jsonify(status='error',code='E_PARAM_INVALID',message='请提供非空message',retryable=False),400
+    if not isinstance(p,dict) or not isinstance(p.get('message'),str) or not p['message'].strip() or len(p['message'])>4000:
+        return jsonify(status='error',code='E_PARAM_INVALID',message='请提供1–4000字符的非空问题',retryable=False),400
+    if p.get('entry_mode','auto') not in ('auto','knowledge'):
+        return jsonify(status='error',code='E_PARAM_INVALID',message='问答入口无效',retryable=False),400
     if (p.get('session_id') is not None and not isinstance(p['session_id'],str)) or (p.get('plot_id') is not None and not isinstance(p['plot_id'],str)) or not isinstance(p.get('history',[]),list) or (p.get('supplement') is not None and not isinstance(p['supplement'],(str,dict))):
         return jsonify(status='error',code='E_PARAM_INVALID',message='请求字段类型无效',retryable=False),400
     return jsonify(chat(p))

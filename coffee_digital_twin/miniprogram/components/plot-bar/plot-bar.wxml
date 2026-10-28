@@ -1,1 +1,1 @@
-<view class="plot-bar" bindtap="change" aria-role="button" aria-label="切换当前地块"><text>当前地块：{{plot.plot_name || "未选择"}}</text><text>切换 ›</text></view>
+<view class="plot-bar" bindtap="change" aria-role="button" aria-label="查看基地档案"><text>{{plot.single_base ? (plot.plot_name || '基地数据未导入') : ('当前地块：' + (plot.plot_name || '未选择'))}}</text><text wx:if="{{!plot.single_base}}">切换 ›</text></view>

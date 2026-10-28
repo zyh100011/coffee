@@ -45,7 +45,15 @@ def _build_hydrus_input(data):
     days = [(start + timedelta(days=i)).isoformat() for i in range(7)]
     extra = _number(scenario.get('extra_irrigation_mm', 0), 'extra_irrigation_mm', maximum=100)
     rain, known = [0.0]*7, set()
-    for item in data.get('weather_series') or []:
+    derived=None
+    enabled=data.get('plot_info',{}).get('rainfall_counter_review',{}).get('model_daily_rain_enabled')
+    if enabled and data.get('plot_id'):
+        from services.rainfall import daily_rainfall
+        derived=daily_rainfall(data['plot_id'],data.get('rainfall_source'),days[0],days[-1])
+        weather=[{'date':p['date'],'rain_mm':p['rain_mm'],'source':p['source_type']} for p in derived['items']]
+    else:
+        weather=data.get('weather_series') or []
+    for item in weather:
         if item.get('date') not in days or item.get('source') not in {'observation', 'observed'}:
             continue
         index = days.index(item['date'])
@@ -70,6 +78,9 @@ def _build_hydrus_input(data):
         operations.append(dict(item, normalized_mm=amount))
     irrigation[0] += extra
     assumptions = list(ASSUMPTIONS)
+    if derived:
+        assumptions.append('日降雨按'+derived['display_source']+'累计读数派生：'+derived['rule'])
+        assumptions.extend(derived['warnings'])
     absent = [str(i+1) for i in range(7) if i not in known]
     if absent:
         assumptions.append('无实测降雨，第 ' + '/'.join(absent) + ' 天降雨按 0 mm 假设')
@@ -85,6 +96,7 @@ def _build_hydrus_input(data):
         fluxes[key] = default if supplied is None else _number(supplied, key)
         assumptions.append(f'{key}={fluxes[key]:g} cm/d，' + ('模板固定值' if supplied is None else '显式覆盖，来源：' + str(source)))
     return {'start_date': start.isoformat(), 'extra_irrigation_mm': extra, 'dates': days,
+            **({'rainfall_derivation':derived} if derived else {}),
             'daily_prec_cm': [(a+b)/10 for a,b in zip(rain, irrigation)], 'farm_operations': operations,
             'assumptions': assumptions, **fluxes}, []
 

@@ -10,6 +10,9 @@ def flask_app(tmp_path_factory):
         environment.setenv("COFFEE_DB_PATH", str(isolated / "session.db"))
         environment.setenv("COFFEE_RUNTIME_DIR", str(isolated / "runtime"))
         environment.setenv("FLASK_DEBUG", "0")
+        # Legacy multi-plot fixtures exercise the reusable implementation.
+        # Single-base default is separately tested with app.config enabled.
+        environment.setenv('SINGLE_PLOT_ID','')
         # config may already have been imported by configuration-only tests.
         import config
         importlib.reload(config)

@@ -9,11 +9,11 @@ from flask import Blueprint, jsonify, request
 from config import RESULT_JSON_DIR
 from database.init_db import get_connection, now_iso
 from models.apsim_adapter import run_apsim_model
-from models.beps_adapter import run_beps_model
+from services.beps_gateway import run_beps_checked
 from models.fusion_engine import merge
 from models.hydrus_adapter import run_hydrus_model
 from services.weather_service import get_observed_weather, get_demo_weather_series
-from services.tool_registry import wrap_legacy_result, legacy_inputs
+from services.tool_registry import wrap_legacy_result
 
 
 model_bp = Blueprint("model_api", __name__, url_prefix="/api/model")
@@ -126,10 +126,7 @@ def run_model():
     try:
         apsim_result = wrap_legacy_result('apsim',run_apsim_model(model_input),model_input)
         hydrus_result = run_hydrus_model(model_input)
-        beps_raw = run_beps_model(model_input, apsim_result=legacy_inputs(apsim_result), hydrus_result=legacy_inputs(hydrus_result))
-        beps_result = wrap_legacy_result('beps',beps_raw,{**model_input,'upstream':{
-            'lai':apsim_result['evidence_id'] if legacy_inputs(apsim_result).get('lai') else None,
-            'water_factor':hydrus_result.get('evidence_id') if legacy_inputs(hydrus_result).get('root_uptake_ratio') else None}})
+        beps_result = run_beps_checked(model_input, apsim_result, hydrus_result)
         result = merge(
             apsim_result,
             hydrus_result,

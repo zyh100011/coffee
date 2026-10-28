@@ -47,6 +47,7 @@ HYDRUS_MODE = os.getenv("HYDRUS_MODE") or "live"
 ALLOW_DEMO_FALLBACK = os.getenv("ALLOW_DEMO_FALLBACK", "0") == "1"
 EVIDENCE_SERVICE_URL = os.getenv("EVIDENCE_SERVICE_URL") or "http://127.0.0.1:8001"
 DATA_VERSION = os.getenv("DATA_VERSION", "")
+SINGLE_PLOT_ID = os.getenv('SINGLE_PLOT_ID', 'plot_catimor_project')
 
 HOST = os.getenv("FLASK_HOST") or "0.0.0.0"
 PORT = int(os.getenv("FLASK_PORT") or "5000")

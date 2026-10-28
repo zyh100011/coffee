@@ -42,14 +42,14 @@
       "path": "coffee_digital_twin/server/start_backend.ps1",
       "status": "ready",
       "outcome": "十-7",
-      "note": "当前启动脚本；完整新机启动包属Phase6"
+      "note": "底层便携启动脚本；setup_windows/start_demo安装启动入口已补齐，本机新克隆复测通过"
     },
     {
       "id": "data-version",
-      "path": "coffee_digital_twin/docs/zyh/待补交付材料.md",
-      "status": "pending",
+      "path": "coffee_digital_twin/docs/zyh/数据冻结核验_20261028.json",
+      "status": "ready",
       "outcome": "十-4/5",
-      "note": "指向缺项说明；真实data-v1.0/冻结快照不存在，非现成数据成果"
+      "note": "data-v1.0本地冻结完成；快照和原始文件另交，Git不含数据库"
     },
     {
       "id": "hydrus-cases",
@@ -61,9 +61,9 @@
     {
       "id": "verifiable",
       "path": "实验资料/04_三模型工具资料/可核验案例_zyh.json",
-      "status": "partial",
+      "status": "ready",
       "outcome": "十-3/5",
-      "note": "当前partial，仅4个HYDRUS假设案例；20条实测待冻结"
+      "note": "20条实测工具案例和4条HYDRUS假设案例；H9实际发送待本人"
     },
     {
       "id": "hydrus-manual",
@@ -84,7 +84,7 @@
       "path": "coffee_digital_twin/backend/data_pipeline",
       "status": "ready",
       "outcome": "十-4",
-      "note": "31CSV共476215条已入库，质量规则可追溯；正式冻结快照仍待收尾"
+      "note": "31CSV共476215条监测和81项土壤检测；data-v1.0已冻结，来源可回查"
     },
     {
       "id": "source-ledger",
@@ -112,7 +112,7 @@
       "path": "coffee_digital_twin/docs/zyh/selfcheck_latest.txt",
       "status": "partial",
       "outcome": "十-7",
-      "note": "2026-10-22隔离实测查询和历史回放已PASS；整体仍FAIL于冻结/配置/真实循证服务"
+      "note": "2026-10-28实际自检12项PASS、2项FAIL；冻结/配置已通过，真实循证服务尚未接通"
     },
     {
       "id": "qa",
@@ -147,7 +147,7 @@
       "path": "coffee_digital_twin/docs/zyh/screenshots/README.md",
       "status": "pending",
       "outcome": "十-1/7",
-      "note": "路径只是截图要求说明；没有H8截图，不代表已验收"
+      "note": "另有Claude模拟渲染图仅供参考，H8实际微信截图/手机预览仍待人工"
     },
     {
       "id": "video",
@@ -183,6 +183,83 @@
       "status": "ready",
       "outcome": "十-7",
       "note": "逐任务验收与限制"
+    },
+    {
+      "id": "setup",
+      "path": "coffee_digital_twin/server/setup_windows.ps1",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "固定版本安装、快照导入、自检；真实服务缺失不伪装通过"
+    },
+    {
+      "id": "start-demo",
+      "path": "coffee_digital_twin/server/start_demo.ps1",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "默认loopback、按需明确启用mock、打印LAN地址"
+    },
+    {
+      "id": "reset",
+      "path": "coffee_digital_twin/backend/tools/reset_demo.ps1",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "默认预览；执行先备份、导出轨迹、归档后恢复；未在本人数据上执行"
+    },
+    {
+      "id": "manual",
+      "path": "coffee_digital_twin/docs/zyh/操作手册.md",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "H11另一台机器验收待完成"
+    },
+    {
+      "id": "issues",
+      "path": "coffee_digital_twin/docs/zyh/交付问题清单.md",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "含修复提交及外部阻塞"
+    },
+    {
+      "id": "link-check",
+      "path": "coffee_digital_twin/backend/tools/check_links.py",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "交付目录路径检查、远程只HEAD、不访问正式目录"
+    },
+    {
+      "id": "clean-check",
+      "path": "coffee_digital_twin/docs/zyh/干净目录复测_20261028.json",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "本机新克隆与全新venv；H11另一台机器待本人"
+    },
+    {
+      "id": "defense",
+      "path": "coffee_digital_twin/docs/答辩问题准备.md",
+      "status": "ready",
+      "outcome": "十-7",
+      "note": "附本届业务与HYDRUS五问，仅引用实际实现"
+    },
+    {
+      "id": "fix2-plan",
+      "path": "coffee_digital_twin/docs/zyh/CODEX_FIX2_20261028.md",
+      "status": "ready",
+      "outcome": "十-1/3/4/7",
+      "note": "第二轮修改单；真实服务和微信人工验收仍待"
+    },
+    {
+      "id": "profile-check",
+      "path": "coffee_digital_twin/docs/zyh/G3_档案核验_20261028.json",
+      "status": "ready",
+      "outcome": "十-1/3/4/7",
+      "note": "12/12含文献与推算；原观测/原土检/SELECTOR未改"
+    },
+    {
+      "id": "rain-check",
+      "path": "coffee_digital_twin/docs/zyh/G6_实测降雨情景核验_20261028.json",
+      "status": "ready",
+      "outcome": "十-1/3/4/7",
+      "note": "冻结日计数器59mm、真实Windows引擎0/20mm历史窗口核验"
     }
   ]
 }

@@ -1,5 +1,23 @@
 [
- {"evidence_id":"ev_mock_1","doc_id":"MOCK-001","title":"MOCK 语料：根区水分","locator":"mock_corpus.json 条目1","snippet":"MOCK接口测试文本：区分观测与未校准假设模拟；不是文献证据。"},
- {"evidence_id":"ev_mock_2","doc_id":"MOCK-002","title":"MOCK 语料：数据缺项","locator":"mock_corpus.json 条目2","snippet":"MOCK接口测试文本：缺日期或深度时补充信息；不是文献证据。"},
- {"evidence_id":"ev_mock_3","doc_id":"MOCK-003","title":"MOCK 语料：情景比較","locator":"mock_corpus.json 条目3","snippet":"MOCK接口测试文本：同参数同窗口比较；不能证明田间节水或增产。"}
+  {
+    "evidence_id": "ev_mock_1",
+    "doc_id": "MOCK-001",
+    "title": "知识服务连接提示",
+    "locator": "mock_corpus.json 条目1",
+    "snippet": "该问题需要连接知识服务后回答"
+  },
+  {
+    "evidence_id": "ev_mock_2",
+    "doc_id": "MOCK-002",
+    "title": "知识服务连接提示",
+    "locator": "mock_corpus.json 条目2",
+    "snippet": "该问题需要连接知识服务后回答"
+  },
+  {
+    "evidence_id": "ev_mock_3",
+    "doc_id": "MOCK-003",
+    "title": "知识服务连接提示",
+    "locator": "mock_corpus.json 条目3",
+    "snippet": "该问题需要连接知识服务后回答"
+  }
 ]

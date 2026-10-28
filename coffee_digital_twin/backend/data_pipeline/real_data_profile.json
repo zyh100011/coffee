@@ -1,8 +1,8 @@
 {
   "profile_version": "catimor-raw-v1-20261020",
   "plot_id": "plot_catimor_project",
-  "plot_name": "云南卡蒂姆咖啡基地",
-  "cultivar": "云南卡蒂姆",
+  "plot_name": "云南普洱卡蒂姆咖啡基地",
+  "cultivar": "卡蒂姆",
   "planting_year": 2023,
   "tree_age": 3,
   "tree_age_reference_year": 2026,
@@ -12,16 +12,55 @@
   "plant_spacing_m": 1,
   "area_mu": 10,
   "elevation_m": 1050,
-  "coordinates": {"latitude": 22.63470, "longitude": 101.00273, "source": "2026-09-28 C-1 LAI测次1坐标；按用户指定作为地块定位点，不代表地块边界中心"},
+  "coordinates": {
+    "latitude": 22.6347,
+    "longitude": 101.00273,
+    "source": "2026-09-28 C-1 LAI测次1坐标；按用户指定作为地块定位点，不代表地块边界中心"
+  },
   "scope": "single_base_user_confirmed",
-  "layer_intervals_cm": [[0,15],[15,30],[30,45]],
+  "layer_intervals_cm": [
+    [
+      0,
+      15
+    ],
+    [
+      15,
+      30
+    ],
+    [
+      30,
+      45
+    ]
+  ],
   "water_content_convention": "volumetric_percent_user_requested",
   "rain_source": "natural_rainfall",
   "rainfall_input_policy": "csv_observations_only",
-  "rainfall_input_note": "用户选择CSV逐时/逐日记录，不以多年平均补缺；须先核验原始读数累计与复位方式，再生成模型日雨量",
-  "rainfall_counter_review": {"status":"inferred_from_observations","finding":"历史环境监测1/2/3呈日累计特征，日内偶发0后恢复原累计水平，不能将所有下降当作真实重置；另一工作站日内多次下降，需单独处理。各来源不可混合，原读数不能直接相加","source":"2026-10-22逐来源有效mm记录及原CSV回查；环境监测3在2026-06-11最大25.8，读数直接相加2598.2mm；环境监测1在2026-05-11有6→0→6.2的瞬时归零","model_daily_rain_enabled":false},
-  "soil_sampling_context": {"location":"监测器旁","source":"张源皓2026-10-22确认","depth_note":"1/2/3为监测数据层号，对应0–15/15–30/30–45cm，不是检测报告样品编号；不据此填写检测样品深度"},
-  "representative_soil_sample": {"sample_label":"C06","lab_sample_id":"2026T108008","report_no":"2026T108","selection_method":"九项化学指标分别按中位数绝对偏差标准化，选择与各项中位数平均绝对距离最小的原始样品","selection_source":"张源皓授权选择一个代表分区；Codex依据九样品原检测值选择","use":"基地化学检测展示参考；不复制成三层检测值，不作为水力参数"},
+  "rainfall_input_note": "按本轮授权的归零后日最大值口径派生；保留原累计读数及来源，不使用多年平均补缺",
+  "rainfall_counter_review": {
+    "status": "user_authorized_counter_rule_20261028",
+    "finding": "历史环境监测1/2/3呈日累计特征，日内偶发0后恢复原累计水平，不能将所有下降当作真实重置；另一工作站日内多次下降，需单独处理。各来源不可混合，原读数不能直接相加",
+    "source": "2026-10-22逐来源有效mm记录及原CSV回查；环境监测3在2026-06-11最大25.8，读数直接相加2598.2mm；环境监测1在2026-05-11有6→0→6.2的瞬时归零",
+    "model_daily_rain_enabled": true,
+    "rule": "仅环境监测点1/2/3：当日首个≤0.05mm后最大值；无零且单条或全零记0，多条正数取最大并警告；无记录null，模型按0并记录假设",
+    "default_source": "环境监测点1",
+    "excluded_source": "基地气象站日内多次升降，不用于模型"
+  },
+  "soil_sampling_context": {
+    "location": "监测器旁",
+    "source": "张源皓2026-10-28采用第二轮修改单确认",
+    "depth_note": "2026T108九样品均为基地内不同点位表层0–20cm土；不对应监测三层；采样日仍未知，不补造",
+    "depth_top_cm": 0,
+    "depth_bottom_cm": 20,
+    "depth_source": "field_record"
+  },
+  "representative_soil_sample": {
+    "sample_label": "C06",
+    "lab_sample_id": "2026T108008",
+    "report_no": "2026T108",
+    "selection_method": "九项化学指标分别按中位数绝对偏差标准化，选择与各项中位数平均绝对距离最小的原始样品",
+    "selection_source": "张源皓授权选择一个代表分区；Codex依据九样品原检测值选择",
+    "use": "基地表层0–20cm化学检测展示参考；不套用15–30cm或30–45cm监测层，不作为水力参数"
+  },
   "irrigation_input_policy": "management_description_only",
   "soil_parameter_policy": "regional_literature_with_provenance",
   "soil_parameter_note": "用户授权本站缺失的物理参数使用云南/卡蒂姆区域文献值并注明出处；独立保留文献身份及适用边界，不作为本站实测或已校准参数",
@@ -30,42 +69,328 @@
   "lai_use": "2026-09-28五样方15条原始测次保留追溯；用户确认本期不作为模型输入或验证数据",
   "confirmation_source": "张源皓2026-10-21：口径统一为云南卡蒂姆、十亩、海拔1050m；C-1测次坐标作为地块定位点；自然降雨为主，干旱时原记每周两三次15公斤/棵，有机肥；LAI本期不使用",
   "environment_name_codes": {
-    "空气温度":"airT", "空气湿度":"airRH", "光照强度":"Lux", "大气压力":"atm",
-    "二氧化碳":"co2", "光合有效":"PAR", "瞬时积光":"nDLI", "今日积光":"tDLI",
-    "风速":"windS", "风向":"windD", "降雨量":"rainF"
+    "空气温度": "airT",
+    "空气湿度": "airRH",
+    "光照强度": "Lux",
+    "大气压力": "atm",
+    "二氧化碳": "co2",
+    "光合有效": "PAR",
+    "瞬时积光": "nDLI",
+    "今日积光": "tDLI",
+    "风速": "windS",
+    "风向": "windD",
+    "降雨量": "rainF"
   },
   "classification_source": "张源皓本人确认所有现有数据归属同一卡蒂姆基地；原文件地点名称作为来源记录保留",
-  "missing_fields": ["sensor_calibration", "station_hardware_ids_and_pairing", "rainfall_accumulation_mode", "site_hydraulic_calibration", "irrigation_event_dates_and_amounts", "fertilizer_event_dates_and_amounts", "soil_report_sample_date", "soil_report_sample_depth", "soil_bulk_density", "soil_texture", "soil_hydraulic_parameters"],
+  "missing_fields": [
+    "sensor_calibration",
+    "station_hardware_ids_and_pairing",
+    "site_hydraulic_calibration",
+    "soil_hydraulic_parameters"
+  ],
   "sources": [
-    {"kind": "puer", "file_glob": "Coffee.csv", "location": "云南普洱爱伲庄园", "data_version": "puer-original-20261020"},
-    {"kind": "lujiangba", "file_glob": "咖啡基地历史数据/**/*.csv", "location": "云南潞江坝", "data_version": "lujiangba-original-20261020"}
+    {
+      "kind": "puer",
+      "file_glob": "Coffee.csv",
+      "location": "云南普洱爱伲庄园",
+      "data_version": "puer-original-20261020"
+    },
+    {
+      "kind": "lujiangba",
+      "file_glob": "咖啡基地历史数据/**/*.csv",
+      "location": "云南潞江坝",
+      "data_version": "lujiangba-original-20261020"
+    }
   ],
   "parameters": {
-    "airT": {"parameter": "air_temperature", "label": "空气温度", "units": ["°C", "℃"], "range": [-5, 50]},
-    "airRH": {"parameter": "air_humidity", "label": "空气相对湿度", "units": ["%RH", "%"], "range": [0, 100]},
-    "windS": {"parameter": "wind_speed", "label": "风速", "units": ["m/s"], "range": [0, 100]},
-    "windD": {"parameter": "wind_direction", "label": "风向", "units": ["°"], "range": [0, 360]},
-    "rainF": {"parameter": "rainfall_raw", "label": "降雨读数（累计方式未确认）", "units": ["mm"], "range": [0, 100000]},
-    "atm": {"parameter": "air_pressure_raw", "label": "大气压（原单位）", "units": ["hPa"], "range": [0, 1200]},
-    "Lux": {"parameter": "illuminance", "label": "光照强度", "units": ["Lux", "lux"], "range": [0, 500000]},
-    "co2": {"parameter": "co2", "label": "二氧化碳", "units": ["ppm"], "range": [0, 100000]},
-    "PAR": {"parameter": "par_raw", "label": "光合有效读数（原单位）", "units": ["W"]},
-    "nDLI": {"parameter": "instant_light_raw", "label": "瞬时积光（原始读数）", "units": []},
-    "tDLI": {"parameter": "daily_light_raw", "label": "今日积光（原始读数）", "units": []},
-    "pm25": {"parameter": "pm25", "label": "PM2.5", "units": ["μg/m3"], "range": [0, 10000]},
-    "pm10": {"parameter": "pm10", "label": "PM10", "units": ["μg/m3"], "range": [0, 10000]},
-    "soilPH": {"parameter": "soil_ph_sensor", "label": "土壤pH（探头）", "units": ["pH"], "range": [0, 14]},
-    "soilT": {"parameter": "soil_temperature_layer1", "label": "第1层土壤温度（埋深未确认）", "units": ["°C", "℃"], "range": [-5, 50]},
-    "soilT2": {"parameter": "soil_temperature_layer2", "label": "第2层土壤温度（埋深未确认）", "units": ["°C", "℃"], "range": [-5, 50]},
-    "soilT3": {"parameter": "soil_temperature_layer3", "label": "第3层土壤温度（埋深未确认）", "units": ["°C", "℃"], "range": [-5, 50]},
-    "soilH": {"parameter": "soil_humidity_layer1_raw", "label": "第1层土壤湿度（原始百分数）", "units": ["%RH", "%"], "range": [0, 100]},
-    "soilH2": {"parameter": "soil_humidity_layer2_raw", "label": "第2层土壤湿度（原始百分数）", "units": ["%"], "range": [0, 100]},
-    "soilH3": {"parameter": "soil_humidity_layer3_raw", "label": "第3层土壤湿度（原始百分数）", "units": ["%"], "range": [0, 100]},
-    "soilEC": {"parameter": "soil_ec_layer1_raw", "label": "第1层土壤电导率", "units": ["uS/cm"]},
-    "soilEC2": {"parameter": "soil_ec_layer2_raw", "label": "第2层土壤电导率", "units": ["uS/cm"]},
-    "soilEC3": {"parameter": "soil_ec_layer3_raw", "label": "第3层土壤电导率（原单位）", "units": ["uS/cm"]},
-    "soilSa": {"parameter": "soil_salt_layer1_raw", "label": "第1层土壤盐分", "units": ["ppm"]},
-    "soilSa2": {"parameter": "soil_salt_layer2_raw", "label": "第2层土壤盐分", "units": ["ppm"]},
-    "soilSa3": {"parameter": "soil_salt_layer3_raw", "label": "第3层土壤盐分", "units": ["ppm"]}
+    "airT": {
+      "parameter": "air_temperature",
+      "label": "空气温度",
+      "units": [
+        "°C",
+        "℃"
+      ],
+      "range": [
+        -5,
+        50
+      ]
+    },
+    "airRH": {
+      "parameter": "air_humidity",
+      "label": "空气相对湿度",
+      "units": [
+        "%RH",
+        "%"
+      ],
+      "range": [
+        0,
+        100
+      ]
+    },
+    "windS": {
+      "parameter": "wind_speed",
+      "label": "风速",
+      "units": [
+        "m/s"
+      ],
+      "range": [
+        0,
+        100
+      ]
+    },
+    "windD": {
+      "parameter": "wind_direction",
+      "label": "风向",
+      "units": [
+        "°"
+      ],
+      "range": [
+        0,
+        360
+      ]
+    },
+    "rainF": {
+      "parameter": "rainfall_raw",
+      "label": "降雨读数（累计方式未确认）",
+      "units": [
+        "mm"
+      ],
+      "range": [
+        0,
+        100000
+      ]
+    },
+    "atm": {
+      "parameter": "air_pressure_raw",
+      "label": "大气压（原单位）",
+      "units": [
+        "hPa"
+      ],
+      "range": [
+        0,
+        1200
+      ]
+    },
+    "Lux": {
+      "parameter": "illuminance",
+      "label": "光照强度",
+      "units": [
+        "Lux",
+        "lux"
+      ],
+      "range": [
+        0,
+        500000
+      ]
+    },
+    "co2": {
+      "parameter": "co2",
+      "label": "二氧化碳",
+      "units": [
+        "ppm"
+      ],
+      "range": [
+        0,
+        100000
+      ]
+    },
+    "PAR": {
+      "parameter": "par_raw",
+      "label": "光合有效读数（原单位）",
+      "units": [
+        "W"
+      ]
+    },
+    "nDLI": {
+      "parameter": "instant_light_raw",
+      "label": "瞬时积光（原始读数）",
+      "units": []
+    },
+    "tDLI": {
+      "parameter": "daily_light_raw",
+      "label": "今日积光（原始读数）",
+      "units": []
+    },
+    "pm25": {
+      "parameter": "pm25",
+      "label": "PM2.5",
+      "units": [
+        "μg/m3"
+      ],
+      "range": [
+        0,
+        10000
+      ]
+    },
+    "pm10": {
+      "parameter": "pm10",
+      "label": "PM10",
+      "units": [
+        "μg/m3"
+      ],
+      "range": [
+        0,
+        10000
+      ]
+    },
+    "soilPH": {
+      "parameter": "soil_ph_sensor",
+      "label": "土壤pH（探头）",
+      "units": [
+        "pH"
+      ],
+      "range": [
+        0,
+        14
+      ]
+    },
+    "soilT": {
+      "parameter": "soil_temperature_layer1",
+      "label": "第1层土壤温度（埋深未确认）",
+      "units": [
+        "°C",
+        "℃"
+      ],
+      "range": [
+        -5,
+        50
+      ]
+    },
+    "soilT2": {
+      "parameter": "soil_temperature_layer2",
+      "label": "第2层土壤温度（埋深未确认）",
+      "units": [
+        "°C",
+        "℃"
+      ],
+      "range": [
+        -5,
+        50
+      ]
+    },
+    "soilT3": {
+      "parameter": "soil_temperature_layer3",
+      "label": "第3层土壤温度（埋深未确认）",
+      "units": [
+        "°C",
+        "℃"
+      ],
+      "range": [
+        -5,
+        50
+      ]
+    },
+    "soilH": {
+      "parameter": "soil_humidity_layer1_raw",
+      "label": "第1层土壤湿度（原始百分数）",
+      "units": [
+        "%RH",
+        "%"
+      ],
+      "range": [
+        0,
+        100
+      ]
+    },
+    "soilH2": {
+      "parameter": "soil_humidity_layer2_raw",
+      "label": "第2层土壤湿度（原始百分数）",
+      "units": [
+        "%"
+      ],
+      "range": [
+        0,
+        100
+      ]
+    },
+    "soilH3": {
+      "parameter": "soil_humidity_layer3_raw",
+      "label": "第3层土壤湿度（原始百分数）",
+      "units": [
+        "%"
+      ],
+      "range": [
+        0,
+        100
+      ]
+    },
+    "soilEC": {
+      "parameter": "soil_ec_layer1_raw",
+      "label": "第1层土壤电导率",
+      "units": [
+        "uS/cm"
+      ]
+    },
+    "soilEC2": {
+      "parameter": "soil_ec_layer2_raw",
+      "label": "第2层土壤电导率",
+      "units": [
+        "uS/cm"
+      ]
+    },
+    "soilEC3": {
+      "parameter": "soil_ec_layer3_raw",
+      "label": "第3层土壤电导率（原单位）",
+      "units": [
+        "uS/cm"
+      ]
+    },
+    "soilSa": {
+      "parameter": "soil_salt_layer1_raw",
+      "label": "第1层土壤盐分",
+      "units": [
+        "ppm"
+      ]
+    },
+    "soilSa2": {
+      "parameter": "soil_salt_layer2_raw",
+      "label": "第2层土壤盐分",
+      "units": [
+        "ppm"
+      ]
+    },
+    "soilSa3": {
+      "parameter": "soil_salt_layer3_raw",
+      "label": "第3层土壤盐分",
+      "units": [
+        "ppm"
+      ]
+    }
+  },
+  "soil_type": "赤红壤（含砖红壤）",
+  "plant_density": 333,
+  "soil_bulk_density": {
+    "unit": "g/cm³",
+    "layers": [
+      {
+        "top_cm": 0,
+        "bottom_cm": 15,
+        "value": 1.41
+      },
+      {
+        "top_cm": 15,
+        "bottom_cm": 30,
+        "value": 1.48
+      },
+      {
+        "top_cm": 30,
+        "bottom_cm": 45,
+        "value": 1.59
+      }
+    ]
+  },
+  "soil_texture": "黏壤土（砂约32%、粉约38%、黏约28–31%）",
+  "auto_apply_to_hydrus": false,
+  "field_sources": {
+    "soil_type": "literature",
+    "plant_density": "estimated",
+    "soil_bulk_density": "literature",
+    "soil_texture": "literature"
+  },
+  "field_notes": {
+    "soil_type": "区域文献参考值，非本基地实测；张源皓采用本轮修改单确认。Cai等2007 A3-WEB-004 PDF第2页（思茅咖啡园acidic lateritic red soil）；Sun等2026 A3-WEB-006 PDF第3页（普洱江城lateritic red soil）",
+    "plant_density": "区域文献参考值，非本基地实测；此项为按已确认行距2m、株距1m推算：666.7÷(2×1)≈333株/亩，不代表实点株数",
+    "soil_bulk_density": "区域文献参考值，非本基地实测；Ling等2022 A3-WEB-008（西双版纳红壤）表2。按本轮指定映射：0–15取0–10、10–20均值；15–30取10–20、20–30均值；30–45取30–40；不是逐厚度加权外推，不自动写入HYDRUS参数",
+    "soil_texture": "区域文献参考值，非本基地实测；Ling等2022 A3-WEB-008表2，砂约32%、粉约38%、黏约28–31%；Cai等2007另记loam，保留差异，不作本站粒径分析"
   }
 }

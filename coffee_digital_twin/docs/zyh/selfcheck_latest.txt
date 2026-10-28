@@ -1,15 +1,15 @@
-自检时间：2026-10-22T01:39:15.046686+00:00
+自检时间：2026-10-28T15:40:53.435843+00:00
 检查 | 状态 | 说明
 python | PASS | 3.11.9；要求3.11
 dependencies | PASS | 固定依赖版本全部匹配
-environment | FAIL | 检查HYDRUS_MODE/超时/禁用fallback/关闭debug/DATA_VERSION/服务URL；不输出.env值或凭据
+environment | PASS | 检查HYDRUS_MODE/超时/禁用fallback/关闭debug/DATA_VERSION/服务URL；不输出.env值或凭据
 database_tables | PASS | 所需业务与来源表齐全
-frozen_data | FAIL | 缺少已冻结非空实测版本；现有实测仅用于接口诊断，不表示冻结验收通过
+frozen_data | PASS | 非空冻结实测，424988条有效观测；原文件哈希一致
 hydrus | PASS | 模式live；引擎存在；0/20mm历史案例齐全；未校准
 evidence_health | FAIL | HTTP 200；未满足数据/服务/响应契约条件
 http_ping | PASS | HTTP 200；契约与来源通过
-http_catalog | PASS | HTTP 200；契约与来源通过；现有数据诊断，冻结验收仍未通过
-http_query | PASS | HTTP 200；契约与来源通过；现有数据诊断，冻结验收仍未通过
+http_catalog | PASS | HTTP 200；契约与来源通过
+http_query | PASS | HTTP 200；契约与来源通过
 http_assistant | FAIL | HTTP 200；未满足数据/服务/响应契约条件
 http_compare_replay | PASS | HTTP 200；契约与来源通过
 http_report | PASS | HTTP 200；契约与来源通过

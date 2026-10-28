@@ -1,4 +1,6 @@
 """Local evidence transport and contract checks; no external fallback."""
+import json
+import os
 import requests
 from config import EVIDENCE_SERVICE_URL
 class EvidenceServiceError(Exception):
@@ -16,6 +18,7 @@ def validate(kind,r):
         if r.get('clarify_question') is not None and not isinstance(r['clarify_question'],str): raise ValueError('invalid clarification')
     elif kind=='answer':
         if not isinstance(r.get('answer'),str): raise ValueError('answer missing')
+        if 'retrieval_trace' in r and (not isinstance(r['retrieval_trace'],dict) or ('status' in r['retrieval_trace'] and not isinstance(r['retrieval_trace']['status'],str))): raise ValueError('invalid retrieval trace')
         for key in ('citations','claims','limitations','check_items'):
             if not isinstance(r.get(key),list): raise ValueError(key+' must be list')
         for c in r['citations']:
@@ -31,7 +34,20 @@ def _request(kind,payload=None,timeout=None):
     if budget<=0: raise EvidenceServiceError('E_EVIDENCE_TIMEOUT','服务时间预算耗尽')
     try:
         url=EVIDENCE_SERVICE_URL.rstrip('/')
-        response=requests.get(url+'/health',timeout=budget) if kind=='health' else requests.post(url+'/v1/'+kind,json=payload,timeout=budget)
+        if kind=='health':
+            response=requests.get(url+'/health',timeout=budget,allow_redirects=False)
+        else:
+            if not isinstance(payload,dict) or not isinstance(payload.get('message'),str) or not 1<=len(payload['message'])<=4000:
+                raise ValueError('message must contain 1 to 4000 characters')
+            if len(json.dumps(payload,allow_nan=False).encode('utf-8'))>262144:
+                raise ValueError('request exceeds service byte limit')
+            token=os.environ.get('EVIDENCE_API_TOKEN','').strip()
+            headers={'Authorization':'Bearer '+token} if token else {}
+            response=requests.post(url+'/v1/'+kind,json=payload,headers=headers,timeout=budget,allow_redirects=False)
+        if response.status_code in (401,403):
+            raise EvidenceServiceError('E_EVIDENCE_DOWN','循证服务鉴权失败，请在后端配置有效的访问令牌')
+        if 300<=response.status_code<400:
+            raise EvidenceServiceError('E_EVIDENCE_DOWN','循证服务地址发生重定向，请确认业务API地址')
         response.raise_for_status(); return validate(kind,response.json())
     except requests.Timeout as e: raise EvidenceServiceError('E_EVIDENCE_TIMEOUT','本地循证服务超时') from e
     except requests.RequestException as e: raise EvidenceServiceError('E_EVIDENCE_DOWN','本地循证服务不可用') from e

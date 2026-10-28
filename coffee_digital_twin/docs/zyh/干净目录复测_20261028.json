@@ -1,0 +1,22 @@
+{
+  "checkout_commit": "2a65727 + FIX-10 standalone mock import-path patch",
+  "new_venv": true,
+  "fixed_dependencies_installed": true,
+  "snapshot_import": {
+    "plots": 1,
+    "observations": 476215,
+    "soil_measurements": 81,
+    "gridded_weather": 16089
+  },
+  "launcher": "Windows PowerShell 5.1 start_demo.ps1 -StartMock -NonInteractive",
+  "http_health_mock": true,
+  "catalog_items": 83,
+  "soil_question_fact_and_chart": true,
+  "actual_service_mode": "mock",
+  "selfcheck_pass": 12,
+  "selfcheck_fail": [
+    "evidence_health",
+    "http_assistant"
+  ],
+  "note": "同一台电脑新克隆目录与全新venv；不等于H11另一台电脑或H5真实服务验收"
+}

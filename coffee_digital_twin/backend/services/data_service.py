@@ -7,12 +7,19 @@ from database.init_db import get_connection
 from services.tool_result import make_tool_result
 from data_pipeline.ingest_project_raw import load_profile
 
+def display_source(device):
+    match=re.search(r':(soil|environment)([123])$',device or '')
+    if match:return ('土壤监测点' if match[1]=='soil' else '环境监测点')+match[2]
+    return '基地气象站'
+
 
 def catalog(plot_id):
     with get_connection() as conn:
         plot=conn.execute('SELECT raw_json FROM plots WHERE plot_id=?',(plot_id,)).fetchone()
         rows=conn.execute('''SELECT o.parameter,o.depth_cm,o.device_id,o.unit,o.data_version,
             MIN(o.date) start,MAX(o.date) end,COUNT(*) n,
+            MIN(CASE WHEN o.qc_flag IN ('ok','rain_reset') AND o.value IS NOT NULL THEN o.date END) valid_start,
+            MAX(CASE WHEN o.qc_flag IN ('ok','rain_reset') AND o.value IS NOT NULL THEN o.date END) valid_end,
             SUM(CASE WHEN o.qc_flag IN ('ok','rain_reset') AND o.value IS NOT NULL THEN 1 ELSE 0 END) usable_count,
             s.label source_label,s.location,s.identity_kind
             FROM obs_long o LEFT JOIN observation_sources s ON s.device_id=o.device_id
@@ -20,13 +27,14 @@ def catalog(plot_id):
             ORDER BY o.parameter,o.device_id,o.unit,o.data_version''',(plot_id,)).fetchall()
     labels={v['parameter']:v['label'] for v in load_profile()['parameters'].values()}
     items=[{'parameter':r['parameter'],'parameter_label':labels.get(r['parameter'],r['parameter']),
-             'depth_cm':r['depth_cm'],'start':r['start'],'end':r['end'],
+             'depth_cm':r['depth_cm'],'start':r['start'],'end':r['end'],'valid_start':r['valid_start'],'valid_end':r['valid_end'],
              'device_id':r['device_id'],'devices':[r['device_id']], 'unit':r['unit'],
              'data_version':r['data_version'],'data_versions':[r['data_version']],
-             'source_label':r['source_label'] or r['device_id'],'location':r['location'],
+             'source_label':display_source(r['device_id']),'display_source':display_source(r['device_id']),
              'identity_kind':r['identity_kind'],'n':r['n'],'usable_count':r['usable_count']} for r in rows]
     profile=json.loads(plot['raw_json']) if plot else {}
     for item in items:
+        item['hidden_reason']=('无有效记录' if not item['usable_count'] else '单位未注明' if not item['unit'] else '仅一条原始记录' if item['n']<=1 else None)
         match=re.search(r'_layer([123])',item['parameter'])
         layers=profile.get('layer_intervals_cm',[])
         if match and len(layers)==3:
@@ -37,10 +45,17 @@ def catalog(plot_id):
                 item['display_unit']='cm3/cm3'
             else:
                 item['parameter_label']=item['parameter_label'].replace('（埋深未确认）','')+f'（{top}–{bottom}cm）'
+    if profile.get('rainfall_counter_review',{}).get('model_daily_rain_enabled'):
+        items += [dict(item,parameter='rainfall_daily',parameter_label='日降雨量',display_unit='mm',derived=True)
+                  for item in items if item['parameter']=='rainfall_raw' and item['unit']=='mm'
+                  and re.fullmatch(r'source:lujiangba:environment[123]',item['device_id']) and not item['hidden_reason']]
     return items
 
 
 def query(args,ctx=None):
+    if args.get('parameter')=='rainfall_daily':
+        from services.rainfall import query_daily
+        return query_daily(args,ctx)
     ctx=ctx or {}; result=make_tool_result(tool='data_query',task_id=ctx.get('task_id'),plot_id=args.get('plot_id'),inputs=dict(args))
     missing=[k for k in ('plot_id','parameter','start','end') if not args.get(k)]
     if missing:
@@ -75,6 +90,7 @@ def query(args,ctx=None):
     if 'unit' in args: sql+=' AND o.unit=?'; params.append(args['unit'])
     with get_connection() as conn:
         rows=[dict(r) for r in conn.execute(sql+' ORDER BY o.ts,o.obs_id',params)]
+    if rows: result['inputs']['display_source']=display_source(rows[0]['device_id'])
     versions=sorted({r['data_version'] for r in rows})
     if len({r['device_id'] for r in rows})>1:
         result.update(status='missing_input',missing_fields=['device_id'],warnings=['有多个监测来源，请选择一个来源，避免混合地点或探头']); return result
@@ -103,8 +119,9 @@ def query(args,ctx=None):
         result['inputs']['layer_interval_cm']={'top':top,'bottom':bottom,'source':'用户确认'}
         result['missing_fields']=[f for f in result['missing_fields'] if f!='actual_probe_depths']
     if parameter=='rainfall_raw':
-        result['missing_fields']=['rainfall_accumulation_mode']
-        result['warnings'].append('原始降雨读数，累计方式未知；日均读数不是日降雨量，不自动用于模型降雨输入')
+        enabled=profile.get('rainfall_counter_review',{}).get('model_daily_rain_enabled') and re.fullmatch(r'source:lujiangba:environment[123]',args.get('device_id',''))
+        result['missing_fields']=[] if enabled else ['rainfall_accumulation_mode']
+        result['warnings'].append('原始累计读数；日均读数不是日降雨量，日雨量另按归零后最大值计算' if enabled else '原始降雨读数，累计方式未知；日均读数不是日降雨量，不自动用于模型降雨输入')
     if args.get('include_flagged'):
         result['warnings'].append('已包含待核查记录，显示其原值不表示异常已修正')
     if not valid:

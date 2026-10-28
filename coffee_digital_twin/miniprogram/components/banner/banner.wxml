@@ -1,1 +1,1 @@
-<view class="banner banner-{{kind}}"><text>{{text}}</text><button wx:if="{{actionText}}" bindtap="act" aria-label="{{actionText}}" size="mini">{{actionText}}</button></view>
+<view wx:if="{{isDev || kind === 'offline'}}" class="banner banner-{{kind}}"><text>{{kind === 'offline' && !isDev ? '后端未连接' : text}}</text><button wx:if="{{actionText}}" bindtap="act" aria-label="{{actionText}}" size="mini">{{actionText}}</button></view>

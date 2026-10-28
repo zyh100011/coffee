@@ -26,6 +26,14 @@ def test_import_query_hand_calculated(client,tmp_path):
     assert abs(result['outputs']['mean']-.3)<1e-9
     assert result['outputs']['n']==2 and result['outputs']['missing_days']==2
     assert client.get('/api/evidence/'+result['evidence_id']+'?plot_id=p').get_json()['inputs']==result['inputs']
+    before=result.copy()
+    page=client.get('/api/data/evidence/'+result['evidence_id']+'/sources?plot_id=p&limit=1').get_json()
+    assert page['total']==2 and page['next_offset']==1 and page['items'][0]['value_raw']=='20'
+    second=client.get('/api/data/evidence/'+result['evidence_id']+'/sources?plot_id=p&offset=1&limit=1').get_json()
+    assert second['next_offset'] is None and second['items'][0]['value_raw']=='40'
+    assert client.get('/api/data/evidence/'+result['evidence_id']+'/sources?plot_id=q').status_code==404
+    assert client.get('/api/data/evidence/'+result['evidence_id']+'/sources?plot_id=p&limit=100').status_code==400
+    assert client.get('/api/evidence/'+result['evidence_id']+'?plot_id=p').get_json()==before
     obs=result['outputs']['source_obs_ids'][0]
     source=client.get('/api/data/source/'+obs).get_json()
     assert source['value_raw']=='20' and source['source_row']==2
@@ -60,3 +68,19 @@ def test_observation_freeze_immutable_and_crop_isolation(client,tmp_path):
     assert freeze('fixture-september')=='fixture-september'
     with pytest.raises(ValueError): ingest(root,mapping,devices,tmp_path/'log.md')
     with pytest.raises(ValueError): freeze('fixture-september')
+
+
+def test_release_freeze_preserves_values_and_source_versions(client,tmp_path):
+    from database.init_db import get_connection
+    root,mapping,devices=fixture(tmp_path);mapping['source_type']='observation'
+    ingest(root,mapping,devices,tmp_path/'log.md')
+    with get_connection() as conn:
+        before=[tuple(r) for r in conn.execute('SELECT obs_id,value_raw,value,source_file_id,source_row,qc_flag FROM obs_long ORDER BY obs_id')]
+    assert freeze('release-test',['fixture-september'],tmp_path/'backup.db')=='release-test'
+    with get_connection() as conn:
+        assert [tuple(r) for r in conn.execute('SELECT obs_id,value_raw,value,source_file_id,source_row,qc_flag FROM obs_long ORDER BY obs_id')]==before
+        assert {r[0] for r in conn.execute('SELECT data_version FROM obs_long')}=={'release-test'}
+        assert {r[0] for r in conn.execute('SELECT source_version FROM data_release_sources')}=={'fixture-september'}
+    assert (tmp_path/'backup.db').is_file()
+    with pytest.raises(ValueError,match='冻结'):ingest(root,mapping,devices,tmp_path/'log.md')
+    with pytest.raises(ValueError,match='冻结'):freeze('release-test')

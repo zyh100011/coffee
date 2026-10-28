@@ -37,8 +37,14 @@ def test_model_run_persists_result_without_running_engines(client, monkeypatch):
             return result
         return run
 
-    for tool in ("apsim", "hydrus", "beps"):
+    for tool in ("apsim", "hydrus"):
         monkeypatch.setattr(model_api, f"run_{tool}_model", stub(tool))
+    def checked_beps(model_input, apsim, hydrus):
+        from services.tool_result import make_tool_result
+        calls.append('beps')
+        return make_tool_result(tool='beps', task_id=model_input['task_id'], plot_id=model_input['plot_id'],
+                                status='missing_input', missing_fields=['supported_canopy_input'])
+    monkeypatch.setattr(model_api, 'run_beps_checked', checked_beps)
     # Use this test's database directory to isolate result JSON as well.
     from database import init_db as database
     monkeypatch.setattr(model_api, "RESULT_JSON_DIR", database.DATABASE_PATH.parent)

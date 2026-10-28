@@ -9,4 +9,9 @@ def load_plot_context(plot_id):
     verified=raw.get('verified_fields',[])
     sources=raw.get('field_sources',{})
     known={k:raw[k] for k in FIELDS if k in verified and raw.get(k) not in (None,'') and sources.get(k) not in (None,'','demo','estimated','legacy_default')}
-    return {'plot_id':plot_id,'exists':bool(row),'known':known,'unknown':[k for k in FIELDS if k not in known]}
+    reference_keys=('soil_type','plant_density','soil_bulk_density','soil_texture')
+    references={k:{'value':raw[k],'source':sources.get(k),'note':raw.get('field_notes',{}).get(k)}
+                for k in reference_keys if raw.get(k) not in (None,'')}
+    return {'plot_id':plot_id,'exists':bool(row),'known':known,'unknown':[k for k in FIELDS if k not in known],
+            'reference_fields':references,'soil_sampling_context':raw.get('soil_sampling_context',{}),
+            'auto_apply_to_hydrus':False}
