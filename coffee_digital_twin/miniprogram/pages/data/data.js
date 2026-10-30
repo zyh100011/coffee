@@ -47,7 +47,7 @@ Page({
         weatherStart = last.toISOString().slice(0, 10);
         if (weatherStart < weatherDaily.start) weatherStart = weatherDaily.start;
       }
-      this.setData({ catalog: r.items, options, groups, selected: 0, reports: (lab.items || []).map(s => ({ ...s, measurements: s.measurements.map(m => ({ ...m, displayValue: formatValue(m.value), displayUnit: displayUnit(m.unit), displayItem: m.item.replace(/（[^）]*）/g, '') })) })),
+      this.setData({ catalog: r.items, options, groups, selected: 0, reports: (lab.items || []).map(s => ({ ...s, measurements: s.measurements.map(m => ({ ...m, displayValue: formatValue(m.value), displayUnit: m.unit === '无量纲' ? '' : displayUnit(m.unit), displayItem: m.item.replace(/（[^）]*）/g, '') })) })),
         reportIndex: Math.max(0, (lab.items || []).findIndex(s => s.is_representative)), reportWarnings: lab.warnings || [], reportError: lab.failed ? '土壤检测报告加载失败，请重试' : '',
         importStatus: status, missingText: status ? (status.missing_fields || []).map(k => MISSING[k] || k).join('、') : '',
         statusWarnings: status ? status.warnings || [] : [], state: options.length || (lab.items || []).length || weatherDaily ? 'ready' : 'empty',
@@ -88,7 +88,7 @@ Page({
         plot_id: this.data.plot.plot_id, resolution: 'daily', start: this.data.weatherStart, end: this.data.weatherEnd
       } });
       if (this.weatherToken !== token) return;
-      this.setData({ weatherResult: r, weatherSeries: [{ name: '历史日降雨 · NASA POWER', data: r.items.map(s => [s.date, s.rain_mm]) }],
+      this.setData({ weatherResult: r, weatherSeries: [{ name: '日降雨', data: r.items.map(s => [s.date, s.rain_mm]) }],
         weatherRows: r.items.map(s => ({ ...s, tavgText: formatValue(s.tavg), rainText: formatValue(s.rain_mm), radiationText: formatValue(s.radiation_mj) })) });
     } catch (e) { if (this.weatherToken === token) this.setData({ weatherError: e.message || '历史气象查询失败，请检查日期后重试' }); }
     finally { if (this.weatherToken === token) this.setData({ weatherQuerying: false }); }

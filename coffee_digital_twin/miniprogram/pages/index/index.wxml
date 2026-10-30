@@ -1,1 +1,37 @@
-<view class="page"><plot-bar plot="{{plot}}" mode-switch="{{true}}" bind:modechange="viewModeChanged"/><banner wx:if="{{health.mock}}" kind="mock" text="当前为 MOCK 服务，回答由规则生成，仅用于联调"/><banner wx:if="{{health.hydrus_mode === 'replay'}}" kind="replay" text="HYDRUS 为历史结果回放，具体生成时间见证据"/><banner wx:if="{{error}}" kind="{{state === 'offline' ? 'offline' : 'warning'}}" text="{{error.message}}" action-text="{{error.retryable ? '重试' : ''}}" bind:action="reload"/><loading-panel wx:if="{{state === 'loading'}}" text="加载中"/><empty-state wx:if="{{state === 'empty'}}" title="后端未导入基地数据" desc="请按操作手册导入基地资料" bind:action="create"/><block wx:if="{{plot}}"><view class="panel section" bindtap="create" aria-role="button" aria-label="查看地块档案"><view wx:if="{{isDev}}" class="section-title">档案完整度 {{plot.completeness.filled}}/12 ›</view><view wx:else class="section-title">基地档案 ›</view><view wx:if="{{isDev}}" class="muted">缺：{{missingText || '无'}}</view></view><view class="panel section"><view class="section-title">最近墒情</view><block wx:if="{{moisture}}"><status-card label="{{moistureLabel}}" value="{{moisture.outputs.mean}}" unit="{{moisture.units.value}}" source-type="{{moisture.source_type}}" status="{{moisture.status}}" sub="{{moisture.time_range.start}} 至 {{moisture.time_range.end}}"/><view wx:if="{{isDev}}" class="muted">{{sourceLabel}} · 历史观测</view><line-chart series="{{series}}" unit="{{moisture.units.value}}"/><button wx:if="{{isDev}}" class="btn-link" bindtap="moistureEvidence">查看数据依据 ›</button></block><view wx:else class="muted">该地块暂无可用的土壤湿度监测数据</view></view><view class="panel section"><view class="section-title">快捷提问</view><button class="chip" data-question="30–45cm 最近一周墒情怎么样" bindtap="ask">30–45cm 最近一周墒情怎么样</button><button class="chip" data-question="咖啡叶片营养采样需要记录哪些信息？" data-mode="knowledge" bindtap="ask">咖啡叶片营养采样需要记录哪些信息？</button><button class="chip" data-question="如果多浇20mm，土壤水分会怎样" bindtap="ask">如果多浇20mm，土壤水分会怎样</button></view><view class="panel section"><view class="section-title">模型工具状态</view><view wx:for="{{tools}}" wx:key="name"><text>{{item.displayName}}</text><evidence-tag source-type="{{item.source_type}}" status="{{item.status}}"/></view><view wx:if="{{!tools.length}}" class="muted">暂无本地块模型结果</view></view><view class="actions"><button bindtap="farm">农事记录</button><button bindtap="result">模型结果</button><button bindtap="reports">历史报告</button></view></block></view>
+<view class="page"><plot-bar plot="{{plot}}" variant="hero" mode-switch="{{true}}" bind:modechange="viewModeChanged"/><banner wx:if="{{health.mock}}" kind="mock" text="当前为 MOCK 服务，回答由规则生成，仅用于联调"/><banner wx:if="{{health.hydrus_mode === 'replay'}}" kind="replay" text="HYDRUS 为历史结果回放，具体生成时间见证据"/><banner wx:if="{{error}}" kind="{{state === 'offline' ? 'offline' : 'warning'}}" text="{{error.message}}" action-text="{{error.retryable ? '重试' : ''}}" bind:action="reload"/><loading-panel wx:if="{{state === 'loading'}}" text="加载中"/><empty-state wx:if="{{state === 'empty'}}" title="后端未导入基地数据" desc="请按操作手册导入基地资料" bind:action="create"/>
+<block wx:if="{{plot}}">
+<view wx:if="{{isDev}}" class="panel section dev-card" bindtap="create" aria-role="button" aria-label="查看地块档案"><view class="section-title">档案完整度 {{plot.completeness.filled}}/12 ›</view><view class="muted">缺：{{missingText || '无'}}</view></view>
+<view class="panel section">
+ <view class="card-head"><view class="ic-box tint-blue"><image class="ic-img" src="/images/ic/drop.png"/></view><view class="grow"><view class="title">最近墒情</view><view wx:if="{{moisture}}" class="sub">{{moisture.time_range.start}} 至 {{moisture.time_range.end}}</view></view><text wx:if="{{moisture && moisture.source_type === 'observation'}}" class="pill">实测</text></view>
+ <block wx:if="{{moisture}}">
+  <view class="reading"><text class="reading-value">{{moistureText}}</text><text class="reading-unit">{{moistureUnit}}</text></view>
+  <view class="muted">{{moistureLabel}}</view>
+  <view wx:if="{{isDev}}" class="muted">{{sourceLabel}} · 历史观测</view>
+  <line-chart series="{{series}}" unit="{{moisture.units.value}}" height="260" compact="{{!isDev}}"/>
+  <button wx:if="{{isDev}}" class="btn-link" bindtap="moistureEvidence">查看数据依据 ›</button>
+ </block>
+ <view wx:else class="muted">该地块暂无可用的土壤湿度监测数据</view>
+</view>
+<view class="panel section">
+ <view class="section-title">常用功能</view>
+ <view class="entries">
+  <view class="entry" bindtap="openData" aria-role="button" aria-label="农情查询"><view class="ic-box tint-green"><image class="entry-ic" src="/images/ic/chart.png"/></view><text>农情查询</text></view>
+  <view class="entry" bindtap="openScenario" aria-role="button" aria-label="灌溉情景"><view class="ic-box tint-teal"><image class="entry-ic" src="/images/ic/scenario.png"/></view><text>灌溉情景</text></view>
+  <view class="entry" bindtap="farm" aria-role="button" aria-label="农事记录"><view class="ic-box tint-orange"><image class="entry-ic" src="/images/ic/log.png"/></view><text>农事记录</text></view>
+  <view class="entry" bindtap="result" aria-role="button" aria-label="模型结果"><view class="ic-box tint-purple"><image class="entry-ic" src="/images/ic/model.png"/></view><text>模型结果</text></view>
+  <view class="entry" bindtap="reports" aria-role="button" aria-label="历史报告"><view class="ic-box tint-brown"><image class="entry-ic" src="/images/ic/report.png"/></view><text>历史报告</text></view>
+  <view class="entry" bindtap="create" aria-role="button" aria-label="基地档案"><view class="ic-box tint-green"><image class="entry-ic" src="/images/ic/base.png"/></view><text>基地档案</text></view>
+ </view>
+</view>
+<view class="panel section">
+ <view class="section-title"><image class="ic" src="/images/ic/spark.png"/>试试这样问</view>
+ <view class="ask" data-question="30–45cm 最近一周墒情怎么样" bindtap="ask" aria-role="button"><text>30–45cm 最近一周墒情怎么样</text><text class="go">›</text></view>
+ <view class="ask" data-question="咖啡叶片营养采样需要记录哪些信息？" data-mode="knowledge" bindtap="ask" aria-role="button"><text>咖啡叶片营养采样需要记录哪些信息？</text><text class="go">›</text></view>
+ <view class="ask" data-question="如果多浇20mm，土壤水分会怎样" bindtap="ask" aria-role="button"><text>如果多浇20mm，土壤水分会怎样</text><text class="go">›</text></view>
+</view>
+<view class="panel section">
+ <view class="section-title"><image class="ic" src="/images/ic/model.png"/>模型工具</view>
+ <view wx:for="{{tools}}" wx:key="name" class="tool-row" bindtap="result" aria-role="button"><text class="dot"></text><text class="grow">{{item.displayName}}</text><evidence-tag source-type="{{item.source_type}}" status="{{item.status}}"/><text class="go">›</text></view>
+ <view wx:if="{{!tools.length}}" class="muted">暂无本地块模型结果</view>
+</view>
+</block></view>

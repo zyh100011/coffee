@@ -1,1 +1,7 @@
-<view class="plot-bar" bindtap="change" aria-role="button" aria-label="查看基地档案"><text>{{plot.single_base ? (plot.plot_name || '基地数据未导入') : ('当前地块：' + (plot.plot_name || '未选择'))}}</text><text wx:if="{{!plot.single_base}}">切换 ›</text></view>
+<view wx:if="{{variant === 'hero'}}" class="hero" bindtap="change" aria-role="button" aria-label="基地信息">
+  <image class="hero-art" src="/images/ill/hero.png" mode="aspectFit"/>
+  <view class="hero-tag"><image class="tag-ic" src="/images/ic/pin-white.png"/><text>咖啡种植基地</text></view>
+  <view class="hero-name">{{plot.plot_name || '基地数据未导入'}}</view>
+  <view wx:if="{{subText}}" class="hero-sub">{{subText}}</view>
+</view>
+<view wx:else class="plot-bar" bindtap="change" aria-role="button" aria-label="查看基地档案"><image class="pin" src="/images/ic/pin.png"/><text class="name">{{plot.single_base ? (plot.plot_name || '基地数据未导入') : ('当前地块：' + (plot.plot_name || '未选择'))}}</text><text wx:if="{{!plot.single_base}}" class="switch">切换 ›</text></view>

@@ -1,0 +1,3 @@
+.report-row{display:flex;justify-content:space-between;align-items:center;min-height:88rpx;border-bottom:1rpx solid #eef1ec;font-size:26rpx;}
+.report-row:last-child{border-bottom:0;}
+.go{color:#2a7049;font-size:24rpx;}

@@ -4,8 +4,8 @@ import os
 import requests
 from config import EVIDENCE_SERVICE_URL
 class EvidenceServiceError(Exception):
-    def __init__(self,code,msg):
-        super().__init__(msg); self.code=code
+    def __init__(self,code,msg,detail=''):
+        super().__init__(msg); self.code=code; self.detail=detail
 def validate(kind,r):
     if not isinstance(r,dict): raise ValueError('response must be object')
     if 'mock' in r and not isinstance(r['mock'],bool): raise ValueError('mock must be bool')
@@ -48,7 +48,15 @@ def _request(kind,payload=None,timeout=None):
             raise EvidenceServiceError('E_EVIDENCE_DOWN','循证服务鉴权失败，请在后端配置有效的访问令牌')
         if 300<=response.status_code<400:
             raise EvidenceServiceError('E_EVIDENCE_DOWN','循证服务地址发生重定向，请确认业务API地址')
-        response.raise_for_status(); return validate(kind,response.json())
+        if response.status_code>=400:
+            try: body=response.json(); info=str(body.get('error',''))+':'+str(body.get('message',''))
+            except ValueError: info=response.text
+            code='E_EVIDENCE_DOWN' if response.status_code>=500 else 'E_EVIDENCE_INVALID'
+            raise EvidenceServiceError(code,'循证服务返回错误',(kind+':HTTP '+str(response.status_code)+':'+info)[:200])
+        try: data=response.json()
+        except ValueError as e: raise EvidenceServiceError('E_EVIDENCE_INVALID','本地循证响应格式不符',kind+':non-json') from e
+        try: return validate(kind,data)
+        except (ValueError,TypeError) as e: raise EvidenceServiceError('E_EVIDENCE_INVALID','本地循证响应格式不符',(kind+':'+str(e))[:200]) from e
     except requests.Timeout as e: raise EvidenceServiceError('E_EVIDENCE_TIMEOUT','本地循证服务超时') from e
     except requests.RequestException as e: raise EvidenceServiceError('E_EVIDENCE_DOWN','本地循证服务不可用') from e
     except (ValueError,TypeError) as e: raise EvidenceServiceError('E_EVIDENCE_INVALID','本地循证响应格式不符') from e

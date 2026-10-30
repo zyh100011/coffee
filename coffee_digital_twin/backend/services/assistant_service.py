@@ -15,6 +15,29 @@ SESSIONS={}
 LOCK=Lock()
 LABELS={'observation':'实测','literature':'文献','simulation_uncalibrated':'未校准模拟','proxy_model':'代理模型','simplified_model':'简化模型','demo':'演示','internal_tool_description':'工具说明'}
 
+def service_context(context):
+    """Compact copy sent to the model service (8k context); full context stays in the business layer."""
+    compact={k:v for k,v in context.items() if k!='observation_catalog'}
+    summary={}
+    for c in context.get('observation_catalog',[]):
+        if not c.get('usable_count') or c.get('hidden_reason'): continue
+        start=c.get('valid_start') or c['start']; end=c.get('valid_end') or c['end']
+        e=summary.setdefault(c['parameter'],{'parameter':c['parameter'],'label':c.get('parameter_label'),'end':end})
+        e['end']=max(e['end'],end)
+        if c.get('depth_cm') is not None: e['depth_cm']=c['depth_cm']
+        if c.get('depth_top_cm') is not None: e['layer_cm']=[c['depth_top_cm'],c['depth_bottom_cm']]
+    compact['observation_catalog']=list(summary.values())
+    return compact
+
+
+def service_history(history):
+    return [dict(h,content=str(h.get('content',''))[:300]) if isinstance(h,dict) else h for h in (history or [])[-6:]]
+
+
+def service_route_payload(route_payload):
+    return dict(route_payload,plot_context=service_context(route_payload['plot_context']),history=service_history(route_payload.get('history')))
+
+
 def _blocks(results):
     blocks=[]; evidence=[]
     for r in results:
@@ -77,11 +100,12 @@ def chat(payload):
             route={'intent':'model_explain','tool_calls':[{'name':'read_model_result','arguments':{'task_id':r['task_id'],'tool':'hydrus'}} for r in (compare_record['baseline'],compare_record['variant'])] if compare_record and compare_record.get('parameter_verified') else [],
                    'missing_fields':[] if compare_record and compare_record.get('parameter_verified') else ['verified_compare'], 'clarify_question':None}
         else:
-            route=evidence_client.route(route_payload,timeout=min(20,deadline-time.monotonic()-2))
+            route=evidence_client.route(service_route_payload(route_payload),timeout=min(20,deadline-time.monotonic()-2))
         evidence_client.validate('route',route)
         if route.get('mock'): trace['service_mode']='mock'
     except (evidence_client.EvidenceServiceError,ValueError) as error:
         trace['errors'].append(getattr(error,'code','E_EVIDENCE_INVALID')); trace['service_mode']='degraded'
+        if getattr(error,'detail',''): trace['errors'].append('detail:'+error.detail)
         candidate=route_rules(route_payload)
         route=candidate if candidate['intent']=='data_query' else {'intent':'other','tool_calls':[],'missing_fields':[],'clarify_question':None}
         blocks.append({'type':'warning','text':'智能解释暂不可用；仅执行明确的数据查询'})
@@ -121,7 +145,7 @@ def chat(payload):
             try:
                 answer=evidence_client.answer({'session_id':session,'message':question,'intent':route['intent'],
                     'tool_results':transported,'tool_status':[{k:r[k] for k in ('tool','status','source_type')} for r in results],
-                    'plot_context':context},timeout=min(60,deadline-time.monotonic()-2))
+                    'plot_context':service_context(context)},timeout=min(60,deadline-time.monotonic()-2))
                 evidence_client.validate('answer',answer); trace['answer']=answer
                 if answer.get('mock'): trace['service_mode']='mock'
                 allowed={r['evidence_id'] for r in usable}
@@ -149,6 +173,7 @@ def chat(payload):
                 if answer['check_items']: blocks.append({'type':'check_items','items':answer['check_items']})
             except (evidence_client.EvidenceServiceError,ValueError) as error:
                 trace['errors'].append(getattr(error,'code','E_EVIDENCE_INVALID')); trace['service_mode']='degraded'
+                if getattr(error,'detail',''): trace['errors'].append('detail:'+error.detail)
                 blocks.append({'type':'warning','text':'智能解释暂不可用；已保留工具事实和来源'})
             trace['latency_ms']['answer']=round((time.monotonic()-stage)*1000)
     with LOCK:
@@ -165,7 +190,9 @@ def chat(payload):
     save(trace)
     response={'status':status,'session_id':session,'turn_id':trace['turn_id'],'trace_id':trace['trace_id'],
             'blocks':blocks,'service_mode':trace['service_mode'],'mock':trace['service_mode']=='mock',
-            'answer_status':trace['answer'].get('retrieval_trace',{}).get('status')}
+            'answer_status':trace['answer'].get('retrieval_trace',{}).get('status'),
+            # 仅供前端显示问题类别，不参与路由。
+            'intent':(trace.get('route') or {}).get('intent'),'tools':[c.get('name') for c in trace.get('tool_calls',[])]}
     from services.errors import envelope,ERRORS
     response['errors']=[envelope(code,trace_id=trace['trace_id']) for code in trace['errors'] if code in ERRORS]
     if status=='error':

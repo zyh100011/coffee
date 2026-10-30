@@ -5,55 +5,70 @@
   <banner wx:if="{{error}}" kind="{{state === 'offline' ? 'offline' : 'warning'}}" text="{{error.message}}" action-text="{{error.retryable ? '重试' : ''}}" bind:action="reload"/>
   <loading-panel wx:if="{{state === 'loading'}}" text="加载中"/>
 
-  <view wx:if="{{importStatus.observations.n}}" class="panel section">
-    <view>历史监测 {{importStatus.observations.n}} 条 · {{importStatus.observations.start}}～{{importStatus.observations.end}}</view>
-    <button wx:if="{{isDev}}" class="btn-link" bindtap="toggleNotes">数据说明 {{notesOpen ? '收起' : '›'}}</button>
-    <block wx:if="{{isDev && notesOpen}}"><view wx:for="{{statusWarnings}}" wx:key="*this" class="muted">{{item}}</view><view wx:if="{{missingText}}" class="muted">尚缺：{{missingText}}</view></block>
+  <view wx:if="{{importStatus.observations.n}}" class="overview section">
+    <view class="ov-main"><text class="ov-num">{{importStatus.observations.n}}</text><text class="ov-unit">条历史监测记录</text></view>
+    <view class="ov-range">{{importStatus.observations.start}} ～ {{importStatus.observations.end}}</view>
+    <button wx:if="{{isDev}}" class="btn-link ov-link" bindtap="toggleNotes">数据说明 {{notesOpen ? '收起' : '›'}}</button>
+    <block wx:if="{{isDev && notesOpen}}">
+      <view wx:for="{{statusWarnings}}" wx:key="*this" class="ov-note">{{item}}</view>
+      <view wx:if="{{missingText}}" class="ov-note">尚缺：{{missingText}}</view>
+    </block>
   </view>
   <empty-state wx:if="{{state === 'empty'}}" title="该地块暂无入库数据" desc="请先选择已导入数据的地块或完成数据导入" action-text="地块管理" bind:action="create"/>
+
   <view wx:if="{{options.length}}" class="panel section">
-    <picker range="{{groups}}" range-key="label" value="{{groupIndex}}" bindchange="selectGroup" aria-label="选择参数"><view class="picker">参数：{{groups[groupIndex].label}} ▾</view></picker>
-    <picker range="{{variants}}" range-key="label" value="{{variantIndex}}" bindchange="select" aria-label="选择深度或监测点"><view class="picker">{{variants[variantIndex].label}} ▾</view></picker>
-    <picker mode="date" value="{{start}}" start="{{options[selected].start}}" end="{{options[selected].end}}" data-key="start" bindchange="dates" aria-label="查询开始日期"><view class="picker">开始：{{start}}</view></picker>
-    <picker mode="date" value="{{end}}" start="{{start}}" end="{{options[selected].end}}" data-key="end" bindchange="dates" aria-label="查询结束日期"><view class="picker">结束：{{end}}</view></picker>
-    <picker wx:if="{{options[selected].parameter !== 'rainfall_daily'}}" range="{{aggs}}" value="{{aggIndex}}" bindchange="agg" aria-label="选择日均读数或原始记录"><view class="picker">{{aggs[aggIndex]}} ▾</view></picker>
-    <view wx:if="{{isDev}}"><switch checked="{{includeFlagged}}" bindchange="flagged" aria-label="包含待核查的异常或单位缺失记录"/>包含待核查记录</view>
+    <view class="card-head"><view class="ic-box tint-green"><image class="ic-img" src="/images/ic/search.png"/></view><view class="grow"><view class="title">监测数据查询</view><view class="sub">选择指标、位置和时间段</view></view></view>
+    <view class="grid-2">
+      <picker class="half" range="{{groups}}" range-key="label" value="{{groupIndex}}" bindchange="selectGroup" aria-label="选择参数"><view class="picker"><view class="pk"><text class="k">指标</text><text class="v">{{groups[groupIndex].label}}</text></view><text class="arrow">▾</text></view></picker>
+      <picker class="half" range="{{variants}}" range-key="label" value="{{variantIndex}}" bindchange="select" aria-label="选择深度或监测点"><view class="picker"><view class="pk"><text class="k">位置</text><text class="v">{{variants[variantIndex].label}}</text></view><text class="arrow">▾</text></view></picker>
+      <picker class="half" mode="date" value="{{start}}" start="{{options[selected].start}}" end="{{options[selected].end}}" data-key="start" bindchange="dates" aria-label="查询开始日期"><view class="picker"><view class="pk"><text class="k">开始</text><text class="v">{{start}}</text></view><text class="arrow">▾</text></view></picker>
+      <picker class="half" mode="date" value="{{end}}" start="{{start}}" end="{{options[selected].end}}" data-key="end" bindchange="dates" aria-label="查询结束日期"><view class="picker"><view class="pk"><text class="k">结束</text><text class="v">{{end}}</text></view><text class="arrow">▾</text></view></picker>
+    </view>
+    <picker wx:if="{{options[selected].parameter !== 'rainfall_daily'}}" range="{{aggs}}" value="{{aggIndex}}" bindchange="agg" aria-label="选择日均读数或原始记录"><view class="picker"><view class="pk"><text class="k">方式</text><text class="v">{{aggs[aggIndex]}}</text></view><text class="arrow">▾</text></view></picker>
+    <view wx:if="{{isDev}}" class="switch-row"><switch checked="{{includeFlagged}}" bindchange="flagged" aria-label="包含待核查的异常或单位缺失记录"/><text>包含待核查记录</text></view>
     <button class="primary-btn" loading="{{querying}}" disabled="{{querying}}" bindtap="query">查询</button>
   </view>
-  <view wx:if="{{result}}" class="panel">
-    <evidence-tag source-type="{{result.source_type}}" status="{{result.status}}"/>
+
+  <view wx:if="{{result}}" class="panel section">
+    <view class="card-head"><view class="ic-box tint-blue"><image class="ic-img" src="/images/ic/chart.png"/></view><view class="grow"><view class="title">{{options[selected].label}}</view><view class="sub">{{start}} 至 {{end}}</view></view><evidence-tag source-type="{{result.source_type}}" status="{{result.status}}"/></view>
     <msg-blocks blocks="{{blocks}}" bind:openevidence="openEvidence"/>
-    <button wx:if="{{result.outputs.next_offset !== null}}" disabled="{{querying}}" bindtap="nextPage">下一页记录</button>
+    <button wx:if="{{result.outputs.next_offset !== null}}" class="ghost-btn" disabled="{{querying}}" bindtap="nextPage">下一页记录</button>
     <button wx:if="{{isDev}}" class="btn-link" bindtap="rawRecords">查看原始记录 ›</button>
   </view>
+
   <banner wx:if="{{reportError}}" kind="warning" text="{{reportError}}" action-text="重试" bind:action="reload"/>
   <banner wx:if="{{weatherError}}" kind="warning" text="{{weatherError}}" action-text="重试" bind:action="reload"/>
   <view wx:if="{{weatherDaily}}" class="panel section">
-    <view class="section-title">历史气象</view>
-    <view class="muted">{{weatherDaily.start}} 至 {{weatherDaily.end}}；{{weatherDaily.n}}条日数据</view>
+    <view class="card-head"><view class="ic-box tint-blue"><image class="ic-img" src="/images/ic/rain.png"/></view><view class="grow"><view class="title">历史气象</view><view class="sub">{{weatherDaily.start}} 至 {{weatherDaily.end}} · {{weatherDaily.n}} 天</view></view></view>
     <view wx:if="{{isDev}}" class="muted">来源：NASA POWER 网格数据（非现场实测）</view>
-    <picker mode="date" value="{{weatherStart}}" start="{{weatherDaily.start}}" end="{{weatherDaily.end}}" data-key="weatherStart" bindchange="weatherDates" aria-label="历史气象开始日期"><view class="picker">开始：{{weatherStart}}</view></picker>
-    <picker mode="date" value="{{weatherEnd}}" start="{{weatherStart}}" end="{{weatherDaily.end}}" data-key="weatherEnd" bindchange="weatherDates" aria-label="历史气象结束日期"><view class="picker">结束：{{weatherEnd}}</view></picker>
-    <button loading="{{weatherQuerying}}" disabled="{{weatherQuerying}}" bindtap="queryWeather">查询历史气象（最多366天）</button>
-    <view wx:if="{{weatherResult}}">
-      <line-chart series="{{weatherSeries}}" unit="mm/day"/>
-      <view wx:for="{{weatherRows}}" wx:key="ts" class="section">
-        <view>{{item.date}}：均温{{item.tavgText}}℃；降雨{{item.rainText}}mm；辐射{{item.radiationText}}MJ/m²</view>
+    <view class="grid-2">
+      <picker class="half" mode="date" value="{{weatherStart}}" start="{{weatherDaily.start}}" end="{{weatherDaily.end}}" data-key="weatherStart" bindchange="weatherDates" aria-label="历史气象开始日期"><view class="picker"><view class="pk"><text class="k">开始</text><text class="v">{{weatherStart}}</text></view><text class="arrow">▾</text></view></picker>
+      <picker class="half" mode="date" value="{{weatherEnd}}" start="{{weatherStart}}" end="{{weatherDaily.end}}" data-key="weatherEnd" bindchange="weatherDates" aria-label="历史气象结束日期"><view class="picker"><view class="pk"><text class="k">结束</text><text class="v">{{weatherEnd}}</text></view><text class="arrow">▾</text></view></picker>
+    </view>
+    <button class="ghost-btn" loading="{{weatherQuerying}}" disabled="{{weatherQuerying}}" bindtap="queryWeather">查询历史气象</button>
+    <view class="muted center">单次最多 366 天</view>
+    <view wx:if="{{weatherResult}}" class="weather-result">
+      <line-chart series="{{weatherSeries}}" unit="mm/day" y-min="{{0}}" height="300" compact="{{!isDev}}"/>
+      <view class="data-table weather-table">
+        <view class="tr th"><text class="c-date">日期</text><text>均温 ℃</text><text>降雨 mm</text><text>辐射 MJ/m²</text></view>
+        <scroll-view scroll-y class="wt-body"><view wx:for="{{weatherRows}}" wx:key="ts" class="tr"><text class="c-date">{{item.date}}</text><text>{{item.tavgText}}</text><text>{{item.rainText}}</text><text>{{item.radiationText}}</text></view></scroll-view>
       </view>
       <view wx:if="{{isDev}}" wx:for="{{weatherResult.warnings}}" wx:key="*this" class="muted">{{item}}</view>
     </view>
   </view>
+
   <view wx:if="{{reports.length}}" class="panel section">
-    <view class="section-title">基地土壤（0–20cm 表层）</view>
-    <evidence-tag source-type="observation" status="success"/>
-    <view class="muted">基地土壤检测报告（2026T108）</view>
-    <button class="btn-link" bindtap="toggleSamples">{{allSamplesOpen ? '收起样品' : '查看全部 9 个样品 ›'}}</button>
-    <picker wx:if="{{allSamplesOpen}}" range="{{reports}}" range-key="lab_sample_id" value="{{reportIndex}}" bindchange="reportSelect" aria-label="选择土壤检测样品"><view class="picker">{{reports[reportIndex].lab_sample_id}} · {{reports[reportIndex].sample_label}} ▾</view></picker>
-    <view class="muted">报告日：{{reports[reportIndex].report_date}}；收样日：{{reports[reportIndex].received_date}}</view>
-    <view class="muted">表层 0–20cm · {{reports[reportIndex].sample_label}}</view>
-    <view wx:for="{{reports[reportIndex].measurements}}" wx:key="result_id" class="section">
-      <view bindtap="method" data-id="{{item.result_id}}" aria-role="button" aria-label="展开检测方法">{{item.displayItem}}：{{item.displayValue}} {{item.displayUnit}} ›</view><view wx:if="{{isDev && methodId === item.result_id}}" class="muted">方法：{{item.method}}</view>
+    <view class="card-head"><view class="ic-box tint-brown"><image class="ic-img" src="/images/ic/soil.png"/></view><view class="grow"><view class="title">基地土壤</view><view class="sub">0–20cm 表层 · {{reports[reportIndex].sample_label}}</view></view><evidence-tag source-type="observation" status="success"/></view>
+    <view class="tiles">
+      <view wx:for="{{reports[reportIndex].measurements}}" wx:key="result_id" class="tile" bindtap="method" data-id="{{item.result_id}}" aria-role="button" aria-label="{{item.displayItem}}">
+        <view class="t-label">{{item.displayItem}}</view>
+        <view class="t-value">{{item.displayValue}}<text class="u">{{item.displayUnit}}</text></view>
+        <view wx:if="{{isDev && methodId === item.result_id}}" class="muted">方法：{{item.method}}</view>
+      </view>
     </view>
+    <view class="soil-foot"><text class="muted">检测报告 2026T108 · 报告日 {{reports[reportIndex].report_date}}</text><text class="btn-text" bindtap="toggleSamples" aria-role="button">{{allSamplesOpen ? '收起样品' : '全部 9 个样品 ›'}}</text></view>
+    <picker wx:if="{{allSamplesOpen}}" range="{{reports}}" range-key="lab_sample_id" value="{{reportIndex}}" bindchange="reportSelect" aria-label="选择土壤检测样品"><view class="picker"><view class="pk"><text class="k">样品</text><text class="v">{{reports[reportIndex].lab_sample_id}} · {{reports[reportIndex].sample_label}}</text></view><text class="arrow">▾</text></view></picker>
+    <view wx:if="{{isDev}}" class="muted">收样日：{{reports[reportIndex].received_date}}</view>
     <view wx:if="{{isDev && notesOpen}}" wx:for="{{reportWarnings}}" wx:key="*this" class="muted">{{item}}</view>
   </view>
 </view>

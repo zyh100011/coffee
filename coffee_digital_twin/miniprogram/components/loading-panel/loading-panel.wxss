@@ -1,21 +1,3 @@
-.loading-panel {
-  min-height: 140rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16rpx;
-  color: #365b43;
-  background: #ffffff;
-  border: 1rpx solid #dfe7df;
-  border-radius: 8rpx;
-  font-size: 28rpx;
-}
-
-.dot {
-  width: 18rpx;
-  height: 18rpx;
-  border-radius: 50%;
-  background: #2f7d50;
-}
-
+.loading-panel{min-height:120rpx;display:flex;align-items:center;justify-content:center;gap:16rpx;color:#365b43;background:#ffffff;border-radius:24rpx;font-size:26rpx;box-shadow:0 6rpx 24rpx rgba(31,90,58,.07);margin-bottom:24rpx;}
+.dot{width:16rpx;height:16rpx;border-radius:50%;background:#2f7d50;box-shadow:24rpx 0 0 #8fc7a3,48rpx 0 0 #cfe6d7;margin-right:48rpx;}
 .step{font-size:24rpx;margin-top:8rpx;}

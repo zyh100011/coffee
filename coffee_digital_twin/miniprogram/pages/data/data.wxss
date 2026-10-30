@@ -1,1 +1,20 @@
-
+.overview{position:relative;padding:32rpx 32rpx 28rpx;border-radius:24rpx;color:#ffffff;background:linear-gradient(135deg,#2f7d50,#1f5a3a);box-shadow:0 10rpx 26rpx rgba(31,90,58,.22);}
+.ov-main{display:flex;align-items:baseline;gap:12rpx;}
+.ov-num{font-size:60rpx;font-weight:700;line-height:1.1;}
+.ov-unit{font-size:26rpx;opacity:.9;}
+.ov-range{margin-top:8rpx;font-size:24rpx;opacity:.8;}
+.ov-note{margin-top:8rpx;font-size:22rpx;opacity:.85;}
+button.ov-link{color:#ffffff;background:rgba(255,255,255,.15);}
+.pk{display:flex;flex-direction:column;min-width:0;padding:10rpx 0;}
+.pk .k{font-size:20rpx;color:#7a857d;line-height:1.3;}
+.pk .v{font-size:26rpx;color:#24352a;line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.arrow{color:#a3ada6;font-size:22rpx;flex:0 0 auto;margin-left:8rpx;}
+.switch-row{display:flex;align-items:center;gap:12rpx;font-size:25rpx;margin:8rpx 0;}
+.center{text-align:center;margin-top:8rpx;}
+.weather-result{margin-top:16rpx;}
+.weather-table{margin-top:16rpx;}
+.wt-body{max-height:480rpx;}
+.c-date{flex:1.4 !important;}
+.u{font-size:22rpx;font-weight:400;color:#7a857d;margin-left:6rpx;}
+.soil-foot{display:flex;justify-content:space-between;align-items:center;gap:16rpx;margin:20rpx 0 8rpx;}
+.btn-text{flex:0 0 auto;font-size:24rpx;color:#2a7049;}

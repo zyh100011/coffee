@@ -1,1 +1,13 @@
-<view class="line-chart"><view class="muted">{{unitText}}</view><view wx:if="{{empty}}" class="empty">暂无可绘制数据</view><canvas wx:else id="plot" type="2d" style="width:100%;height:{{height}}rpx;" aria-label="折线图，下方可查看完整数据表"/><view class="legend"><view wx:for="{{legend}}" wx:key="name"><text style="color:{{item.color}}">━</text> {{item.name}}</view></view><button class="ghost-btn" bindtap="toggle" aria-label="切换完整数据表">{{table ? '收起数据表' : '查看数据表'}}</button><view wx:if="{{table}}"><view class="table-row"><text>序列</text><text>时间</text><text>数值</text></view><view wx:for="{{rows}}" wx:key="index" class="table-row"><text>{{item.name}}</text><text>{{item.x}}</text><text>{{item.value}}</text></view></view></view>
+<view class="line-chart">
+ <view class="lc-top"><text class="lc-unit">{{unitText}}</text><view wx:if="{{legend.length > 1 || !compact}}" class="lc-legend"><view wx:for="{{legend}}" wx:key="name" class="lc-lg"><text class="lc-sw" style="background:{{item.color}}"></text>{{item.name}}</view></view></view>
+ <view wx:if="{{empty}}" class="lc-empty">暂无可绘制数据</view>
+ <view wx:else id="plot" class="lc-plot" style="height:{{heightPx}}px;" aria-label="折线图，可展开查看数据表">
+  <view wx:for="{{grid}}" wx:key="top" class="lc-gl" style="top:{{item.top}}px;left:{{plotLeft}}px;right:{{plotRight}}px;"></view>
+  <text wx:for="{{grid}}" wx:key="top" class="lc-gt" style="top:{{item.top}}px;">{{item.label}}</text>
+  <view wx:for="{{segs}}" wx:key="index" class="lc-seg" style="left:{{item.left}}px;top:{{item.top}}px;width:{{item.len}}px;transform:rotate({{item.deg}}deg);background:{{item.color}};"></view>
+  <view wx:for="{{dots}}" wx:key="index" class="lc-dt" style="left:{{item.left}}px;top:{{item.top}}px;border-color:{{item.color}};"></view>
+  <text wx:for="{{ticks}}" wx:key="left" class="lc-xt lc-xt-{{item.align}}" style="left:{{item.left}}px;">{{item.text}}</text>
+ </view>
+ <view wx:if="{{!empty}}" class="lc-toggle" bindtap="toggle" aria-role="button" aria-label="切换完整数据表">{{table ? '收起数据' : '查看数据'}} ›</view>
+ <view wx:if="{{table}}" class="data-table"><view class="tr th"><text wx:if="{{legend.length > 1}}">序列</text><text>时间</text><text>数值</text></view><view wx:for="{{rows}}" wx:key="index" class="tr"><text wx:if="{{legend.length > 1}}">{{item.name}}</text><text>{{item.x}}</text><text>{{item.value}}</text></view></view>
+</view>

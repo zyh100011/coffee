@@ -1,1 +1,32 @@
-.steps{display:flex;justify-content:space-between;margin:28rpx 0;color:#5f6b63}.current,.verified{color:#1f5a3a;font-weight:bold}.quick{display:flex;gap:12rpx}.quick button{flex:1;font-size:28rpx}.unsupported{background:#edf0ed;color:#5f6b63;padding:24rpx;margin:12rpx 0;border-radius:12rpx}.table-row{display:flex;border-bottom:1rpx solid #dfe7df;padding:16rpx 0;font-size:24rpx}.table-row text{flex:1;overflow-wrap:anywhere}.table-head{font-weight:bold}.limit{margin:14rpx 0}.replay-title{font-size:24rpx;color:#654c93}.verified{margin:24rpx 0}
+.steps{display:flex;align-items:center;margin:4rpx 8rpx 24rpx;}
+.st{display:flex;align-items:center;gap:10rpx;color:#9aa49d;font-size:25rpx;}
+.st .n{width:44rpx;height:44rpx;border-radius:50%;background:#e4e9e3;color:#7a857d;display:flex;align-items:center;justify-content:center;font-size:24rpx;font-weight:600;}
+.st.on{color:#1f5a3a;font-weight:600;}
+.st.on .n{background:#1f5a3a;color:#ffffff;}
+.bar{flex:1;height:4rpx;margin:0 16rpx;border-radius:2rpx;background:#e4e9e3;}
+.bar.on{background:#1f5a3a;}
+.pk{display:flex;flex-direction:column;min-width:0;padding:10rpx 0;}
+.pk .k{font-size:20rpx;color:#7a857d;line-height:1.3;}
+.pk .v{font-size:26rpx;color:#24352a;}
+.arrow{color:#a3ada6;font-size:22rpx;}
+.amount-box{margin:8rpx 0 16rpx;padding:24rpx;border-radius:20rpx;background:#eef7f5;}
+.amount-head{display:flex;justify-content:space-between;align-items:baseline;}
+.amount{display:flex;align-items:baseline;gap:6rpx;}
+.amount-num{font-size:60rpx;font-weight:700;color:#16857a;line-height:1.1;}
+.amount-unit{font-size:24rpx;color:#5f6b63;}
+.quick{display:flex;gap:16rpx;}
+.quick .q{flex:1;margin:0;background:#ffffff;color:#16857a;}
+.exact{display:flex;align-items:center;gap:16rpx;margin-top:20rpx;}
+.exact-input{flex:1;height:72rpx;min-height:72rpx;background:#ffffff;}
+.kv-list{border-radius:18rpx;background:#f6f8f4;padding:4rpx 24rpx;margin-bottom:12rpx;}
+.kv-row{display:flex;gap:24rpx;padding:20rpx 0;border-bottom:1rpx solid #e8ede6;font-size:26rpx;}
+.kv-row:last-child{border-bottom:0;}
+.kk{flex:0 0 72rpx;color:#7a857d;}
+.vv{flex:1;color:#24352a;overflow-wrap:anywhere;}
+.front{margin:20rpx 0;}
+.sub-title{font-size:25rpx;font-weight:600;color:#46554b;margin:8rpx 0 12rpx;}
+.diff{color:#16857a;font-weight:600;}
+.limit{margin:14rpx 0;}
+.replay-title{font-size:24rpx;color:#654c93;}
+.verified{margin:24rpx 0;color:#1f5a3a;font-weight:bold;}
+.btn-row{display:flex;gap:16rpx;}
